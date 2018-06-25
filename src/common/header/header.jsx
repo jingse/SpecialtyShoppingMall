@@ -28,7 +28,7 @@ export default class Header extends React.Component {
     }
 
     onSubmit(value){
-        this.context.router.history.push({pathname: 'search', value: this.state.value});
+        this.context.router.history.push({pathname: '../search', value: this.state.value});
     }
 
     render(){

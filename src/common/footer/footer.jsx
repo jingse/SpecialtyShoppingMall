@@ -75,7 +75,8 @@ export default class MyFooter extends React.Component {
                     />}
                     title="购物车"
                     key="购物车"
-                    badge={localStorage.getItem("cartCount")}
+                    // badge={localStorage.getItem("cartCount")}
+                    badge={this.props.cartcount!=null ?this.props.cartcount:(localStorage.getItem("cartCount")!=0 ?localStorage.getItem("cartCount"):'')}
                     selected={this.state.selectedTab === '/cart'}
                     onPress={() => { this.linkTo('/cart'); }}
                 >

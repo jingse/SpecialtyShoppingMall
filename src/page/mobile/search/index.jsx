@@ -4,7 +4,7 @@ import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
 import SearchNavBar from "../../../components/search/index.jsx";
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
-import { WhiteSpace, Flex, Tabs } from 'antd-mobile';
+import { WhiteSpace, Flex, Tabs,SearchBar } from 'antd-mobile';
 import './index.less';
 // import search_data from "../../../static/mockdata/search_results.js";   //mock假数据
 import homeApi from "../../../api/home.jsx";
@@ -82,6 +82,19 @@ class Search extends React.Component {
             case 2: return 1;
         }
     }
+    onCancel(value){
+        this.setState({
+            searchValue: ''
+        });
+    }
+    onChange(value){
+        this.setState({
+            searchValue: value
+        });
+    }
+    onSubmit(value){
+        this.requestSearchResults(this.state.searchValue, 1, 10, 0);
+    }
 
     render() {
 
@@ -150,7 +163,14 @@ class Search extends React.Component {
         });
 
         return <Layout>
-            <SearchNavBar value={this.state.searchValue}/>
+            {/* <SearchNavBar value={this.state.searchValue}/> */}
+            <SearchBar
+                value={this.state.searchValue}
+                placeholder="搜索"
+                onCancel={this.onCancel.bind(this)}
+                onChange={this.onChange.bind(this)}
+                onSubmit={this.onSubmit.bind(this)}
+            />
 
             <div className="search_container">
                 <Tabs tabs={tabs}

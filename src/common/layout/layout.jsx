@@ -9,8 +9,9 @@ export default class MyLayout extends React.Component {
     }
 
     render(){
+        const cartcount = this.props.cartcount;
         const header = this.props.header ? <Header /> : null;
-        const footer = this.props.footer ? <Footer /> : null;
+        const footer = this.props.footer ? <Footer cartcount ={cartcount}/> : null;
 
         return <div className="layout">
             {header}

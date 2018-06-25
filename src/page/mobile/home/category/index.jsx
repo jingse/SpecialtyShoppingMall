@@ -245,9 +245,9 @@ export default class Category extends React.Component {
             );
         };
 
-        return <Layout header={false} footer={true}>
+        return <Layout header={true} footer={true}>
 
-            <SearchNavBar/>
+            {/* <SearchNavBar/> */}
             <WhiteSpace size="xs"/>
 
 

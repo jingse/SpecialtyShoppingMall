@@ -204,19 +204,38 @@ class Cart extends React.Component {
             cartItems: this.state.cartItems,
         });
     }
-
+    addNum = (val) => {
+        this.setState({
+            num: (val+1)<11?val+1:10,
+        });
+    };
+    minusNum = (val) => {
+        this.setState({
+            num: (val-1)>1?val-1:1,
+        });
+    };
     checkEdit(id) {
          return <Card className = "overlay" style={this.state.style}>
              <Flex>
                  <Flex.Item style={{flex:'0 0 70%'}}>
-
-                     <Stepper style={{ width: '50%', minWidth: '100px', touchAction: 'none', marginLeft:"2rem" }}
+                    <div className="step">
+                        <div className="add" onClick={() => {this.addNum(this.state.num)}}>
+                        +
+                        </div>
+                        <div className="value">
+                        {this.state.num}
+                        </div>
+                        <div className="minus"onClick={() => {this.minusNum(this.state.num)}}>
+                        -
+                        </div>
+                    </div>
+                     {/* <Stepper style={{ width: '50%', minWidth: '100px', touchAction: 'none', marginLeft:"2rem" }}
                               showNumber
                               max={10}
                               min={1}
                               value={this.state.num}
                               onChange={this.onChange}
-                     />
+                     /> */}
 
                  </Flex.Item>
                  <Flex.Item style={{flex:'0 0 30%', backgroundColor:'darkorange', color:'white',
@@ -463,7 +482,7 @@ class Cart extends React.Component {
             </div>
         });
 
-        return <Layout footer={true}>
+        return <Layout footer={true} cartcount={this.state.cartListCount}>
 
             <Navigation title={"购物车(" + this.state.cartListCount + ")"} curPath='/cart' left={false}/>
 

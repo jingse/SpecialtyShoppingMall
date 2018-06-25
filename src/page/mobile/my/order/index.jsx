@@ -389,13 +389,13 @@ export default class Order extends React.Component {
             case 1:
                 console.log("上");
 
-                //请求新的数据
-                //TODO:分页
-                console.log("请求第", this.state.curOrderPage);
-                this.requestTabData(this.state.tab, this.state.curOrderPage, pageSize);
-                this.setState({
-                    curOrderPage: this.state.curOrderPage++,
-                });
+                // 请求新的数据
+                // TODO:分页
+                // console.log("请求第", this.state.curOrderPage);
+                // this.requestTabData(this.state.tab, this.state.curOrderPage, pageSize);
+                // this.setState({
+                //     curOrderPage: this.state.curOrderPage++,
+                // });
 
                 this.setState({ down: false });
                 break;
@@ -444,6 +444,7 @@ export default class Order extends React.Component {
             receive:[],
             evaluate:[],
             refund:[],
+            curOrderPage: 2,
         });
     }
 
@@ -689,8 +690,25 @@ export default class Order extends React.Component {
             direction={this.state.down ? 'down' : 'up'}
             refreshing={this.state.refreshing}
             onRefresh={() => {
-                console.log("处理刷新/加载事件");
                 this.setState({ refreshing: true });
+                if(this.state.down){//刷新事件
+                    this.clearData();
+                    this.requestTabData(this.state.tab, 1, pageSize);
+                    // this.setState({
+                    //     curOrderPage: 2,
+                    // });
+                }
+                else{//加载事件
+                    // 请求新的数据
+                    // TODO:分页    
+                    console.log("请求第", this.state.curOrderPage);
+                    this.requestTabData(this.state.tab, this.state.curOrderPage, pageSize);
+                    this.setState({
+                        curOrderPage: ++this.state.curOrderPage,
+                    });
+                }
+                console.log("处理刷新/加载事件");
+                
                 setTimeout(() => {
                     this.setState({ refreshing: false });
                 }, 1000);
