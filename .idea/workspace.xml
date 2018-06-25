@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/api/coupon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/coupon.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1665">
+              <caret line="122" column="37" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="272" column="35" lean-forward="true" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1080">
+              <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="payment.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/payment.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/product.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>this.props.location.is</find>
+      <find>specification</find>
+      <find>this.state.orderCode</find>
+      <find>shouldPay</find>
+      <find>this.state.specialtyId</find>
+      <find>product</find>
+      <find>this.props.location</find>
+      <find>isPromotion</find>
+      <find>wechatId</find>
+      <find>linkTo</find>
+      <find>splice</find>
+      <find>InputItem</find>
+      <find>查看物流</find>
+      <find>localStorage</find>
+      <find>requestTotalPrice</find>
+      <find>local</find>
+      <find>item.</find>
+      <find>item</find>
+      <find>10</find>
+      <find>localStorage.getItem(&quot;wechatId&quot;)</find>
+      <find>console</find>
+      <find>res</find>
+      <find>overlay</find>
+      <find>去付款</find>
+      <find>check</find>
+      <find>touchEnd</find>
+      <find>confirm</find>
+      <find>Stepper</find>
+      <find>searchNavBar</find>
+      <find>source</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/page/mobile/home/carousel.jsx" />
+        <option value="$PROJECT_DIR$/src/config.jsx" />
+        <option value="$PROJECT_DIR$/src/api/home.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/products/bottom.jsx" />
+        <option value="$PROJECT_DIR$/src/static/realdata/groupSalesDetail.js" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/products/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/app.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/api/my.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/address/add/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/address/edit/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/address/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/bottom.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/recharge/payment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/balance/purchase/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/product/putincart.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/recharge/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/setting/help/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" />
+        <option value="$PROJECT_DIR$/src/components/search/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/product/comment.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/product/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/product/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/category/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/search/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/cart/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/search/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" />
+        <option value="$PROJECT_DIR$/src/static/realdata/cart.js" />
+        <option value="$PROJECT_DIR$/src/api/coupon.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/index.jsx" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1940" />
+    <option name="height" value="1060" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../supermallDemo" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Codes\React\SpecialtyShoppingMall\src\page\mobile\home\sales_group\detail" />
+      <recent name="E:\Codes\React\SpecialtyShoppingMall\src\page\mobile\my\setting" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="" />
+      <created>1516514689732</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1516514689732</updated>
+      <workItem from="1516514691087" duration="1163000" />
+      <workItem from="1516515884069" duration="500000" />
+      <workItem from="1516516406778" duration="11816000" />
+      <workItem from="1516535615232" duration="16000" />
+      <workItem from="1516535647390" duration="20612000" />
+      <workItem from="1516856709723" duration="37745000" />
+      <workItem from="1516961442776" duration="2534000" />
+      <workItem from="1520165423185" duration="299000" />
+      <workItem from="1520232125532" duration="18065000" />
+      <workItem from="1520495101755" duration="4882000" />
+      <workItem from="1520500015810" duration="1365000" />
+      <workItem from="1520501398612" duration="8134000" />
+      <workItem from="1520512670953" duration="594000" />
+      <workItem from="1520513276566" duration="4600000" />
+      <workItem from="1520580664815" duration="48000" />
+      <workItem from="1520582959734" duration="4131000" />
+      <workItem from="1520592877602" duration="5118000" />
+      <workItem from="1520598046752" duration="3290000" />
+      <workItem from="1520674916950" duration="252000" />
+      <workItem from="1520675184223" duration="346000" />
+      <workItem from="1520776974717" duration="337000" />
+      <workItem from="1520820388980" duration="5197000" />
+      <workItem from="1520841012070" duration="998000" />
+      <workItem from="1520850718935" duration="7408000" />
+      <workItem from="1520911576495" duration="11603000" />
+      <workItem from="1520925810109" duration="1453000" />
+      <workItem from="1520927282452" duration="5212000" />
+      <workItem from="1520940388699" duration="5006000" />
+      <workItem from="1520945569550" duration="3490000" />
+      <workItem from="1521278329158" duration="21000" />
+      <workItem from="1521525775996" duration="170000" />
+      <workItem from="1521771852583" duration="18389000" />
+      <workItem from="1522049625218" duration="6606000" />
+      <workItem from="1522056251064" duration="1206000" />
+      <workItem from="1522063410990" duration="961000" />
+      <workItem from="1522070372884" duration="139000" />
+      <workItem from="1522113854486" duration="2161000" />
+      <workItem from="1522116034899" duration="27687000" />
+      <workItem from="1522235864203" duration="23507000" />
+      <workItem from="1522634540905" duration="24834000" />
+      <workItem from="1522766548586" duration="1553000" />
+      <workItem from="1522824872893" duration="15187000" />
+      <workItem from="1523252789714" duration="29803000" />
+      <workItem from="1523514324146" duration="19308000" />
+      <workItem from="1523538939799" duration="2377000" />
+      <workItem from="1523587356915" duration="4588000" />
+      <workItem from="1523604095973" duration="3914000" />
+      <workItem from="1524187481403" duration="711000" />
+      <workItem from="1524202214119" duration="333000" />
+      <workItem from="1524206366617" duration="613000" />
+      <workItem from="1524211048580" duration="9000" />
+      <workItem from="1524211069383" duration="1419000" />
+      <workItem from="1524212905692" duration="2092000" />
+      <workItem from="1524486093487" duration="19914000" />
+      <workItem from="1524554887468" duration="8605000" />
+      <workItem from="1524571937088" duration="4460000" />
+      <workItem from="1524576411995" duration="5176000" />
+      <workItem from="1524626906436" duration="10282000" />
+      <workItem from="1524640274287" duration="6139000" />
+      <workItem from="1524650757210" duration="3358000" />
+      <workItem from="1524655603089" duration="8309000" />
+      <workItem from="1524663930275" duration="8081000" />
+      <workItem from="1524704679471" duration="22465000" />
+      <workItem from="1524729241429" duration="5228000" />
+      <workItem from="1524734486104" duration="3744000" />
+      <workItem from="1524740639223" duration="750000" />
+      <workItem from="1524741400715" duration="3759000" />
+      <workItem from="1524745173011" duration="19714000" />
+      <workItem from="1524816585436" duration="10980000" />
+      <workItem from="1524832929957" duration="4247000" />
+      <workItem from="1524837194154" duration="18603000" />
+      <workItem from="1524903421352" duration="2154000" />
+      <workItem from="1524906883979" duration="14487000" />
+      <workItem from="1524989291244" duration="16044000" />
+      <workItem from="1525008160288" duration="14668000" />
+      <workItem from="1525232702433" duration="22038000" />
+      <workItem from="1525265690392" duration="8227000" />
+      <workItem from="1525331484615" duration="7335000" />
+      <workItem from="1525338898753" duration="33977000" />
+      <workItem from="1525424391137" duration="2120000" />
+      <workItem from="1525426525163" duration="12243000" />
+      <workItem from="1525441988513" duration="8894000" />
+      <workItem from="1525492805397" duration="353000" />
+      <workItem from="1525503207362" duration="177000" />
+      <workItem from="1525503394807" duration="8680000" />
+      <workItem from="1525744390958" duration="10115000" />
+      <workItem from="1525765118246" duration="15452000" />
+      <workItem from="1525846752692" duration="3191000" />
+      <workItem from="1525941294525" duration="12376000" />
+      <workItem from="1525955729355" duration="2500000" />
+      <workItem from="1526024305894" duration="2291000" />
+      <workItem from="1526029961872" duration="704000" />
+      <workItem from="1526037222738" duration="657000" />
+      <workItem from="1526960054801" duration="2537000" />
+      <workItem from="1527042255618" duration="11086000" />
+      <workItem from="1527058006611" duration="20905000" />
+      <workItem from="1527079542930" duration="9052000" />
+      <workItem from="1527159061299" duration="2266000" />
+      <workItem from="1527168738033" duration="642000" />
+      <workItem from="1527255824052" duration="1008000" />
+      <workItem from="1527334030911" duration="3922000" />
+      <workItem from="1527402083610" duration="593000" />
+      <workItem from="1527404802841" duration="610000" />
+      <workItem from="1527505619157" duration="3451000" />
+      <workItem from="1527558318878" duration="11435000" />
+      <workItem from="1527570753695" duration="11469000" />
+      <workItem from="1527582246719" duration="15480000" />
+      <workItem from="1527599727346" duration="1135000" />
+      <workItem from="1527600959472" duration="2164000" />
+      <workItem from="1527604142809" duration="11000" />
+      <workItem from="1527855568431" duration="1567000" />
+      <workItem from="1527857146072" duration="8275000" />
+      <workItem from="1528096945212" duration="37526000" />
+      <workItem from="1528190127611" duration="3426000" />
+      <workItem from="1528193567584" duration="2334000" />
+      <workItem from="1528274313928" duration="10289000" />
+      <workItem from="1528296974319" duration="794000" />
+      <workItem from="1528297783066" duration="660000" />
+      <workItem from="1528330869606" duration="18597000" />
+      <workItem from="1528375574131" duration="2146000" />
+      <workItem from="1528379242170" duration="2401000" />
+      <workItem from="1528381655430" duration="290000" />
+      <workItem from="1528421608857" duration="13340000" />
+      <workItem from="1528442763957" duration="3109000" />
+      <workItem from="1528451501005" duration="825000" />
+      <workItem from="1528712335581" duration="1071000" />
+      <workItem from="1528722127916" duration="2024000" />
+      <workItem from="1528760659538" duration="765000" />
+      <workItem from="1528970294508" duration="65000" />
+      <workItem from="1528970389219" duration="8000" />
+      <workItem from="1528970410888" duration="132000" />
+      <workItem from="1528971413394" duration="19000" />
+      <workItem from="1528971696238" duration="65000" />
+      <workItem from="1528973365127" duration="20000" />
+    </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1516514909852</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1516514909853</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update home page">
+      <created>1516854194713</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1516854194713</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update home page">
+      <created>1516855375472</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1516855375472</updated>
+    </task>
+    <task id="LOCAL-00004" summary="remove node modules">
+      <created>1516855982374</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1516855982374</updated>
+    </task>
+    <task id="LOCAL-00005" summary="remove node modules">
+      <created>1516856743419</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1516856743419</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update">
+      <created>1516857146457</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1516857146457</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update payment coupon choose and so on">
+      <created>1516955435178</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1516955435178</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update">
+      <created>1520165518594</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1520165518595</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update my page、navigation bar and font size">
+      <created>1520256530430</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1520256530431</updated>
+    </task>
+    <task id="LOCAL-00010" summary="update">
+      <created>1520517854000</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1520517854000</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update api">
+      <created>1520675327721</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1520675327721</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update wechat and payment related api">
+      <created>1520858040388</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1520858040388</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update home api">
+      <created>1520925073089</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1520925073089</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update api">
+      <created>1521525820359</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1521525820359</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update api">
+      <created>1524627831306</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1524627831306</updated>
+    </task>
+    <task id="LOCAL-00016" summary="update payment">
+      <created>1524631798886</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1524631798886</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update payment api">
+      <created>1524633119961</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1524633119961</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update payment api">
+      <created>1524665455607</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1524665455607</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update payment api">
+      <created>1524710416437</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1524710416437</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update api">
+      <created>1524721534745</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1524721534745</updated>
+    </task>
+    <task id="LOCAL-00021" summary="update api">
+      <created>1524839747043</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1524839747043</updated>
+    </task>
+    <task id="LOCAL-00022" summary="update api">
+      <created>1524886474958</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1524886474958</updated>
+    </task>
+    <task id="LOCAL-00023" summary="update api">
+      <created>1524886583976</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1524886583976</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update api">
+      <created>1524911145523</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1524911145523</updated>
+    </task>
+    <task id="LOCAL-00025" summary="update api">
+      <created>1524912345852</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1524912345852</updated>
+    </task>
+    <task id="LOCAL-00026" summary="update api">
+      <created>1524925078060</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1524925078060</updated>
+    </task>
+    <task id="LOCAL-00027" summary="update pages">
+      <created>1525243873206</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1525243873206</updated>
+    </task>
+    <task id="LOCAL-00028" summary="update api">
+      <created>1525345111461</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1525345111461</updated>
+    </task>
+    <task id="LOCAL-00029" summary="update api">
+      <created>1525355770665</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1525355770665</updated>
+    </task>
+    <task id="LOCAL-00030" summary="update api">
+      <created>1525427175055</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1525427175055</updated>
+    </task>
+    <task id="LOCAL-00031" summary="update api">
+      <created>1525436726142</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1525436726142</updated>
+    </task>
+    <task id="LOCAL-00032" summary="update api">
+      <created>1525509981156</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1525509981156</updated>
+    </task>
+    <task id="LOCAL-00033" summary="update api">
+      <created>1525768820067</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1525768820067</updated>
+    </task>
+    <task id="LOCAL-00034" summary="update api">
+      <created>1526026690040</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1526026690040</updated>
+    </task>
+    <task id="LOCAL-00035" summary="update api">
+      <created>1527059036229</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1527059036229</updated>
+    </task>
+    <task id="LOCAL-00036" summary="update payment page api">
+      <created>1527070480287</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1527070480287</updated>
+    </task>
+    <task id="LOCAL-00037" summary="update payment page api">
+      <created>1527076234069</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1527076234069</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fix a cart bug">
+      <created>1527078636108</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1527078636108</updated>
+    </task>
+    <task id="LOCAL-00039" summary="update a lot">
+      <created>1527086418448</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1527086418448</updated>
+    </task>
+    <task id="LOCAL-00040" summary="update payment and badge">
+      <created>1527088513901</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1527088513901</updated>
+    </task>
+    <task id="LOCAL-00041" summary="update">
+      <created>1527574047115</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1527574047115</updated>
+    </task>
+    <task id="LOCAL-00042" summary="update">
+      <created>1527602044319</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1527602044320</updated>
+    </task>
+    <task id="LOCAL-00043" summary="fix a lot of bugs">
+      <created>1528168374200</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1528168374200</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix a lot of bugs">
+      <created>1528181863935</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1528181863935</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix a lot of bugs">
+      <created>1528183487310</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1528183487310</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fix a lot of bugs">
+      <created>1528195899389</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1528195899390</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fix a lot of bugs">
+      <created>1528381685916</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1528381685916</updated>
+    </task>
+    <task id="LOCAL-00048" summary="fix a lot of bugs">
+      <created>1528443829906</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1528443829906</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fix a lot of bugs">
+      <created>1528445652250</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1528445652250</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="923813000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18824306" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32775453" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50744045" side_tool="true" weight="0.14814815" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32850242" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49702382" weight="0.32775453" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49702382" weight="0.32850242" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.12691772" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32849163" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49702382" weight="0.32850242" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49702382" weight="0.32850242" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19714588" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32850242" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32850242" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.13519552" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50744045" side_tool="true" weight="0.14814815" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32849163" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update home page" />
+    <MESSAGE value="remove node modules" />
+    <MESSAGE value="update payment coupon choose and so on" />
+    <MESSAGE value="update my page、navigation bar and font size" />
+    <MESSAGE value="update wechat and payment related api" />
+    <MESSAGE value="update home api" />
+    <MESSAGE value="update payment" />
+    <MESSAGE value="update payment api" />
+    <MESSAGE value="update pages" />
+    <MESSAGE value="update api" />
+    <MESSAGE value="update payment page api" />
+    <MESSAGE value="fix a cart bug" />
+    <MESSAGE value="update a lot" />
+    <MESSAGE value="update payment and badge" />
+    <MESSAGE value="update" />
+    <MESSAGE value="fix a lot of bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix a lot of bugs" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="24" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1830">
+          <caret line="122" column="37" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/payment.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/product.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3810">
+          <caret line="254" column="5" lean-forward="true" selection-start-line="254" selection-start-column="5" selection-end-line="254" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="122" column="37" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/payment.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/product.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="122" column="37" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/payment.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/product.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="272" column="35" lean-forward="true" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
