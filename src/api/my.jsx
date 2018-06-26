@@ -222,6 +222,16 @@ var api = {
         });
     },
 
+    deleteOrder(orderId, callback) {
+        http.ajax({
+            url: getServerHost() + '/order/delete?id=' + orderId,
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+
 
 };
 

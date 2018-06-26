@@ -52,9 +52,9 @@ export default class Order extends React.Component {
 
             touchStart:this.touchStart.bind(this),
             touchEnd:this.touchEnd.bind(this),
-            refreshing: false,//刷新状态上拉
-            down: true,//方向 true下拉 false上拉
-            height: document.documentElement.clientHeight,//新添加高度
+            refreshing: false,                                   //刷新状态上拉
+            down: true,                                          //方向 true下拉 false上拉
+            height: document.documentElement.clientHeight,       //新添加高度
 
             curOrderPage: 2,
         };
@@ -225,18 +225,30 @@ export default class Order extends React.Component {
         //待评价订单
         myApi.getOrderListByAccount(wechatId, 5, page, rows, (rs)=>{
             const order = rs.obj.rows;
+            var valid = [];
             if (order) {
+                order && order.map((item, index) => {
+                    if (!item.isAppraised) {
+                        valid.push(item);
+                    }
+                });
                 this.setState({
-                    evaluate: this.state.evaluate.concat(order),
+                    evaluate: this.state.evaluate.concat(valid),
                     evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
                 });
             }
         });
         myApi.getOrderListByAccount(wechatId, 6, page, rows, (rs)=>{
             const order = rs.obj.rows;
+            var valid = [];
             if (order) {
+                order && order.map((item, index) => {
+                    if (!item.isAppraised) {
+                        valid.push(item);
+                    }
+                });
                 this.setState({
-                    evaluate: this.state.evaluate.concat(order),
+                    evaluate: this.state.evaluate.concat(valid),
                     evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
                 });
             }
@@ -549,6 +561,14 @@ export default class Order extends React.Component {
         this.requestTabData(2, 1, pageSize);
     }
 
+    deleteOrder(orderId) {
+        orderApi.deleteOrder(orderId, (rs) => {
+            if (rs && rs.success) {
+                console.log(rs.msg);
+            }
+        });
+    }
+
     // 微信支付接口
     onBridgeReady() {
         WeixinJSBridge.invoke(
@@ -604,7 +624,14 @@ export default class Order extends React.Component {
         });
     }
 
-    getOrderContent(order) {
+    checkAll(orderStateStr, orderId) {
+        if (orderStateStr === "all") {
+            return <img src="./images/icons/删除.png" style={{width:'5%'}} onClick={()=>{this.deleteOrder(orderId)}}/>
+        }
+        return null
+    }
+
+    getOrderContent(order, orderStateStr) {
         var orderContent;
 
         if (!order || order.length === 0) {
@@ -649,6 +676,7 @@ export default class Order extends React.Component {
                                 </Flex>
                             </Link>
                             <div className="order_card_group">
+                                {this.checkAll(orderStateStr, item.id)}
                                 <Flex justify="end">共{item.orderItems.length}件商品 合计：￥{item.payMoney}</Flex>
                             </div>
                             {this.getOrderButton(this.state.tab, item)}
@@ -673,6 +701,7 @@ export default class Order extends React.Component {
                             </Flex>
                         </Link>
                         <div className="order_card_group">
+                            {this.checkAll(orderStateStr, item.id)}
                             <Flex justify="end">共{item.orderItems.length}件商品 合计：￥{item.payMoney}</Flex>
                         </div>
                         {this.getOrderButton(this.state.tab, item)}
@@ -731,12 +760,12 @@ export default class Order extends React.Component {
         // console.log("this.state.evaluate: ", this.state.evaluate);
         // console.log("this.state.refund: ", this.state.refund);
 
-        const allOrders = this.getOrderContent(this.state.all);
-        const payOrders = this.getOrderContent(this.state.pay);
-        const deliverOrders = this.getOrderContent(this.state.deliver);
-        const receiveOrders = this.getOrderContent(this.state.receive);
-        const evaluateOrders = this.getOrderContent(this.state.evaluate);
-        const refundOrders = this.getOrderContent(this.state.refund);
+        const allOrders = this.getOrderContent(this.state.all, "all");
+        const payOrders = this.getOrderContent(this.state.pay, "");
+        const deliverOrders = this.getOrderContent(this.state.deliver, "");
+        const receiveOrders = this.getOrderContent(this.state.receive, "");
+        const evaluateOrders = this.getOrderContent(this.state.evaluate, "");
+        const refundOrders = this.getOrderContent(this.state.refund, "");
 
 
         return <Layout header={false} footer={false}>

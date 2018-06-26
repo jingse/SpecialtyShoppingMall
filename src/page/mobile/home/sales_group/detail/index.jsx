@@ -19,6 +19,8 @@ export default class SalesGroupDetail extends React.Component {
             salesGroupData: [],
             isLoading: false,
             val: 1,
+
+            cartNum: localStorage.getItem("cartCount")!=0 ?localStorage.getItem("cartCount"):'',
         };
     }
 
@@ -98,6 +100,9 @@ export default class SalesGroupDetail extends React.Component {
             if (rs && rs.success) {
                 const count = rs.obj.length;
                 localStorage.setItem("cartCount", count);
+                this.setState({
+                    cartNum: count,
+                });
             }
         });
     }
@@ -272,7 +277,8 @@ export default class SalesGroupDetail extends React.Component {
 
             <Bottom style={{height:'3.125rem'}}
                     addToCart={this.addToCart.bind(this)}
-                    buyImmediately={this.buyImmediately.bind(this)}/>
+                    buyImmediately={this.buyImmediately.bind(this)}
+                    cartNum={this.state.cartNum}/>
 
 
         </Layout>

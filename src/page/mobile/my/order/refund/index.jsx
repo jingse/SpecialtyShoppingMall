@@ -69,7 +69,12 @@ class RefundApply extends React.Component {
 
         const proNum = this.state.product.orderItems.length;
         if (proNum === 1) {
-            this.state.refundItems.push(this.state.product.orderItems[0]);
+            const refundItem = {
+                "id": this.state.product.orderItems[0].id,                          // 订单明细id     int
+                "quantity": this.state.product.orderItems[0].quantity,              // 购买数量	    int
+                "refundQuantity": this.state.product.orderItems[0].quantity,        // 退货数量	    int
+            };
+            this.state.refundItems.push(refundItem);
             this.setState({
                 refundItems: this.state.refundItems,
             });

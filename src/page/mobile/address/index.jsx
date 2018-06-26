@@ -39,6 +39,9 @@ export default class Address extends React.Component {
                     // Toast.offline('您还没有地址，去添加一个吧！', 1, ()=>{
                     //     this.linkTo('address/add');
                     // });
+                    this.setState({
+                        shipData: shipData,
+                    });
                     Toast.info('您还没有地址，去添加一个吧！', 1);
                 } else {
                     this.setState({

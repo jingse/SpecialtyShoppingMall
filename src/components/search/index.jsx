@@ -31,7 +31,7 @@ export default class SearchNavBar extends React.Component {
         // const nextLocation = histroy.createLocation({ path, state });
         // histroy.push(nextLocation)
         //TODO: 将搜索框的值传递给父组件 判断页面是否要跳转
-        this.context.router.history.push({pathname:'search', value: this.state.value});
+        this.context.router.history.push({pathname:'/search', value: this.state.value});
         // history.push({pathname:'search', state: {type:'specialty_name', input: this.state.value}});
     }
 

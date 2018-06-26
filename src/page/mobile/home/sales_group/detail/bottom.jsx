@@ -78,7 +78,7 @@ export default class Bottom extends React.Component {
                             background: 'url(./images/icons/cart-fill2.png) center center /  24px 24px no-repeat' }}
                         />}
                         key="购物车"
-                        badge={localStorage.getItem("cartCount")}
+                        badge={this.props.cartNum}
                         selected={this.state.selectedTab === 'cart'}
                         onPress={() => { this.linkTo('/cart'); }}
                     />

@@ -79,7 +79,7 @@ export default class CategoryGrid extends React.Component {
                                style={{marginBottom:'0.8rem', flex:'0 0 47%', marginLeft:'1.5%', marginRight:'1.5%'}}>
                 {/*<Link to={{pathname:"/product", state: item.specialty.id }}>*/}
                 <Link to={`/product/${item.specialty.id}`}>
-                    <div><img src={"http://" + getServerIp() + item.iconURL.sourcePath} style={{width:'100%', height: '8rem'}}/></div>
+                    <div><img src={"http://" + getServerIp() + item.iconURL.sourcePath} style={{width:'100%', height: '10rem'}}/></div>
                     <WhiteSpace/>
                     <div className="product_name">{item.specialty.name}</div>
                     <WhiteSpace/>

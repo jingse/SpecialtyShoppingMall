@@ -58,6 +58,8 @@ class Product extends React.Component {
             isGroupPromotion: false,
             quantity: 1,
             isNull: false,
+
+            cartCount: localStorage.getItem("cartCount")!=0 ?localStorage.getItem("cartCount"):'',
         }
     }
 
@@ -205,10 +207,15 @@ class Product extends React.Component {
     }
 
     getCartCount() {
+        console.log("getCartCount");
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
                 const count = rs.obj.length;
                 localStorage.setItem("cartCount", count);
+                console.log("count: ", count);
+                this.setState({
+                    cartCount: count,
+                });
             }
         });
     }
@@ -550,8 +557,10 @@ class Product extends React.Component {
 
 
             <PutInCart style={{height:'3.125rem'}}
-                addToCart={this.addToCart.bind(this)}
-                buyImmediately={this.buyImmediately.bind(this)}
+                       addToCart={this.addToCart.bind(this)}
+                       buyImmediately={this.buyImmediately.bind(this)}
+                       cartCount={this.state.cartCount}
+
             />
 
             <CartModal

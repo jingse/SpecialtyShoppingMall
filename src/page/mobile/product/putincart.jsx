@@ -18,7 +18,7 @@ export default class PutInCart extends React.Component {
     getInitialState() {
         let link = this.getLink() || 'product';
         return {
-            selectedTab: link
+            selectedTab: link,
         };
     }
 
@@ -79,7 +79,7 @@ export default class PutInCart extends React.Component {
                             background: 'url(./images/icons/cart-fill.png) center center /  24px 24px no-repeat' }}
                         />}
                         key="购物车"
-                        badge={localStorage.getItem("cartCount")}
+                        badge={this.props.cartCount}
                         selected={this.state.selectedTab === 'cart'}
                         onPress={() => { this.linkTo('/cart'); }}
                     />

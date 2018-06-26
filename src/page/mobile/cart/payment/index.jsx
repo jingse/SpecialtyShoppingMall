@@ -255,6 +255,12 @@ class Payment extends React.Component {
 
     payCharge() {
 
+        //如果没有填写或选择地址就不能支付
+        if (!this.state.address || JSON.stringify(this.state.address) === "[]") {
+            Toast.info("请先填写或选择地址！");
+            return
+        }
+
         //如果点击过立即支付，那么就直接支付，不再创建订单
         if (!this.state.isCreated) {
             // create the order

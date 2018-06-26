@@ -252,7 +252,7 @@ export default class Category extends React.Component {
 
 
 
-            <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold', marginTop:'3.125rem'}}>
+            <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold'}}>
                 <Flex>
                     <Flex.Item style={{flex: '0 0 4%', marginRight:'0.4rem'}}>
                         <img src='./images/category/菜篮子.png'
