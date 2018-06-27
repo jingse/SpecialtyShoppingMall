@@ -468,7 +468,6 @@ export default class Order extends React.Component {
             case 0: return null;
 
             case 1:
-
                 // this.setState({
                 //     orderCode: item.orderCode,
                 //     payMoney: Math.round(item.payMoney * 100),
