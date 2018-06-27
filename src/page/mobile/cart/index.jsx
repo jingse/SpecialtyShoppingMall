@@ -40,6 +40,10 @@ class Cart extends React.Component {
     }
 
     componentWillMount() {
+        // window.onpopstate = function(event) {this.console.log("event",event)}
+       
+        // console.log("window.history",window.onpopstate)
+        // history.back();
         // const wechatId = (!localStorage.getItem("wechatId")) ? 8 : localStorage.getItem("wechatId");
         this.requestCartList();
         this.closeNav();

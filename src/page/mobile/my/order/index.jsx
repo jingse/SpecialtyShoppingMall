@@ -484,6 +484,13 @@ export default class Order extends React.Component {
                         onClick={this.payCharge.bind(this, item.orderCode, Math.round(item.payMoney * 100))}>
                     去付款
                 </Button>
+                <Button type="ghost" inline size="small" style={{marginRight:'4%', fontSize:'0.7rem'}}
+                        onClick={() => alert('取消付款', '您确定要取消吗？', [
+                            { text: '取消', onPress: () => {} },
+                            { text: '确认', onPress: () => {this.cancelOrderConfirm(item.id)} },
+                        ])}>
+                    取消付款
+                </Button>
                 <WhiteSpace/>
             </div>;
 
@@ -570,8 +577,11 @@ export default class Order extends React.Component {
         orderApi.deleteOrder(orderId, (rs) => {
             if (rs && rs.success) {
                 console.log(rs.msg);
+                this.clearData();
+                this.requestTabData(0, 1, pageSize);
             }
         });
+        
     }
 
     // 微信支付接口
