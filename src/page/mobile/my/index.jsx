@@ -118,13 +118,21 @@ export default class My extends React.Component {
 
     requestEvaluateCount(wechatId) {
         myApi.getOrderListByAccount(wechatId, 5, 1, pageSize, (rs)=>{
-            this.setState({
-                evaluateCount: this.state.evaluateCount + rs.obj.total,
+            rs.obj.rows && rs.obj.rows.map((item, index) => {
+                if (!item.isAppraised) {
+                    this.setState({
+                        evaluateCount: this.state.evaluateCount + 1,
+                    });
+                }
             });
         });
         myApi.getOrderListByAccount(wechatId, 6, 1, pageSize, (rs)=>{
-            this.setState({
-                evaluateCount: this.state.evaluateCount + rs.obj.total,
+            rs.obj.rows && rs.obj.rows.map((item, index) => {
+                if (!item.isAppraised) {
+                    this.setState({
+                        evaluateCount: this.state.evaluateCount + 1,
+                    });
+                }
             });
         });
     }
