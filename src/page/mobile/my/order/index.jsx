@@ -73,7 +73,7 @@ export default class Order extends React.Component {
             this.setState({
                 tab: tab,
             });
-
+            this.clearData();
             this.requestTabData(tab, 1, pageSize);
 
         } else {
@@ -221,6 +221,7 @@ export default class Order extends React.Component {
 
     requestEvaluateOrder(wechatId, page, rows) {
         console.log("请求待评价订单");
+        console.log("requestEvaluateOrder page", page);
 
         //待评价订单
         myApi.getOrderListByAccount(wechatId, 5, page, rows, (rs)=>{
@@ -232,6 +233,7 @@ export default class Order extends React.Component {
                         valid.push(item);
                     }
                 });
+                console.log("rs.obj.rows", rs.obj.rows);
                 this.setState({
                     evaluate: this.state.evaluate.concat(valid),
                     evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
@@ -240,6 +242,7 @@ export default class Order extends React.Component {
         });
         myApi.getOrderListByAccount(wechatId, 6, page, rows, (rs)=>{
             const order = rs.obj.rows;
+            console.log("rs.obj.rows", rs.obj.rows);
             var valid = [];
             if (order) {
                 order && order.map((item, index) => {
@@ -548,6 +551,7 @@ export default class Order extends React.Component {
                 console.log("rs: ", rs);
             }
         });
+        this.clearData();
         this.requestTabData(3, 1, pageSize);
     }
 
@@ -558,6 +562,7 @@ export default class Order extends React.Component {
                 console.log("rs: ", rs);
             }
         });
+        this.clearData();
         this.requestTabData(2, 1, pageSize);
     }
 
@@ -723,9 +728,9 @@ export default class Order extends React.Component {
                 if(this.state.down){//刷新事件
                     this.clearData();
                     this.requestTabData(this.state.tab, 1, pageSize);
-                    // this.setState({
-                    //     curOrderPage: 2,
-                    // });
+                    this.setState({
+                        curOrderPage: 2,
+                    });
                 }
                 else{//加载事件
                     // 请求新的数据
@@ -757,7 +762,7 @@ export default class Order extends React.Component {
         // console.log("this.state.pay: ", this.state.pay);
         // console.log("this.state.deliver: ", this.state.deliver);
         // console.log("this.state.receive: ", this.state.receive);
-        // console.log("this.state.evaluate: ", this.state.evaluate);
+        console.log("this.state.evaluate: ", this.state.evaluate);
         // console.log("this.state.refund: ", this.state.refund);
 
         const allOrders = this.getOrderContent(this.state.all, "all");
@@ -774,10 +779,10 @@ export default class Order extends React.Component {
 
             <div className="order_container" onTouchStart={this.state.touchStart} onTouchEnd={this.state.touchEnd}>
             <Tabs tabs={tabs}
-                      initialPage={this.state.id}
-                    // animated={false}
-                      onChange={(tab, index) => {this.onTabChange(tab, index)}}
-                    // style={{backgroundColor:'#eee'}}
+                  initialPage={this.state.id}
+                  // animated={false}
+                  onChange={(tab, index) => {this.onTabChange(tab, index)}}
+                  // style={{backgroundColor:'#eee'}}
                 >
 
                     {allOrders}

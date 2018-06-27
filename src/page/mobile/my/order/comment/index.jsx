@@ -206,6 +206,7 @@ class CommentOn extends React.Component {
             } else {
                 Toast.info('哎呀，出错了！', 1);
             }
+            this.linkTo('/my/order');
         });
 
 
@@ -217,9 +218,6 @@ class CommentOn extends React.Component {
         //         Toast.info('哎呀，出错了！', 1);
         //     }
         // });
-
-
-        this.linkTo('/my/order');
     }
 
     linkTo(link) {
