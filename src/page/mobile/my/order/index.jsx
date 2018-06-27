@@ -681,8 +681,10 @@ export default class Order extends React.Component {
                                 </Flex>
                             </Link>
                             <div className="order_card_group">
+                                <Flex justify="between">
                                 {this.checkAll(orderStateStr, item.id)}
-                                <Flex justify="end">共{item.orderItems.length}件商品 合计：￥{item.payMoney}</Flex>
+                                    <div>共{item.orderItems.length}件商品 合计：￥{item.payMoney}</div>
+                                </Flex>
                             </div>
                             {this.getOrderButton(this.state.tab, item)}
                         </Card>

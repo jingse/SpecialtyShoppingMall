@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/src/page/mobile/my/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="448">
-              <caret line="133" column="23" lean-forward="true" selection-start-line="133" selection-start-column="23" selection-end-line="133" selection-end-column="23" />
+              <caret line="133" column="23" selection-start-line="133" selection-start-column="23" selection-end-line="133" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -29,8 +29,24 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="245" column="44" lean-forward="true" selection-start-line="245" selection-start-column="44" selection-end-line="245" selection-end-column="44" />
+            <state relative-caret-position="174">
+              <caret line="683" column="56" lean-forward="true" selection-start-line="683" selection-start-column="56" selection-end-line="683" selection-end-column="56" />
+              <folding>
+                <element signature="e#3869#4258#0" />
+                <element signature="e#5007#5432#0" />
+                <element signature="e#5476#5856#0" />
+                <element signature="e#5904#7013#0" />
+                <element signature="e#7061#7444#0" />
+                <element signature="e#8728#10524#0" />
+                <element signature="e#11143#12049#0" />
+                <element signature="e#12071#12311#0" />
+                <element signature="e#12338#12616#0" />
+                <element signature="e#12637#12962#0" />
+                <element signature="e#14902#17913#0" />
+                <element signature="e#18887#19977#0" />
+                <element signature="e#20021#21118#0" />
+                <element signature="e#27545#27600#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
-              <caret line="161" lean-forward="true" selection-start-line="161" selection-end-line="161" />
+              <caret line="161" selection-start-line="161" selection-end-line="161" />
             </state>
           </provider>
         </entry>
@@ -129,7 +145,6 @@
         <option value="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/setting/help/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/product/comment.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/product/index.less" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" />
@@ -155,9 +170,10 @@
         <option value="$PROJECT_DIR$/src/page/mobile/address/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/bottom.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/index.less" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" />
       </list>
     </option>
   </component>
@@ -270,6 +286,25 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="my" type="462c0819:PsiDirectoryNode" />
+              <item name="order" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="my" type="462c0819:PsiDirectoryNode" />
+              <item name="order" type="462c0819:PsiDirectoryNode" />
+              <item name="comment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
               <item name="product" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -296,7 +331,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../supermallDemo" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -467,21 +502,7 @@
       <workItem from="1529914414059" duration="7444000" />
       <workItem from="1530007096348" duration="5655000" />
       <workItem from="1530013160424" duration="1572000" />
-      <workItem from="1530063132351" duration="1380000" />
-    </task>
-    <task id="LOCAL-00002" summary="update home page">
-      <created>1516854194713</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1516854194713</updated>
-    </task>
-    <task id="LOCAL-00003" summary="update home page">
-      <created>1516855375472</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1516855375472</updated>
+      <workItem from="1530063132351" duration="4018000" />
     </task>
     <task id="LOCAL-00004" summary="remove node modules">
       <created>1516855982374</created>
@@ -812,11 +833,25 @@
       <option name="project" value="LOCAL" />
       <updated>1530016123792</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="解决待评价订单总数问题">
+      <created>1530064845757</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1530064845758</updated>
+    </task>
+    <task id="LOCAL-00052" summary="解决刷新不及时的问题">
+      <created>1530068832854</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1530068832854</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="942584000" />
+    <option name="totallyTimeSpent" value="945222000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -924,11 +959,13 @@
     <MESSAGE value="update payment and badge" />
     <MESSAGE value="update" />
     <MESSAGE value="fix a lot of bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix a lot of bugs" />
+    <MESSAGE value="解决待评价订单总数问题" />
+    <MESSAGE value="解决刷新不及时的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="解决刷新不及时的问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="25" />
+      <option name="time" value="26" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -936,6 +973,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5865">
           <caret line="402" lean-forward="true" selection-start-line="402" selection-end-line="402" />
+          <folding>
+            <element signature="e#3869#4258#0" />
+            <element signature="e#5007#5432#0" />
+            <element signature="e#5476#5856#0" />
+            <element signature="e#5904#7013#0" />
+            <element signature="e#7061#7444#0" />
+            <element signature="e#8728#10524#0" />
+            <element signature="e#11143#12049#0" />
+            <element signature="e#12071#12311#0" />
+            <element signature="e#12338#12616#0" />
+            <element signature="e#12637#12962#0" />
+            <element signature="e#14902#17913#0" />
+            <element signature="e#18887#19977#0" />
+            <element signature="e#20021#21118#0" />
+            <element signature="e#27545#27600#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -957,6 +1010,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10050">
           <caret line="681" column="71" lean-forward="true" selection-start-line="681" selection-start-column="71" selection-end-line="681" selection-end-column="71" />
+          <folding>
+            <element signature="e#3869#4258#0" />
+            <element signature="e#5007#5432#0" />
+            <element signature="e#5476#5856#0" />
+            <element signature="e#5904#7013#0" />
+            <element signature="e#7061#7444#0" />
+            <element signature="e#8728#10524#0" />
+            <element signature="e#11143#12049#0" />
+            <element signature="e#12071#12311#0" />
+            <element signature="e#12338#12616#0" />
+            <element signature="e#12637#12962#0" />
+            <element signature="e#14902#17913#0" />
+            <element signature="e#18887#19977#0" />
+            <element signature="e#20021#21118#0" />
+            <element signature="e#27545#27600#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1162,13 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="185" column="38" selection-start-line="185" selection-start-column="38" selection-end-line="185" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1265,21 +1327,44 @@
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
-          <caret line="161" lean-forward="true" selection-start-line="161" selection-end-line="161" />
+          <caret line="161" selection-start-line="161" selection-end-line="161" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/my/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
-          <caret line="133" column="23" lean-forward="true" selection-start-line="133" selection-start-column="23" selection-end-line="133" selection-end-column="23" />
+          <caret line="133" column="23" selection-start-line="133" selection-start-column="23" selection-end-line="133" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="219" column="14" lean-forward="true" selection-start-line="219" selection-start-column="14" selection-end-line="219" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="245" column="44" lean-forward="true" selection-start-line="245" selection-start-column="44" selection-end-line="245" selection-end-column="44" />
+        <state relative-caret-position="174">
+          <caret line="683" column="56" lean-forward="true" selection-start-line="683" selection-start-column="56" selection-end-line="683" selection-end-column="56" />
+          <folding>
+            <element signature="e#3869#4258#0" />
+            <element signature="e#5007#5432#0" />
+            <element signature="e#5476#5856#0" />
+            <element signature="e#5904#7013#0" />
+            <element signature="e#7061#7444#0" />
+            <element signature="e#8728#10524#0" />
+            <element signature="e#11143#12049#0" />
+            <element signature="e#12071#12311#0" />
+            <element signature="e#12338#12616#0" />
+            <element signature="e#12637#12962#0" />
+            <element signature="e#14902#17913#0" />
+            <element signature="e#18887#19977#0" />
+            <element signature="e#20021#21118#0" />
+            <element signature="e#27545#27600#0" />
+          </folding>
         </state>
       </provider>
     </entry>
