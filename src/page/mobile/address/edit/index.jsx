@@ -23,13 +23,17 @@ export default class EditAddress extends React.Component {
 
     componentWillMount() {
         const address = this.props.location.state;
+        if(address){
         this.setState({
             name: address.receiverName,
             phone: address.receiverMobile,
             province: address.receiverAddress,
             detail: address.receiverAddress,
             isDefault: address.isDefaultReceiverAddress,
-        });
+        });       
+        }
+        else
+        history.back();
     }
 
     editAddress() {
@@ -83,9 +87,9 @@ export default class EditAddress extends React.Component {
             <WhiteSpace/>
 
             <Card>
-                <InputItem defaultValue={this.state.name} clear onChange={this.onReceiverNameChange}>收货人</InputItem>
-                <InputItem type="phone" defaultValue={this.state.phone} clear onChange={this.onReceiverMobileChange}>联系方式</InputItem>
-                <InputItem defaultValue={this.state.province} clear onChange={this.onReceiverAddressChange}>收货地址</InputItem>
+                <InputItem placeholder="姓名" defaultValue={this.state.name} clear onChange={this.onReceiverNameChange}>收货人</InputItem>
+                <InputItem placeholder="手机号码" type="phone" defaultValue={this.state.phone} clear onChange={this.onReceiverMobileChange}>联系方式</InputItem>
+                <InputItem placeholder="填写详细地址" defaultValue={this.state.province} clear onChange={this.onReceiverAddressChange}>收货地址</InputItem>
                 {/*<TextareaItem title="详细地址" rows={3} defaultValue={this.state.detail} clear onChange={this.onReceiverAddressDetailChange}/>*/}
             </Card>
             <Submit onClick={()=>{this.editAddress()}}>
