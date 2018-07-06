@@ -8,7 +8,7 @@ import Navigation from "../../../components/navigation/index.jsx"
 import addressApi from "../../../api/address.jsx";
 // import ship_data from "../../../static/mockdata/user_ship_address.js";   //mock假数据
 import './index.less';
-
+//add 注释
 // const wechatId = parseInt(localStorage.getItem("wechatId"));
 
 export default class Address extends React.Component {
