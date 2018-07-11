@@ -640,7 +640,10 @@ export default class Order extends React.Component {
 
     checkAll(orderStateStr, orderId) {
         if (orderStateStr === "all") {
-            return <img src="./images/icons/删除.png" style={{width:'5%'}} onClick={()=>{this.deleteOrder(orderId)}}/>
+            return <img src="./images/icons/删除.png" style={{width:'5%'}} onClick={() => alert('删除订单', '您确定要删除吗？', [
+                { text: '取消', onPress: () => {} },
+                { text: '确认', onPress: () => {this.deleteOrder(orderId)} },
+            ])}/>
         }
         return null
     }

@@ -22,7 +22,7 @@ export default class CategoryGrid extends React.Component {
     requestTopNOfCategory(categoryId) {
         // params: categoryId  size
         homeApi.getTopNOfCategory(categoryId, 6, (rs) => {
-            // console.log(rs);
+             console.log("llfrs",rs);
             if (rs && rs.success) {
                 const grid = rs.obj;
                 this.setState({
@@ -74,18 +74,21 @@ export default class CategoryGrid extends React.Component {
             //             <WhiteSpace/>
             //         </Link>
             //     </Flex.Item>
-
+            let minprice = 99999;
+            item.specialty.specifications.map((temp,index) => {
+                minprice = temp.platformPrice > minprice ? minprice :temp.platformPrice;
+            })
             return <Flex.Item  key={index} className="product_card"
                                style={{marginBottom:'0.8rem', flex:'0 0 47%', marginLeft:'1.5%', marginRight:'1.5%'}}>
                 {/*<Link to={{pathname:"/product", state: item.specialty.id }}>*/}
                 <Link to={`/product/${item.specialty.id}`}>
                     <div><img src={"http://" + getServerIp() + item.iconURL.sourcePath} style={{width:'100%', height: '10rem'}}/></div>
                     <WhiteSpace/>
-                    <div className="product_name">{item.specialty.name}</div>
+                    <div className="product_name">{item.specialty.name}</div> 
                     <WhiteSpace/>
-                    <div className="product_amount">{item.specification.specification}</div>
+                    <div className="product_amount">已有{item.hasSold}人付款</div>
                     <WhiteSpace/>
-                    <div className="product_price">￥{item.pPrice}元 起</div>
+                    <div className="product_price">￥{minprice}元 起</div>
                     <WhiteSpace size='xs'/>
                 </Link>
             </Flex.Item>
