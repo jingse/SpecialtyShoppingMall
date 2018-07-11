@@ -194,6 +194,12 @@ class Product extends React.Component {
 
     addToCart() {
         //addSingleItemToCart(id, specificationId, specialtyId, isGroupPromotion, quantity, callback)
+
+        if(this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
+            Toast.info("您还未选择商品规格~", 1);
+            return
+        }
+
         cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId, this.state.specialtyId,
             this.state.isGroupPromotion, this.state.quantity, (rs) => {
             if(rs && rs.success) {
