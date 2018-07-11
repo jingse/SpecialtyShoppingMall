@@ -33,7 +33,8 @@ export default class AddAddress extends React.Component {
         addressApi.addAddress(address, (rs)=>{
             if(rs && rs.success) {
                 Toast.info(rs.msg, 1);
-                this.context.router.history.push("/address");
+                // this.context.router.history.push("/address");
+                history.go(-1);
             }
         });
     }

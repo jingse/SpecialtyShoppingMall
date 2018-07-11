@@ -23,7 +23,7 @@ export default class EditAddress extends React.Component {
 
     componentWillMount() {
         const address = this.props.location.state;
-        if(address){
+        // if(address){
         this.setState({
             name: address.receiverName,
             phone: address.receiverMobile,
@@ -31,9 +31,9 @@ export default class EditAddress extends React.Component {
             detail: address.receiverAddress,
             isDefault: address.isDefaultReceiverAddress,
         });       
-        }
-        else
-        history.back();
+        // }
+        // else
+        // history.back();
     }
 
     editAddress() {
@@ -50,7 +50,9 @@ export default class EditAddress extends React.Component {
             if(rs && rs.success) {
                 // console.log("rs.msg: ", rs.msg);
                 Toast.info(rs.msg, 1);
-                this.context.router.history.push("/address");
+                history.go(-1);
+                // this.context.router.history.push("/address");     
+                     
             }
         });
     }
