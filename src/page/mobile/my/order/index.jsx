@@ -606,6 +606,7 @@ export default class Order extends React.Component {
                 }
             }
         );
+        this.clearData();
         this.requestTabData(1, 1, pageSize);
     }
 
