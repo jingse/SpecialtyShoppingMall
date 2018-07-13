@@ -560,6 +560,9 @@ class Product extends React.Component {
                 <video
                     id="my-player"
                     class="video-js vjs-default-skin vjs-fluid"
+                    x5-video-player-type="h5"
+                    x-webkit-airplay="true" 
+                    playsinline webkit-playsinline="true"
                     width="100%"
                     controls="false" 
                     loop="true" //自动循环
