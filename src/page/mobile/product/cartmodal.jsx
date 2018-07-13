@@ -104,7 +104,7 @@ export default class CartModal extends React.Component {
             text: '确定',
             onPress: ()=>{
                 this.props.hideModal && this.props.hideModal('success');
-                this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId, this.state.mPrice, this.state.salePrice);
+                this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId, this.state.mPrice, this.state.salePrice,'success');
             }
         }];
 
@@ -117,7 +117,7 @@ export default class CartModal extends React.Component {
             closable
             onClose = {()=>{
                 this.props.hideModal && this.props.hideModal('close');
-                this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId);
+                //this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId);
             }}
             title = {title}
             footer = {footer}
@@ -127,7 +127,18 @@ export default class CartModal extends React.Component {
                 <div style={{float:'left', marginLeft:'1rem', marginRight:'1rem'}}>种类</div>
                 {dataSet}
                 <div style={{float:'left', marginLeft:'1rem'}}>数量</div>
-                <div>
+                <div className="step">
+                        <div className="add" onClick={() => {this.setState({val:this.state.val+1})}}>
+                        +
+                        </div>
+                        <div className="value">
+                        {this.state.val}
+                        </div>
+                        <div className="minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}>
+                        -
+                        </div>
+                    </div>
+                {/* <div>
                     <Stepper
                         style={{ width: '30%', minWidth: '100px', touchAction: 'none' }}
                         showNumber
@@ -135,7 +146,7 @@ export default class CartModal extends React.Component {
                         min={1}
                         value={this.state.val}
                         onChange={this.onChange}/>
-                </div>
+                </div> */}
             </div>
         </Modal>
     }

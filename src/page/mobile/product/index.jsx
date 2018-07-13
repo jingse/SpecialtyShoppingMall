@@ -51,6 +51,7 @@ class Product extends React.Component {
             currentPrePrice: 0,
             currentMarketPrice: 0,
 
+            isadd:0,
             //加购物车相关参数
             // specialtyId: this.props.location.state?71:71,
             specificationId: 0,
@@ -197,6 +198,7 @@ class Product extends React.Component {
 
         if(this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
             Toast.info("您还未选择商品规格~", 1);
+            this.showModal(1);
             return
         }
 
@@ -269,7 +271,7 @@ class Product extends React.Component {
     //     });
     // }
 
-    changeModalSelectorText(active, num, specificationId, mPrice, pPrice) {
+    changeModalSelectorText(active, num, specificationId, mPrice, pPrice,success) {
         // let str = '';
         // for (let i in active) {
         //     str = str + active[i].option_name + " ";
@@ -288,11 +290,15 @@ class Product extends React.Component {
             specification: active.specification,
             modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
+        },()=>{
+            console.log('this.state.isadd',this.state.isadd)
+            if(this.state.isadd == 1)
+                this.addToCart();
         });
     }
 
-    showModal() {
-        this.setState({modal: true});
+    showModal(val) {
+        this.setState({modal: true,isadd: val});
     }
 
     hideModal(status) {
