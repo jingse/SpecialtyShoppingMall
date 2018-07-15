@@ -1,184 +1,211 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Flex, Carousel} from 'antd-mobile';
+import {Flex, Carousel,Grid } from 'antd-mobile';
 import {getServerIp} from "../../../config.jsx";
-
-var anotherPage = false;
-var category_flex = [];
-var second_flex = [];
-var changed = true;
+import './index.less';
+// var anotherPage = false;
+// var category_flex = [];
+// var second_flex = [];
+// var changed = true;
 
 export default class GridCategory extends React.Component {
     constructor(props, context) {
         super(props, context);
+        this.state = {
+            data: []
+        };
     }
 
     componentWillMount() {
-        category_flex = [];
-
-        category_flex.push(<Flex.Item className="category_flex" key={0}>
-                <div className="div_category">
-                    <Link to={{pathname: "/home/sales", category: '促销活动区'}} style={{color: 'black'}}>
-                        <img src='./images/category/促销.png' className="category_img"/>
-                        <div className="zone">促销</div>
-                    </Link>
-                </div>
-            </Flex.Item>);
-        category_flex.push(<Flex.Item className="category_flex" key={1}>
-                <div className="div_category">
-                    <Link to={{pathname: "/home/sales_group", category: '组合优惠'}} style={{color: 'black'}}>
-                        <img src='./images/category/组合选购.png' className="category_img"/>
-                        <div className="zone">组合优惠</div>
-                    </Link>
-                </div>
-            </Flex.Item>);
-        category_flex.push(<Flex.Item className="category_flex" key={2}>
-                <div className="div_category">
-                    <Link to={{pathname: "/home/recharge", category: '充值区'}} style={{color: 'black'}}>
-                        <img src='./images/category/充值.png' className="category_img"/>
-                        <div className="zone">购买</div>
-                    </Link>
-                </div>
-            </Flex.Item>);
-        category_flex.push(<Flex.Item className="category_flex" key={3}>
-            <div className="div_category">
-                <Link to={{pathname: "/home/coupon", category: '领券中心'}} style={{color: 'black'}}>
-                    <img src='./images/category/优惠券.png' className="category_img"/>
-                    <div className="zone">领券</div>
-                </Link>
-            </div>
-        </Flex.Item>);
+        // category_flex = [];
+        const data1 = [
+            {
+            icon: './images/category/促销.png',
+            text: `促销`,
+            },
+            {
+            icon: './images/category/组合选购.png',
+            text: `组合优惠`,
+            },
+            {
+            icon: './images/category/充值.png',
+            text: `购买`,
+            },
+            {
+            icon: './images/category/优惠券.png',
+            text: `领券`,
+            }];
+            
+        
+        // category_flex.push(<Flex.Item className="category_flex" key={0}>
+        //         <div className="div_category">
+        //             <Link to={{pathname: "/home/sales", category: '促销活动区'}} style={{color: 'black'}}>
+        //                 <img src='./images/category/促销.png' className="category_img"/>
+        //                 <div className="zone">促销</div>
+        //             </Link>
+        //         </div>
+        //     </Flex.Item>);
+        // category_flex.push(<Flex.Item className="category_flex" key={1}>
+        //         <div className="div_category">
+        //             <Link to={{pathname: "/home/sales_group", category: '组合优惠'}} style={{color: 'black'}}>
+        //                 <img src='./images/category/组合选购.png' className="category_img"/>
+        //                 <div className="zone">组合优惠</div>
+        //             </Link>
+        //         </div>
+        //     </Flex.Item>);
+        // category_flex.push(<Flex.Item className="category_flex" key={2}>
+        //         <div className="div_category">
+        //             <Link to={{pathname: "/home/recharge", category: '充值区'}} style={{color: 'black'}}>
+        //                 <img src='./images/category/充值.png' className="category_img"/>
+        //                 <div className="zone">购买</div>
+        //             </Link>
+        //         </div>
+        //     </Flex.Item>);
+        // category_flex.push(<Flex.Item className="category_flex" key={3}>
+        //     <div className="div_category">
+        //         <Link to={{pathname: "/home/coupon", category: '领券中心'}} style={{color: 'black'}}>
+        //             <img src='./images/category/优惠券.png' className="category_img"/>
+        //             <div className="zone">领券</div>
+        //         </Link>
+        //     </div>
+        // </Flex.Item>);
+        this.setState({ data:data1 });
     }
 
     componentDidMount() {
     }
 
     componentWillUnmount() {
-        changed = true;
-        category_flex = [];
-        second_flex = [];
-        anotherPage = false;
+        // changed = true;
+        // category_flex = [];
+        // second_flex = [];
+        // anotherPage = false;
     }
 
-    generateCategories(flex1, flex2) {
-        var categories = [];
+    // generateCategories(flex1, flex2) {
+    //     var categories = [];
 
-        if(flex1 && flex1 != "[]") {
-            categories.push(<div className="grid_category_view" key={1}>
-                <Flex style={{flexWrap:'wrap'}}>
-                    {flex1}
+    //     if(flex1 && flex1 != "[]") {
+    //         categories.push(<div className="grid_category_view" key={1}>
+    //             <Flex style={{flexWrap:'wrap'}}>
+    //                 {flex1}
 
-                </Flex>
-            </div>);
-        }
+    //             </Flex>
+    //         </div>);
+    //     }
 
-        if(flex2 && flex2 != "[]") {
-            categories.push(<div className="grid_category_view" key={2}>
-                <Flex style={{flexWrap:'wrap'}}>
-                    {flex2}
-                </Flex>
-            </div>);
-        }
-        return categories
-    }
+    //     if(flex2 && flex2 != "[]") {
+    //         categories.push(<div className="grid_category_view" key={2}>
+    //             <Flex style={{flexWrap:'wrap'}}>
+    //                 {flex2}
+    //             </Flex>
+    //         </div>);
+    //     }
+    //     return categories
+    // }
 
-    checkCategory(name) {
-        switch (name) {
-            case "促销":
-                return "/home/sales";
-            case "组合优惠":
-                return "/home/sales_group";
-            case "充值":
-                return "/home/recharge";
-            case "领券中心":
-                return "/home/coupon";
-            default:
-                return '/home/category';
-        }
-    }
+    // checkCategory(name) {
+    //     switch (name) {
+    //         case "促销":
+    //             return "/home/sales";
+    //         case "组合优惠":
+    //             return "/home/sales_group";
+    //         case "充值":
+    //             return "/home/recharge";
+    //         case "领券中心":
+    //             return "/home/coupon";
+    //         default:
+    //             return '/home/category';
+    //     }
+    // }
 
 
     render() {
 
         const category = this.props.gridData;
-        // console.log("category: ", category);
-
+        console.log("category: ", category);
+        
         if (!category || JSON.stringify(category) === '{}') {
             return null
         }
 
-        changed && category && category.map((item, index) => {
-            if (index === (category.length -1)) {
-                changed = false;
+        let categoryFROM = category && category.map((item, index) => {
+            return {
+                icon: "http://" + getServerIp() + item.iconUrl,
+                text: item.name,
             }
+            // if (index === (category.length -1)) {
+            //     changed = false;
+            // }
 
             // console.log("index: ", index);
-            if (index <= 3) {
+            // if (index <= 3) {
 
-                if (index === 3) {
-                    anotherPage = true;
-                }
-                category_flex.push(<Flex.Item className="category_flex" key={index + 4}>
-                    <div className="div_category">
-                        <Link to={{pathname: '/home/category', category: item.name, categoryId: item.id}}
-                              style={{color: 'black'}}>
-                            <img src={"http://" + getServerIp() + item.iconUrl} className="category_img"/>
-                            <div className="zone">{item.name}</div>
-                        </Link>
-                    </div>
-                </Flex.Item>);
-                // return <Flex.Item className="category_flex" key={index}>
-                //     <div className="div_category">
-                //         <Link to={{pathname: '/home/category', category: item.name, categoryId: item.id}}
-                //               style={{color: 'black'}}>
-                //             {/*<img src='./images/category/促销.png' className="category_img"/>*/}
-                //             {/*<div className="zone">促销</div>*/}
-                //             <img src={"http://" + getServerIp() + item.iconUrl} className="category_img"/>
-                //             <div className="zone">{item.name}</div>
-                //         </Link>
-                //     </div>
-                // </Flex.Item>
+            //     if (index === 3) {
+            //         anotherPage = true;
+            //     }
+            //     category_flex.push(<Flex.Item className="category_flex" key={index + 4}>
+            //         <div className="div_category">
+            //             <Link to={{pathname: '/home/category', category: item.name, categoryId: item.id}}
+            //                   style={{color: 'black'}}>
+            //                 <img src={"http://" + getServerIp() + item.iconUrl} className="category_img"/>
+            //                 <div className="zone">{item.name}</div>
+            //             </Link>
+            //         </div>
+            //     </Flex.Item>);
+            //     // return <Flex.Item className="category_flex" key={index}>
+            //     //     <div className="div_category">
+            //     //         <Link to={{pathname: '/home/category', category: item.name, categoryId: item.id}}
+            //     //               style={{color: 'black'}}>
+            //     //             {/*<img src='./images/category/促销.png' className="category_img"/>*/}
+            //     //             {/*<div className="zone">促销</div>*/}
+            //     //             <img src={"http://" + getServerIp() + item.iconUrl} className="category_img"/>
+            //     //             <div className="zone">{item.name}</div>
+            //     //         </Link>
+            //     //     </div>
+            //     // </Flex.Item>
 
-            } else if (3 < index <= 7 && anotherPage) {
+            // } else if (3 < index <= 7 && anotherPage) {
 
-                second_flex.push(<Flex.Item className="category_flex" key={index - 4}>
-                    <div className="div_category">
-                        <Link to={{pathname: '/home/category', category: item.name, categoryId: item.id}}
-                              style={{color: 'black'}}>
-                            <img src={"http://" + getServerIp() + item.iconUrl} className="category_img"/>
-                            <div className="zone">{item.name}</div>
-                        </Link>
-                    </div>
-                </Flex.Item>);
+            //     second_flex.push(<Flex.Item className="category_flex" key={index - 4}>
+            //         <div className="div_category">
+            //             <Link to={{pathname: '/home/category', category: item.name, categoryId: item.id}}
+            //                   style={{color: 'black'}}>
+            //                 <img src={"http://" + getServerIp() + item.iconUrl} className="category_img"/>
+            //                 <div className="zone">{item.name}</div>
+            //             </Link>
+            //         </div>
+            //     </Flex.Item>);
 
-                // return <Flex.Item className="category_flex" key={{index}}>
-                //     <div className="div_category">
-                //         <Link to={{pathname: '/home/category', category: item.name, categoryId: item.id}}
-                //               style={{color: 'black'}}>
-                //             <img src={"http://" + getServerIp() + item.iconUrl} className="category_img"/>
-                //             <div className="zone">{item.name}</div>
-                //         </Link>
-                //     </div>
-                // </Flex.Item>
+            //     // return <Flex.Item className="category_flex" key={{index}}>
+            //     //     <div className="div_category">
+            //     //         <Link to={{pathname: '/home/category', category: item.name, categoryId: item.id}}
+            //     //               style={{color: 'black'}}>
+            //     //             <img src={"http://" + getServerIp() + item.iconUrl} className="category_img"/>
+            //     //             <div className="zone">{item.name}</div>
+            //     //         </Link>
+            //     //     </div>
+            //     // </Flex.Item>
 
-            } else {
+            // } else {
 
-            }
+            // }
             // return category_flex;
         });
 
+        let dataALL = this.state.data.concat(categoryFROM);
+        return <Grid data={dataALL} isCarousel={true} hasLine={false} onClick={_el => console.log(_el)} />
+        // return <Carousel className="my-carousel"
+        //                  autoplay={false}
+        //                 // infinite
+        //                  selectedIndex={0}
+        //                  // style={{touchAction: 'none'}}
+        // >
 
-        return <Carousel className="my-carousel"
-                         autoplay={false}
-                        // infinite
-                         selectedIndex={0}
-                         // style={{touchAction: 'none'}}
-        >
-
-            {this.generateCategories(category_flex, second_flex)}
+        //     {this.generateCategories(category_flex, second_flex)}
 
 
-        </Carousel>
+        // </Carousel>
 
     }
 }

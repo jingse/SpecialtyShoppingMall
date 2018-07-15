@@ -142,12 +142,12 @@ class Product extends React.Component {
                     const specificationId = data[0].specification.id;
                     const mPrice = data[0].mPrice;
                     const pPrice = data[0].pPrice;
-                    const specification = data[0].specification.specification;
+                    const specifications = data[0].specialty.specifications;
                     // const specifications = data[0].specialty.specifications;
-                    const specifications = data && data.map((item, index) => {
-                        return item.specification
+                    const specification = specifications && specifications.map((item, index) => {
+                        return item.specification;
                     });
-                    // console.log("product data", data);
+                    console.log("product specifications", specification);
 
                     this.setState({
                         data: data,

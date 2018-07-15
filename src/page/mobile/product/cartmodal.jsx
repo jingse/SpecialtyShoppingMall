@@ -1,6 +1,7 @@
 import React from 'react';
-import { WingBlank, Flex, Modal, Stepper } from 'antd-mobile';
+import { WingBlank, Flex, Modal, Stepper, LocaleProvider } from 'antd-mobile';
 import "./index.less";
+import proApi from "../../../api/product.jsx";
 import {getServerIp} from "../../../config.jsx";
 
 export default class CartModal extends React.Component {
@@ -11,7 +12,7 @@ export default class CartModal extends React.Component {
 
     getInitialState() {
         const data = this.props.modalData;
-
+        console.log('this.props.productData',data)
         let active = {};
         for (let i in data) {
             // Object.assign(active, data[i].options[0]);
@@ -51,18 +52,44 @@ export default class CartModal extends React.Component {
     }
 
     clickSelector(option) {
-        const index = this.findOptionIndex(option);
-        const salePrice = this.props.productData[index].pPrice;
-        const mPrice = this.props.productData[index].mPrice;
-        const inboud = this.props.productData[index].inbound;
-
-        this.setState({
-            active: Object.assign(this.state.active, option),
-            salePrice: salePrice,
-            mPrice: mPrice,
-            inbound: inboud,
-            specificationId: option.id,
+        console.log('option',option);
+        let tempID = option.id;
+        console.log('tempID',tempID);
+        proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
+            console.log('llrs',rs)
+            if (!rs.success) {
+                console.log('error');
+                return
+            }
+            if(rs && rs.success) {
+                const salePrice = rs.obj[0].pPrice;
+                const mPrice = rs.obj[0].mPrice;
+                const inboud = rs.obj[0].inbound;
+                this.setState({
+                    active: Object.assign(this.state.active, option),
+                    salePrice: salePrice,
+                    mPrice: mPrice,
+                    inbound: inboud,
+                    specificationId: option.id,
+                });
+            }
+            
         });
+
+
+
+        // const index = this.findOptionIndex(option);
+        // const salePrice = this.props.productData[index].pPrice;
+        // const mPrice = this.props.productData[index].mPrice;
+        // const inboud = this.props.productData[index].inbound;
+
+        // this.setState({
+        //     active: Object.assign(this.state.active, option),
+        //     salePrice: salePrice,
+        //     mPrice: mPrice,
+        //     inbound: inboud,
+        //     specificationId: option.id,
+        // });
     }
 
     generateDataSet() {
