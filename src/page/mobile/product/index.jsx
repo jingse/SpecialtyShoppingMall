@@ -132,7 +132,7 @@ class Product extends React.Component {
 
             if(rs && rs.success) {
                 const data = rs.obj;
-
+                console.log('data',data)
                 if (!data || JSON.stringify(data) === "[]") {
                     this.setState({
                         isNull: true,

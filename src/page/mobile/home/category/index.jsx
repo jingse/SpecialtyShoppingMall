@@ -51,7 +51,6 @@ export default class Category extends React.Component {
             localStorage.setItem("categoryId", this.props.location.categoryId);
             localStorage.setItem("categoryName", this.props.location.category);
         }
-
         this.requestCategoryList(categoryId, 1, 10, 0);
 
         console.log("this.props.location.categoryId", this.props.location.categoryId);
@@ -59,9 +58,10 @@ export default class Category extends React.Component {
 
     requestCategoryList(categoryId, page, rows, condition) {
         homeApi.getCategoryList(categoryId, page, rows, condition, (rs)=>{
+            console.log("data", rs);
             if (rs && rs.success) {
                 const data = rs.obj.rows;
-
+                
                 this.setState({
                     categoryData: data,
                 });
@@ -213,10 +213,10 @@ export default class Category extends React.Component {
             }
             const obj = data[index--];
             console.log("obj", obj);
-            let minprice = 99999;
-            obj.specialty.specifications.map((temp,index) => {
-                minprice = temp.platformPrice > minprice ? minprice :temp.platformPrice;
-            })
+            // let minprice = 99999;
+            // obj.specialty.specifications.map((temp,index) => {
+            //     minprice = temp.platformPrice > minprice ? minprice :temp.platformPrice;
+            // })
 
             // return (
             //     <div key={rowID} style={{ padding: '0 15px' }}>
@@ -240,7 +240,7 @@ export default class Category extends React.Component {
                             <img style={{ height: '4rem', width:'25%', marginRight: '2rem' }} src={"http://" + getServerIp() + obj.iconURL.sourcePath}/>
                             <div style={{ lineHeight: 1 , color:'black'}}>
                                 <div style={{marginBottom: 10}}>{obj.specialty.name}</div>
-                                <div style={{marginBottom: 10}}><span style={{color:'darkorange'}}>￥{minprice}元</span></div>
+                                <div style={{marginBottom: 10}}><span style={{color:'darkorange'}}>￥{obj.pPrice}元</span></div>
                                 {/* <div style={{marginBottom: 10}}>商品规格：<span style={{color:'darkorange'}}>{obj.specification.specification}</span></div> */}
                                 <div>总销量：<span style={{color:'darkorange'}}>{obj.hasSold}</span></div>
                             </div>
