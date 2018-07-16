@@ -22,18 +22,26 @@ export default class GridCategory extends React.Component {
             {
             icon: './images/category/促销.png',
             text: `促销`,
+            urlTo: '/home/sales',
+            category: '促销活动区',
             },
             {
             icon: './images/category/组合选购.png',
             text: `组合优惠`,
+            urlTo: '/home/sales_group',
+            category: '组合优惠',
             },
             {
             icon: './images/category/充值.png',
             text: `购买`,
+            urlTo: 'home/recharge',
+            category: '充值区',
             },
             {
             icon: './images/category/优惠券.png',
             text: `领券`,
+            urlTo: '/home/coupon',
+            category: '领券中心',
             }];
             
         
@@ -131,8 +139,11 @@ export default class GridCategory extends React.Component {
 
         let categoryFROM = category && category.map((item, index) => {
             return {
-                icon: "http://" + getServerIp() + item.iconUrl,
+                icon: "http:" + getServerIp() + item.iconUrl,
                 text: item.name,
+                urlTo: '/home/category',
+                category: item.name,
+                categoryId: item.id
             }
             // if (index === (category.length -1)) {
             //     changed = false;
@@ -194,7 +205,18 @@ export default class GridCategory extends React.Component {
         });
 
         let dataALL = this.state.data.concat(categoryFROM);
-        return <Grid data={dataALL} isCarousel={true} hasLine={false} onClick={_el => console.log(_el)} />
+        return <Grid data={dataALL} isCarousel={true} hasLine={false} 
+        renderItem = {dataItem => (
+            <div className="div_category">
+                         <Link to={{pathname: dataItem.urlTo, category: dataItem.category,categoryId: dataItem.categoryId}} style={{color: 'black'}}>
+                             <img src={dataItem.icon} className="category_img"/>
+                             <div className="zone">{dataItem.text}</div>
+                         </Link>
+            </div>
+          )}
+        >
+            
+            </Grid>
         // return <Carousel className="my-carousel"
         //                  autoplay={false}
         //                 // infinite

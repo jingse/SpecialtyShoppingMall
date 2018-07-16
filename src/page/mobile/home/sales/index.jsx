@@ -6,8 +6,8 @@ import SearchNavBar from "../../../../components/search/index.jsx";
 import Bottom from "../../../../components/bottom/index.jsx";
 import "./index.less";
 // import sales_data from "../../../../static/mockdata/sales.js"; //mock假数据
-// import homeApi from "../../../../api/home.jsx";
-// import {getServerIp} from "../../../../config.jsx";
+ import homeApi from "../../../../api/home.jsx";
+ import {getServerIp} from "../../../../config.jsx";
 
 
 export default class Sales extends React.Component {
