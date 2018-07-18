@@ -12,7 +12,10 @@ export default class CartModal extends React.Component {
 
     getInitialState() {
         const data = this.props.modalData;
-        console.log('this.props.productData',data)
+        console.log('this.props.modalData',data)
+        console.log('this.props.productData',this.props.productData)
+
+        console.log('isWebusiness',localStorage.getItem('isWebusiness'))
         let active = {};
         for (let i in data) {
             // Object.assign(active, data[i].options[0]);
@@ -25,6 +28,8 @@ export default class CartModal extends React.Component {
             mPrice: this.props.productData[0].mPrice,
             inbound: this.props.productData[0].inbound,
             specificationId: this.props.modalData[0].id,
+            divideRatio: this.props.productData[0].divideRatio,
+            isWebusiness : localStorage.getItem('isWebusiness'),
         };
     }
 
@@ -118,11 +123,23 @@ export default class CartModal extends React.Component {
             <Flex justify="end">
                 <Flex.Item style={{flex:'0 0 30%'}}>
                     <img src={"http://" + getServerIp() + this.props.productData[0].iconURL.sourcePath}
-                         style={{width:'50%', height:'3rem'}}/>
+                         style={{width:'100%', height:'3rem'}}/>
                 </Flex.Item>
-                <Flex.Item style={{flex:'0 0 60%'}}>
-                    <h3>{this.props.productData[0].specialty.name}</h3>
-                    <p>价格：￥{this.state.salePrice}  库存：{this.state.inbound}</p>
+                <Flex.Item style={{flex:'0 0 70%'}}>
+                    <Flex justify="start" direction="column" align="start">
+                    <div className="title">
+                        {this.props.productData[0].specialty.name}
+                    </div>
+                    <div className="salePrice_inbound">
+                    价格：￥{this.state.salePrice}  库存：{this.state.inbound}
+                    </div>
+                    <div className="extractPrice" style={{display:(this.state.isWebusiness === '1')?'':"none"}}>
+                    提成金额：{this.state.divideRatio*this.state.salePrice}
+                    </div>
+                    </Flex>
+                    {/* <h3>{this.props.productData[0].specialty.name}</h3>
+                    <p>价格：￥{this.state.salePrice}  库存：{this.state.inbound}</p> */}
+                    
                 </Flex.Item>
             </Flex>
         </div>;
