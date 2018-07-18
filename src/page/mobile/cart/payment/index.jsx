@@ -34,7 +34,7 @@ class Payment extends React.Component {
             address:[],
             products:[],
             orderPrice:[],
-
+            marks:'',
             // orderCode: '',
             available: true,
 
@@ -254,7 +254,6 @@ class Payment extends React.Component {
     }
 
     payCharge() {
-
         //如果没有填写或选择地址就不能支付
         if (!this.state.address || JSON.stringify(this.state.address) === "[]") {
             Toast.info("请先填写或选择地址！");
@@ -319,7 +318,7 @@ class Payment extends React.Component {
             // "receiverPhone":"13940404400",
             // "receiverType":1,
 
-            "receiverRmark":"请送到我家",
+            "receiverRmark":this.state.marks,
             "receiverName":this.state.address.receiverName,
             "receiverAddress":this.state.address.receiverAddress,
             "receiverPhone":this.state.address.receiverMobile,
@@ -615,7 +614,7 @@ class Payment extends React.Component {
                         {/*/!*<div>买家留言：</div>*!/*/}
                     {/*</div>*/}
                     <List style={{borderBottom:'1px solid #ccc'}}>
-                        <InputItem {...getFieldProps("liuyan")}>买家留言：</InputItem>
+                        <InputItem {...getFieldProps("liuyan")} value={this.state.marks} onChange={(v) => { this.setState({marks:v}); }}>买家留言：</InputItem>
                         {/*<div>买家留言：</div>*/}
                     </List>
                     <List>

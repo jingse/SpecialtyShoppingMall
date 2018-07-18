@@ -222,16 +222,18 @@ class Cart extends React.Component {
          return <Card className = "overlay" style={this.state.style}>
              <Flex>
                  <Flex.Item style={{flex:'0 0 70%'}}>
-                    <div className="step">
-                        <div className="add" onClick={() => {this.addNum(this.state.num)}}>
+                 <div>
+                    <div className="step1">              
+                        <div className="add_minus" onClick={() => {this.addNum(this.state.num)}}>
                         +
                         </div>
                         <div className="value">
                         {this.state.num}
                         </div>
-                        <div className="minus"onClick={() => {this.minusNum(this.state.num)}}>
+                        <div className="add_minus"onClick={() => {this.minusNum(this.state.num)}}>
                         -
                         </div>
+                </div>
                     </div>
                      {/* <Stepper style={{ width: '50%', minWidth: '100px', touchAction: 'none', marginLeft:"2rem" }}
                               showNumber

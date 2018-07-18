@@ -217,7 +217,8 @@ export default class OrderDetail extends React.Component {
         if (orderState === 0 || orderState === 1 || orderState === 2) {
             //return "退款";
             return <Button type="ghost" inline size="small"
-                           style={{marginRight:'2rem'}}
+            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
+            width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
                            onClick={() => alert('取消订单', '您确定要取消吗？', [
                                { text: '取消', onPress: () => {} },
                                { text: '确认', onPress: () => {this.cancelOrderConfirm(this.state.orderId)} },
@@ -227,7 +228,8 @@ export default class OrderDetail extends React.Component {
         } else if (orderState === 5) {
             //return "申请售后";
             return <Button type="ghost" inline size="small"
-                           style={{marginRight:'2rem'}}
+            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
+            width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
                            onClick={()=>{this.linkTo('/my/order/refund')}}>
                     申请退款
             </Button>
@@ -242,24 +244,24 @@ export default class OrderDetail extends React.Component {
             orderCode = this.state.orderId;
             payMoney = Math.round(this.state.detail.baseInfo.payMoney * 100); //TODO
             return <Button type="ghost" inline size="small"
-                           style={{  marginLeft:'75%', marginTop: '4px', marginBottom:'4px', marginRight:'0.5rem',
-                               width:'5rem', backgroundColor:'white', fontSize:'0.8rem'}}
+                           style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
+                               width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
                            onClick={this.payCharge.bind(this)}>
                 去付款
             </Button>
         }  else if (orderState === 4) {
             //return "确认收货";
             return <Button type="ghost" inline size="small"
-                           style={{  marginLeft:'75%', marginTop: '4px', marginBottom:'4px', marginRight:'0.5rem',
-                               width:'5.3rem', backgroundColor:'white', fontSize:'0.8rem'}}
+                            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
+                            width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
                            onClick={()=>{this.orderConfirmReceive(this.state.orderId)}}>
                 确认收货
             </Button>
         } else if (orderState === 5 || orderState === 6) {
             //return "评价";
             return <Button type="ghost" inline size="small"
-                           style={{  marginLeft:'75%', marginTop: '4px', marginBottom:'4px', marginRight:'0.5rem',
-                               width:'5.3rem', backgroundColor:'white', fontSize:'0.8rem'}}
+                            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
+                            width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
                            onClick={()=>{this.context.router.history.push({pathname : '/my/order/comment', order: this.state.detail})}}>
                 去评价
             </Button>
@@ -438,14 +440,16 @@ export default class OrderDetail extends React.Component {
                 <div style={{marginLeft:'0.6rem'}}>成交时间：
                     {(!this.state.detail.baseInfo.receiveTime) ? "" : new Date(this.state.detail.baseInfo.receiveTime).toLocaleString()}
                 </div><WhiteSpace/>
+                <div style={{marginLeft:'0.6rem'}}>买家备注：
+                    {this.state.detail.baseInfo.receiverRemark}
+                </div><WhiteSpace/>
                 <WhiteSpace/>
             </div>
 
-            <div className='buttons'>
+            {/* <div className='buttons'> */}
+            <div style={{background:'#fff', textAlign:'right'}}>
                 <span>
                     {buttonContent}
-
-
                     {/*<Button type="ghost" inline size="small"*/}
                             {/*style={{  position:'fixed', right:'1rem', marginTop: '4px', marginBottom:'4px',*/}
                                 {/*backgroundColor:'white', fontSize:'0.8rem'}}*/}
