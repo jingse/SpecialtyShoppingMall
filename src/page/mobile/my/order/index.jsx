@@ -477,8 +477,9 @@ export default class Order extends React.Component {
                 // orderCode = item.orderCode;
                 // payMoney = Math.round(item.payMoney * 100);
 
-                return <div style={{background:'#fff', textAlign:'right'}}>
-                <WhiteSpace/>
+                return <Flex justify="between" style={{width:'50%'}}>
+                {/* <div style={{background:'#fff', textAlign:'right'}}> */}
+                {/* <WhiteSpace/> */}
                 <Button type="ghost" inline size="small" style={{marginRight:'4%', fontSize:'0.7rem'}}
                         onClick={this.payCharge.bind(this, item.orderCode, Math.round(item.payMoney * 100))}>
                     去付款
@@ -490,8 +491,9 @@ export default class Order extends React.Component {
                         ])}>
                     取消付款
                 </Button>
-                <WhiteSpace/>
-            </div>;
+                {/* <WhiteSpace/> */}
+                {/* </div> */}
+                </Flex>
 
             case 2:
 
@@ -696,10 +698,11 @@ export default class Order extends React.Component {
                             <div className="order_card_group">
                                 <Flex justify="between">
                                 {this.checkAll(orderStateStr, item.id)}
-                                    <div>共{item.orderItems.length}件商品 合计：￥{item.payMoney}</div>
+                                <div>共{item.orderItems.length}件商品 合计：￥{item.payMoney}</div>
+                                {this.getOrderButton(this.state.tab, item)}
                                 </Flex>
                             </div>
-                            {this.getOrderButton(this.state.tab, item)}
+                            
                         </Card>
                     });
                     return singleProduct
@@ -721,10 +724,13 @@ export default class Order extends React.Component {
                             </Flex>
                         </Link>
                         <div className="order_card_group">
+                        <Flex justify="between">
                             {this.checkAll(orderStateStr, item.id)}
-                            <Flex justify="end">共{item.orderItems.length}件商品 合计：￥{item.payMoney}</Flex>
+                            <div>共{item.orderItems.length}件商品 合计：￥{item.payMoney}</div>
+                            {this.getOrderButton(this.state.tab, item)}
+                        </Flex>
                         </div>
-                        {this.getOrderButton(this.state.tab, item)}
+                        {/* {this.getOrderButton(this.state.tab, item)} */}
                     </Card>
                 }
             });

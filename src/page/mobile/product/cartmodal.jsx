@@ -151,7 +151,7 @@ export default class CartModal extends React.Component {
             className = "popup_modal"
         >
             <div className="popup_modal_content">
-                <div style={{float:'left', marginLeft:'1rem', marginRight:'1rem'}}>种类</div>
+                <div style={{float:'left', marginLeft:'1rem', marginRight:'1rem'}}>规格</div>
                 {dataSet}
                 <div style={{float:'left', marginLeft:'1rem'}}>数量</div>
                 <div className="step">

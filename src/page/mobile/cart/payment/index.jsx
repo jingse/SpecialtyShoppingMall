@@ -528,7 +528,7 @@ class Payment extends React.Component {
             //         </div>
             //     </Card>
             // }
-            return <Card className="payment_card clearfix" key={index}>
+            return <List.Item  key={index}>      
                 <div className="payment_card_img">
                     <img src={"http://" + getServerIp() + item.iconURL.mediumPath}/>
                 </div>
@@ -538,7 +538,7 @@ class Payment extends React.Component {
                     <div className="num_text">x {item.quantity}</div>
                     <div className="price_text">￥{item.curPrice}</div>
                 </div>
-            </Card>
+            </List.Item>
         });
 
         return <Layout header={false} footer={false}>
@@ -564,7 +564,7 @@ class Payment extends React.Component {
                     {/*</Flex>*/}
                 {/*</Link>*/}
             {/*</Card>*/}
-
+            
             <Card className="payment_card">
                 <Link to="/address">
                     <Flex>
@@ -593,7 +593,11 @@ class Payment extends React.Component {
                 </Link>
             </Card>
 
+            <Card className="payment_card clearfix">
+            <List>
             {orderProducts}
+            </List>
+            </Card>
 
             <Card className="payment_card">
                 <div>
@@ -614,6 +618,8 @@ class Payment extends React.Component {
                         <InputItem {...getFieldProps("liuyan")}>买家留言：</InputItem>
                         {/*<div>买家留言：</div>*/}
                     </List>
+                    <List>
+                        <List.Item>
                     <div className="discount clearfix">
                         <div className="discount_select price_text">{this.checkShipType()}</div>
                         <div className="discount_title">配送方式</div>
@@ -633,6 +639,8 @@ class Payment extends React.Component {
                             ￥{(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + shipFee - couponSub - balance).toFixed(2)}
                         </div>
                     </div>
+                    </List.Item>
+                    </List>
                 </div>
                 <WhiteSpace/>
                 <WhiteSpace/>

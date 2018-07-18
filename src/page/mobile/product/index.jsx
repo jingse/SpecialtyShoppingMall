@@ -494,7 +494,7 @@ class Product extends React.Component {
 
                 </WingBlank>
                 <WhiteSpace size="xs" />
-            </Card>
+         
 
             {/*<Card className="selector_container">*/}
                 {/*<div className="selector_sec" onClick={this.showModal2.bind(this)}>*/}
@@ -513,7 +513,7 @@ class Product extends React.Component {
             {/*</Card>*/}
             {this.displayPromotion()}
 
-            <Card className="selector_container">
+            <div className="selector_container">
                 <div className="selector_sec" onClick={this.showModal.bind(this)}>
                     <WingBlank>
                         <span>已选</span>
@@ -524,18 +524,25 @@ class Product extends React.Component {
                     <WingBlank>
                         <span>运费</span>
                         <span>￥{proData.ship_fee}</span>
+                        <hr/>
                     </WingBlank>
+                    <WhiteSpace size="lg"/>
                 </div>
-            </Card>
-
+                
+            </div>
+            
             {/*{proData.specialty.description}*/}
             {/*<Detail ImgsData={proData.images}/>*/}
-            <Card>
+            <div>
+            <WingBlank>
+                <div className="para_title">产品介绍</div>
                 <div dangerouslySetInnerHTML={{ __html: proData.specialty.descriptions}} />
-            </Card>
+                <hr/>
+            </WingBlank>
+            </div>
             <WhiteSpace size="lg"/>
-
-            <Card>
+            
+            <div>
                 <WingBlank>
                     <div className="para_title">服务承诺</div>
                     <div className="paragraph">
@@ -547,6 +554,7 @@ class Product extends React.Component {
                         起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情
                         况下验货，则视为您所订购商品的包装无任何问题。
                     </div>
+                    <hr/>
                 </WingBlank>
                 <WingBlank>
                     <div className="para_title">温馨提示</div>
@@ -583,8 +591,8 @@ class Product extends React.Component {
                 {/*<WingBlank>*/}
                     {/*<Recommend recommend={proData.recommends}/>*/}
                 {/*</WingBlank>*/}
+            </div>
             </Card>
-
 
             <PutInCart style={{height:'3.125rem'}}
                        addToCart={this.addToCart.bind(this)}
