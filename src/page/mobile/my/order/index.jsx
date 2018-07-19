@@ -487,7 +487,7 @@ export default class Order extends React.Component {
                 <Button type="ghost" inline size="small" style={{marginRight:'4%', fontSize:'0.7rem'}}
                         onClick={() => alert('取消付款', '您确定要取消吗？', [
                             { text: '取消', onPress: () => {} },
-                            { text: '确认', onPress: () => {this.cancelOrderConfirm(item.id)} },
+                            { text: '确认', onPress: () => {this.cancelOrderPay(item.id)} },
                         ])}>
                     取消付款
                 </Button>
@@ -568,10 +568,22 @@ export default class Order extends React.Component {
         orderApi.cancelOrder(orderId, (rs) => {
             if (rs && rs.success) {
                 console.log("rs: ", rs);
+                this.clearData();
+                this.requestTabData(2, 1, pageSize);
             }
         });
-        this.clearData();
-        this.requestTabData(2, 1, pageSize);
+        
+    }
+    cancelOrderPay(orderId) {
+        console.log("cancelOrderPay orderId: ", orderId);
+        orderApi.cancelOrder(orderId, (rs) => {
+            if (rs && rs.success) {
+                console.log("rs: ", rs);
+                this.clearData();
+                this.requestTabData(1, 1, pageSize);
+            }
+        });
+        
     }
 
     deleteOrder(orderId) {
@@ -624,9 +636,7 @@ export default class Order extends React.Component {
             this.paySign = rs.result.paySign;
             this.signType = rs.result.signType;
             this.timestamp = rs.result.timestamp;
-
             this.code = orderCode;
-
             // 调起微信支付接口
             if (typeof WeixinJSBridge === "undefined") {
                 if ( document.addEventListener ) {
@@ -769,7 +779,12 @@ export default class Order extends React.Component {
                 }, 1000);
             }}
         >
+        <div style={{
+                height: this.state.height,
+                overflow: 'scroll',
+            }}> 
             {orderContent}
+        </div>
         </PullToRefresh>
     }
 
@@ -801,6 +816,8 @@ export default class Order extends React.Component {
             <div className="order_container" onTouchStart={this.state.touchStart} onTouchEnd={this.state.touchEnd}>
             <Tabs tabs={tabs}
                   initialPage={this.state.id}
+                //   swipeable={false}
+                useOnPan={false}
                   // animated={false}
                   onChange={(tab, index) => {this.onTabChange(tab, index)}}
                   // style={{backgroundColor:'#eee'}}

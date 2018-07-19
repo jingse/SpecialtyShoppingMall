@@ -220,7 +220,7 @@ class Home extends React.Component {
 
     requestMerchantInfo(merchantId) {
         homeApi.getMerchantInfo(merchantId, (rs) => {
-            // console.log(rs);
+            console.log('RS',rs);
             if (rs && rs.success) {
                 const card = rs.obj;
                 // let merchant = card;

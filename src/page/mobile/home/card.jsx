@@ -14,7 +14,7 @@ export default class InfoCard extends React.Component {
 
     render(){
         let card = this.props.cardData;
-        // console.log("card",card);
+        //console.log("card",card);
         if (!card || !card.weBusiness) {
             return null;
         }
