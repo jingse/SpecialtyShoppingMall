@@ -205,7 +205,7 @@ export default class GridCategory extends React.Component {
         });
 
         let dataALL = this.state.data.concat(categoryFROM);
-        return <Grid data={dataALL} isCarousel={true} hasLine={false} 
+        return <Grid data={dataALL} isCarousel={true} hasLine={false} itemStyle={{background: '#eee'}}
         renderItem = {dataItem => (
             <div className="div_category">
                          <Link to={{pathname: dataItem.urlTo, category: dataItem.category,categoryId: dataItem.categoryId}} style={{color: 'black'}}>
