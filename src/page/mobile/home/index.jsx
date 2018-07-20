@@ -110,7 +110,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        // this.checkLogin();  //拿到wechatId webusinessId
+        this.checkLogin();  //拿到wechatId webusinessId
     }
 
     getCartCount() {
