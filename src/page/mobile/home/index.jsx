@@ -110,7 +110,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.checkLogin();  //拿到wechatId webusinessId
+        // this.checkLogin();  //拿到wechatId webusinessId
     }
 
     getCartCount() {
@@ -236,6 +236,7 @@ class Home extends React.Component {
                         console.log("isWebusiness设为1");
                         localStorage.setItem("isWebusiness", 1);
                     }
+                    this.checkLogin();
                 });
             }
         });
