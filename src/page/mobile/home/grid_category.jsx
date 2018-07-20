@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Flex, Carousel,Grid } from 'antd-mobile';
+import {Flex, Carousel, Grid} from 'antd-mobile';
 import {getServerIp} from "../../../config.jsx";
 import './index.less';
 // var anotherPage = false;
@@ -20,31 +20,38 @@ export default class GridCategory extends React.Component {
         // category_flex = [];
         const data1 = [
             {
-            icon: './images/category/促销.png',
-            text: `促销`,
-            urlTo: '/home/sales',
-            category: '促销活动区',
+                icon: './images/category/促销.png',
+                text: `促销`,
+                urlTo: '/home/sales',
+                category: '促销活动区',
             },
             {
-            icon: './images/category/组合选购.png',
-            text: `组合优惠`,
-            urlTo: '/home/sales_group',
-            category: '组合优惠',
+                icon: './images/category/组合选购.png',
+                text: `组合优惠`,
+                urlTo: '/home/sales_group',
+                category: '组合优惠',
             },
             {
-            icon: './images/category/充值.png',
-            text: `购买`,
-            urlTo: 'home/recharge',
-            category: '充值区',
+                icon: './images/category/充值.png',
+                text: `购买`,
+                urlTo: 'home/recharge',
+                category: '充值区',
             },
             {
-            icon: './images/category/优惠券.png',
-            text: `领券`,
-            urlTo: '/home/coupon',
-            category: '领券中心',
-            }];
-            
-        
+                icon: './images/category/优惠券.png',
+                text: `领券`,
+                urlTo: '/home/coupon',
+                category: '领券中心',
+            },
+            {
+                icon: './images/category/推荐.png',
+                text: `推荐`,
+                urlTo: '/home/recommend',
+                category: '推荐产品区',
+            },
+        ];
+
+
         // category_flex.push(<Flex.Item className="category_flex" key={0}>
         //         <div className="div_category">
         //             <Link to={{pathname: "/home/sales", category: '促销活动区'}} style={{color: 'black'}}>
@@ -77,7 +84,7 @@ export default class GridCategory extends React.Component {
         //         </Link>
         //     </div>
         // </Flex.Item>);
-        this.setState({ data:data1 });
+        this.setState({data: data1});
     }
 
     componentDidMount() {
@@ -132,7 +139,7 @@ export default class GridCategory extends React.Component {
 
         const category = this.props.gridData;
         console.log("category: ", category);
-        
+
         if (!category || JSON.stringify(category) === '{}') {
             return null
         }
@@ -206,17 +213,21 @@ export default class GridCategory extends React.Component {
 
         let dataALL = this.state.data.concat(categoryFROM);
         return <Grid data={dataALL} isCarousel={true} hasLine={false} itemStyle={{background: '#eee'}}
-        renderItem = {dataItem => (
-            <div className="div_category">
-                         <Link to={{pathname: dataItem.urlTo, category: dataItem.category,categoryId: dataItem.categoryId}} style={{color: 'black'}}>
-                             <img src={dataItem.icon} className="category_img"/>
-                             <div className="zone">{dataItem.text}</div>
-                         </Link>
-            </div>
-          )}
+                     renderItem={dataItem => (
+                         <div className="div_category">
+                             <Link to={{
+                                 pathname: dataItem.urlTo,
+                                 category: dataItem.category,
+                                 categoryId: dataItem.categoryId
+                             }} style={{color: 'black'}}>
+                                 <img src={dataItem.icon} className="category_img"/>
+                                 <div className="zone">{dataItem.text}</div>
+                             </Link>
+                         </div>
+                     )}
         >
-            
-            </Grid>
+
+        </Grid>
         // return <Carousel className="my-carousel"
         //                  autoplay={false}
         //                 // infinite

@@ -35,6 +35,16 @@ var api = {
     },
 
 
+    getServicePromise(callback) {
+        http.ajax({
+            url: getServerHost() + '/system_settings/service_promise/detail/view',
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+
 };
 
 export default api;

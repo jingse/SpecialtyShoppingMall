@@ -8,6 +8,7 @@ import Cart from "./mobile/cart/index.jsx";
 import My from "./mobile/my/index.jsx";
 import Search from "./mobile/search/index.jsx";
 import Product from "./mobile/product/index.jsx";
+import Recommend from "./mobile/home/recommend/index.jsx";
 import Payment from "./mobile/cart/payment/index.jsx";
 import PayResult from "./mobile/cart/payment/result/index.jsx";
 import CouponChoose from "./mobile/cart/payment/coupon/index.jsx";
@@ -64,6 +65,7 @@ export default class App extends React.Component {
                         <Route component={Recharge} path='/home/recharge' exact/>
                         <Route component={CouponBalance} path='/home/recharge/payment' exact/>
                         <Route component={HomeCoupon} path='/home/coupon' exact/>
+                        <Route component={Recommend} path='/home/recommend' exact/>
 
                         <Route component={Search} path='/search'/>
                         <Route component={Product} path='/product/:id'/>

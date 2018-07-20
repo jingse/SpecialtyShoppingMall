@@ -119,6 +119,17 @@ var api = {
         });
     },
 
+    getRecommendList(page, rows, condition, callback) {
+        http.ajax({
+            url: getServerHost() + '/product/recommend_product_pages?condition=' + condition + "&page=" + page +
+            "&rows=" + rows,
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+
 
     //----------------------------------homepage search api-------------------------------------------
 
