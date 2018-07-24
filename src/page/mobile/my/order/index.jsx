@@ -493,7 +493,7 @@ export default class Order extends React.Component {
                 </Button>
                 {/* <WhiteSpace/> */}
                 {/* </div> */}
-                </Flex>
+                </Flex>;
 
             case 2:
 

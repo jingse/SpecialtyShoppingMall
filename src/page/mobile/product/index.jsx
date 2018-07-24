@@ -12,7 +12,6 @@ import CartModal from './cartmodal.jsx';
 import PutInCart from './putincart.jsx';
 // import Detail from "./detail.jsx";
 import './index.less';
-import productApi from "../../../api/product.jsx";
 
 // import product_data from "../../../static/mockdata/product.js";   //mock假数据
 // import comment from "../../../static/mockdata/product_comment.js"; // mock假数据
@@ -52,7 +51,7 @@ class Product extends React.Component {
             currentPrePrice: 0,
             currentMarketPrice: 0,
 
-            isadd:0,
+            isadd: 0,
             //加购物车相关参数
             // specialtyId: this.props.location.state?71:71,
             specificationId: 0,
@@ -72,8 +71,8 @@ class Product extends React.Component {
             specialtyId
         });
 
-        console.log("split specialtyId", specialtyId);
-        console.log("window.location.href.split('#')", window.location.href.split('#'));
+        // console.log("split specialtyId", specialtyId);
+        // console.log("window.location.href.split('#')", window.location.href.split('#'));
 
         this.requestProductDetailData(specialtyId);
         this.requestProductCommentData(specialtyId, 1, 10);
@@ -133,7 +132,7 @@ class Product extends React.Component {
 
             if(rs && rs.success) {
                 const data = rs.obj;
-                console.log('data',data)
+                console.log('data',data);
                 if (!data || JSON.stringify(data) === "[]") {
                     this.setState({
                         isNull: true,
@@ -144,6 +143,7 @@ class Product extends React.Component {
                     const mPrice = data[0].mPrice;
                     const pPrice = data[0].pPrice;
                     const specifications = data[0].specialty.specifications;
+                    const recommends = data[0].recommends;
                     // const specifications = data[0].specialty.specifications;
                     const specification = specifications && specifications.map((item, index) => {
                         return item.specification;
@@ -155,6 +155,7 @@ class Product extends React.Component {
                         specificationId: specificationId,
                         featureData: specifications,
                         specification: specification,
+                        recommends: recommends,
                         currentPrePrice: pPrice,
                         currentMarketPrice: mPrice,
                     });
@@ -165,9 +166,9 @@ class Product extends React.Component {
     }
 
     requestServicePromise() {
-        productApi.getServicePromise((rs) => {
+        proApi.getServicePromise((rs) => {
             if(rs && rs.success) {
-                const data = rs.obj;
+                const data = rs.obj.servicePromise;
                 this.setState({
                     servicePromise: data,
                 });
@@ -303,8 +304,8 @@ class Product extends React.Component {
             modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
         },()=>{
-            console.log('this.state.isadd',this.state.isadd)
-            if(this.state.isadd == 1)
+            console.log('this.state.isadd',this.state.isadd);
+            if(this.state.isadd === 1)
                 this.addToCart();
         });
     }
@@ -396,6 +397,7 @@ class Product extends React.Component {
 
     render() {
         console.log(this.state.data);
+        console.log("recommends: ", this.state.recommends);
 
         if (this.state.isNull) {
             return <Layout>
@@ -566,7 +568,7 @@ class Product extends React.Component {
                         {/*部分商品，相关的赠品，配件或捆绑商品应一起当场拒收（如与综上所述原因不同产生退换货问题，本公司有权不承担*/}
                         {/*起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情*/}
                         {/*况下验货，则视为您所订购商品的包装无任何问题。*/}
-                        {this.state.servicePromise.servicePromise}
+                        {this.state.servicePromise}
                     </div>
                     <hr/>
                 </WingBlank>
@@ -606,7 +608,7 @@ class Product extends React.Component {
                 <WhiteSpace/>
 
                 <WingBlank>
-                    <Recommend recommend={proData.recommends}/>
+                    <Recommend recommend={this.state.recommends}/>
                 </WingBlank>
             </div>
             </Card>
