@@ -5,7 +5,7 @@ import Layout from "../../../common/layout/layout.jsx";
 import Card from "../../../components/card/index.jsx";
 import Navigation from "../../../components/navigation/index.jsx"
 //import { Link } from 'react-router-dom';
-import { Flex, WhiteSpace, Toast, Stepper, Popover, Modal } from 'antd-mobile';
+import { Flex, WhiteSpace, Toast, Stepper, Popover, Modal,SwipeAction} from 'antd-mobile';
 import { createForm } from 'rc-form';
 // import cart_data from "../../../static/mockdata/cart.js"; //mock假数据
 import cartApi from "../../../api/cart.jsx";
@@ -36,6 +36,8 @@ class Cart extends React.Component {
             endTime: 0,
             canDelete: false,
             visible: [],
+            showEdit:[],
+            swipeoutDisabled:false
         };
     }
 
@@ -118,7 +120,7 @@ class Cart extends React.Component {
     }
 
     openNav(index) {
-        const style = { width : "70%", top: (60 + index * 105).toString() + 'px' };
+        const style = { width : "70%", top: (55+ index * 105).toString() + 'px' };
         this.setState({ style });
     }
 
@@ -175,7 +177,22 @@ class Cart extends React.Component {
             this.linkTo('/cart/payment');
         }
     }
-
+    fasleShowEdit(index){
+        let tem = [];
+        tem[index] = false;
+        this.setState({
+            showEdit: tem,
+            swipeoutDisabled:false
+        });
+    }
+    trueShowEdit(index){
+        let tem = [];
+        tem[index] = true;
+        this.setState({
+            showEdit: tem,
+            swipeoutDisabled:true
+        });
+    }
     isChooseAll() {
         for(let i = 0; i < this.state.cartListCount; i++) {
             if (!this.state.checkbox[i]) {
@@ -233,8 +250,8 @@ class Cart extends React.Component {
                         <div className="add_minus"onClick={() => {this.minusNum(this.state.num)}}>
                         -
                         </div>
-                </div>
                     </div>
+                </div>
                      {/* <Stepper style={{ width: '50%', minWidth: '100px', touchAction: 'none', marginLeft:"2rem" }}
                               showNumber
                               max={10}
@@ -412,37 +429,33 @@ class Cart extends React.Component {
             // 普通商品
             return <div key={index} >
             <Card className="cart_card" key={index}>
-                {/*<Popover mask*/}
-                         {/*overlayClassName="fortest"*/}
-                         {/*overlayStyle={{ color: 'currentColor' }}*/}
-                         {/*visible={this.state.visible[index]}*/}
-                         {/*overlay={[*/}
-                             {/*(<Item key="4" value="delete" data-seed="logId">*/}
-                                 {/*<div onClick={()=>{this.deleteCartItem(item.id)}}>*/}
-                                     {/*删除*/}
-                                 {/*</div>*/}
-                             {/*</Item>),*/}
-                         {/*]}*/}
-                         {/*align={{*/}
-                             {/*overflow: { adjustY: 0, adjustX: 0 },*/}
-                             {/*offset: [-180, -60],*/}
-                         {/*}}*/}
-
-                         {/*// onMouseDown={()=>{ this.getStartTime() }}*/}
-                         {/*// onMouseUp={()=>{*/}
-                         {/*//     this.getEndTime();*/}
-                         {/*//     this.timeDifferenceOperation(index);*/}
-                         {/*// }}*/}
-                         {/*// onVisibleChange={this.handleVisibleChange}*/}
-                         {/*// onSelect={()=>{this.onSelect(index)}}*/}
-                {/*>*/}
+                <SwipeAction 
+                autoClose
+                disabled={this.state.swipeoutDisabled}
+                right={[
+                    {
+                        text: '编辑',
+                        onPress: ()=>{
+                            console.log("item",item)
+                                 this.trueShowEdit(index);
+                                 this.getDefaultNum(item.quantity);
+                             },
+                        style: { backgroundColor: '#ddd', color: 'white' ,width:'100%'},
+                    },
+                    {
+                      text: '删除',
+                      onPress: () => this.deleteCartItem(item.id),
+                      style: { backgroundColor: '#F4333C', color: 'white' ,width:'100%'},
+                    },
+                  ]}
+                >
                 <Flex className="cart_card_container cart_card_underline">
+
                     <input type="checkbox" checked={this.state.checkbox[index]} onChange={()=>{
                         this.state.checkbox[index] = !this.state.checkbox[index];
                         if (this.state.checkbox[index]) {
                             this.state.cartItems.push(this.state.cartData[index]);
                         } else {
-                            // console.log("itemIndex", this.findItemIndex(item));
                             this.state.cartItems.splice(this.findItemIndex(item), 1);
                         }
                         this.state.chooseAll = this.isChooseAll();
@@ -453,36 +466,64 @@ class Cart extends React.Component {
                         });
                         items = this.state.cartItems;
                         this.requestTotalPrice(this.state.cartItems);
-                    }} />
+                    }} style={{width:'50%'}}/>
 
                     <div className="cart_card_img"
-                         onTouchStart={(e)=>{this.getStartTime(e)}} onTouchEnd={(e) => {this.getEndTime(e, item.id)}}
-                        // onClick={()=>{this.linkTo('/product/1')}}
+                        //  onTouchStart={(e)=>{this.getStartTime(e)}} onTouchEnd={(e) => {this.getEndTime(e, item.id)}}
                     >
                         <img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{height:'4rem'}}/>
                     </div>
 
-                    <Flex.Item style={{flex:'0 0 60%'}}
-                        // onClick={()=>{this.linkTo('/product/1')}}
-                        onTouchStart={(e)=>{this.getStartTime(e)}} onTouchEnd={(e) => {this.getEndTime(e, item.id)}}
+                    <Flex.Item style={{flex:'0 0 50%'}}
+                        // onTouchStart={(e)=>{this.getStartTime(e)}} onTouchEnd={(e) => {this.getEndTime(e, item.id)}}
                     >
+                    <div style={{display:this.state.showEdit[index]===true?'none':'block'}}>
                         <div className="title_text">{item.name}</div>
                         <div className="commodity_prop">{item.specification}</div>
                         <div className="price_text">￥{item.curPrice}</div>
+                    </div>
+                    <div style={{display:this.state.showEdit[index]===true?'block':'none'}}>
+                        <div className="step1">              
+                            <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}>
+                            -
+                            </div>
+                            <div className="value">
+                            {this.state.num}
+                            </div>
+                            <div className="add_minus"onClick={() => {this.addNum(this.state.num)}}>
+                            +
+                            </div>
+                        </div>
+                    </div>
                     </Flex.Item>
 
-                    <Flex.Item style={{flex:'0 0 %20'}}>
-                        <img src='./images/icons/编辑.png'
-                             onClick={()=>{
-                                 this.setEditId(item.id);
-                                 this.getDefaultNum(item.quantity);
-                                 this.openNav(index);
-                             }}/>
-                        <WhiteSpace/>
-                        <WhiteSpace/>
-                        <span style={{fontColor:"#ccc", fontSize:'0.8rem'}}>x {item.quantity}</span>
+                    <Flex.Item style={{flex:'0 0 20%'}}>
+                    <div style={{display:this.state.showEdit[index]===true?'none':'block'}}>
+                        <div style={{fontColor:"#ccc", fontSize:'0.8rem',display:'block'}}>
+                        x {item.quantity}
+                        </div>
+                    </div>
+                    <div style={{display:this.state.showEdit[index]===true?'block':'none'}}>
+                        <div style={{flex:'0 0 30%', backgroundColor:'darkorange', color:'white',
+                     fontSize:'0.6rem', textAlign:'center'}}
+                            onClick = {()=>{
+                                this.setEditId(item.id);
+                                this.changeItemQuantity(item.id, this.state.num);
+                                this.fasleShowEdit(index);
+                            }}>
+    
+                     <WhiteSpace size="lg"/>
+                     <WhiteSpace size="xs"/>
+                     <WhiteSpace size="xs"/>
+                     完成
+                     <WhiteSpace size="lg"/>
+                     <WhiteSpace size="lg"/>
+                     <WhiteSpace size="xs"/>
+                        </div>
+                    </div>                        
                     </Flex.Item>
                 </Flex>
+                </SwipeAction>
                 {/*</Popover>*/}
             </Card>
             </div>
@@ -493,10 +534,12 @@ class Cart extends React.Component {
             <Navigation title={"购物车(" + this.state.cartListCount + ")"} curPath='/cart' left={false}/>
 
             <WhiteSpace/>
-
+            
             {content}
+            <WhiteSpace size="lg"/>
+            <WhiteSpace size="lg"/>
             {this.checkEdit(this.state.editId)}
-
+            
             <div className="putincart cart_summary">
                 <div className="secondary_btn" style={{width:'60%'}}>
                     <Flex>

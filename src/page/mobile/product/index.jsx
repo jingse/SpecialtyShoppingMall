@@ -119,6 +119,33 @@ class Product extends React.Component {
             console.log(res);
         });
     }
+    backTop(){
+    
+    }
+
+    componentWillReceiveProps(){
+        this.backTop();
+
+        const specialtyId = parseInt(window.location.href.split('#')[1].split('/product/')[1]);
+        this.setState({
+            specialtyId
+        });
+        this.requestProductDetailData(specialtyId);
+        this.requestProductCommentData(specialtyId, 1, 10);
+        this.requestServicePromise();
+        const url = encodeURIComponent(window.location.href.split('#')[0]);
+        wxApi.postJsApiData(url, (rs) => {
+            const data = rs.result;
+            wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.appId, // 必填，公众号的唯一标识
+                timestamp: data.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                signature: data.signature, // 必填，签名，见附录1
+                jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"]
+            });
+        });
+    }
 
     requestProductDetailData(specialtyId) {
         //传入了this.props.location.specialtyId
@@ -396,6 +423,7 @@ class Product extends React.Component {
     }
 
     render() {
+        console.log(this.state);
         console.log(this.state.data);
         console.log("recommends: ", this.state.recommends);
 
@@ -423,6 +451,7 @@ class Product extends React.Component {
 
 
         return <Layout>
+            <a name="top"></a>
             {this.checkDest()}
 
             <Card className="general_container">
@@ -559,7 +588,7 @@ class Product extends React.Component {
             
             <div>
                 <WingBlank>
-                    <div className="para_title">服务承诺</div>
+                    <div className="para_title" >服务承诺</div>
                     <div className="paragraph">
                             {/*河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作*/}
                         {/*人员直接沟通，我们会在当场进行处理。我们将争取以更具竞争力的价格、更优质的服务来满足您最大的需求。开箱验*/}
@@ -607,7 +636,7 @@ class Product extends React.Component {
 
                 <WhiteSpace/>
 
-                <WingBlank>
+                <WingBlank>                
                     <Recommend recommend={this.state.recommends}/>
                 </WingBlank>
             </div>
@@ -648,7 +677,7 @@ class Product extends React.Component {
             {/*</Modal>*/}
 
             {this.getPromotionInfo()}
-
+            
         </Layout>
     }
 }
