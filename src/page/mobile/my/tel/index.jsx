@@ -38,11 +38,12 @@ export default class TelBinding extends React.Component {
                 console.log(rs);
                 localStorage.setItem("bindPhone", this.state.phone.replace(/\s+/g,""));
                 Toast.info(rs.msg, 1);
-                history.back();
+                // history.back();
             } else {
                 Toast.info(rs.msg, 1);
             }
         });
+        this.context.router.history.push('/my');
     }
 
     render(){
