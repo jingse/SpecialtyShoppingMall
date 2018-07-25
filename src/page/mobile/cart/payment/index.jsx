@@ -147,6 +147,7 @@ class Payment extends React.Component {
         localStorage.removeItem("useCouponId");
         localStorage.removeItem("choose");
         localStorage.removeItem("reduce");
+        localStorage.removeItem("inputBalance");
         couponSub = 0.0;
     }
 
@@ -440,11 +441,12 @@ class Payment extends React.Component {
                             }
                             return prev;
                         }
+                        localStorage.setItem("inputBalance", v);
                         return v;
                     },
                 })}
                 type='money'
-                placeholder="输入金额"
+                placeholder={!localStorage.getItem("inputBalance") ? "输入金额" : localStorage.getItem("inputBalance")}
                 // style={{width:"6rem"}} //没用
                 // ref={el => this.customFocusInst = el}
                 clear
