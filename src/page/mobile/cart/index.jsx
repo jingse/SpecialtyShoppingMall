@@ -58,6 +58,8 @@ class Cart extends React.Component {
             checkbox: this.state.checkbox,
             visible: this.state.visible,
         });
+
+        localStorage.removeItem("inputBalance");
     }
 
     requestCartList() {

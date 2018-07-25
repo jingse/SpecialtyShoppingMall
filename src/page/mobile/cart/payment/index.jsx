@@ -147,7 +147,6 @@ class Payment extends React.Component {
         localStorage.removeItem("useCouponId");
         localStorage.removeItem("choose");
         localStorage.removeItem("reduce");
-        localStorage.removeItem("inputBalance");
         couponSub = 0.0;
     }
 
