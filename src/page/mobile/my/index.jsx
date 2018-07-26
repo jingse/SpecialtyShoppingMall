@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 
 const Item = List.Item;
 const pageSize =10;
+const wechatId = localStorage.getItem("wechatId");
 
 export default class My extends React.Component {
 
@@ -27,6 +28,8 @@ export default class My extends React.Component {
             receiveCount: 0,
             evaluateCount: 0,
             refundCount: 0,
+
+            balance:0,
         };
     }
 
@@ -43,6 +46,18 @@ export default class My extends React.Component {
             const uid = localStorage.getItem("uid");
             this.requestData(uid);
         }
+
+        myApi.getInfo(wechatId, (rs) => {
+            if (rs && rs.success) {
+                console.log('rs',rs)
+                const balance = rs.obj.totalbalance;
+                if (balance) {
+                    // localStorage.setItem("balance", balance.toString());
+                    this.setState({balance:balance})
+                }
+            }
+        });
+
     }
 
     componentDidMount() {
@@ -434,7 +449,7 @@ export default class My extends React.Component {
                     <Item
                         thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                         arrow="horizontal"
-                        extra={(!localStorage.getItem("balance")) ? 0.00 : localStorage.getItem("balance")}
+                        extra={this.state.balance?this.state.balance:'0.00'}
                         onClick={() => {this.context.router.history.push('/my/balance')}}
                     >
                         余额
