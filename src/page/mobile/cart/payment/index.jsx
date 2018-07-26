@@ -491,10 +491,17 @@ class Payment extends React.Component {
         // console.log('v',v)
         let moneyMax=this.state.balance;
         let moneyp = (this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub);
-        moneyp = moneyp>moneyMax?moneyMax:moneyp;
-        if(parseInt(v) > moneyp){
-            v = moneyp.toString()
+        if(moneyMax < moneyp){
+            if(parseInt(v) > moneyMax){
+                v = moneyMax.toString()
+            }
         }
+        if(moneyMax >= moneyp){
+            if(parseInt(v) > moneyp){
+                v = (moneyp-0.01).toString()
+            }
+        }
+        
         this.setState({balanceInput:v})
     }
     checkShipType() {
