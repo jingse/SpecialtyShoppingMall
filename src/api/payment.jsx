@@ -52,17 +52,17 @@ var api = {
         });
     },
 
-    successfulPaymentCallback(orderCode, callback) {
-        http.ajax({
-            method: "POST",
-            url: getServerHost() + '/order/pay/wechat/notify/' + orderCode,
-            // type:"application/json",
-            crossDomain:true,
-            success: (rs) => {
-                callback && callback(rs);
-            }
-        });
-    }
+    // successfulPaymentCallback(orderCode, callback) {
+    //     http.ajax({
+    //         method: "POST",
+    //         url: getServerHost() + '/order/pay/wechat/notify/' + orderCode,
+    //         // type:"application/json",
+    //         crossDomain:true,
+    //         success: (rs) => {
+    //             callback && callback(rs);
+    //         }
+    //     });
+    // }
 
     //-----------------------------------hdr api--------------------------------------------
     // postOrder(fee, openid, callback) {

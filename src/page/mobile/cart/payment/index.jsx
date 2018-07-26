@@ -54,7 +54,7 @@ class Payment extends React.Component {
     componentWillMount() {
 
         // get the items ticked in the shopping cart
-        console.log('this.props.location',this.props.location)
+        console.log('this.props.location',this.props.location);
         let products = (!this.props.location.products) ? JSON.parse(localStorage.getItem("products")) : this.props.location.products;
         let priceResult = (!this.props.location.price) ? JSON.parse(localStorage.getItem("priceResult")) : this.props.location.price;
         let shipType = 0;
@@ -71,7 +71,7 @@ class Payment extends React.Component {
         products && products.map((item, index) => {
             productApi.getSpecialtySpecificationDetailBySpecialtyID(item.specialtyId, (rs) => {
                 if (rs && rs.success) {
-                    console.log('rsn',rs)
+                    console.log('rsn', rs);
                     if (rs.obj[0].shipType > shipType) {
                         shipType = rs.obj.shipType;
                     }
@@ -158,9 +158,11 @@ class Payment extends React.Component {
                 jsApiList: ["chooseWXPay","onMenuShareTimeline","onMenuShareAppMessage"]
             });
         });
+
+
         myApi.getInfo(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
-                console.log('rs余额',rs)
+                console.log('rs余额', rs);
                 let balance = rs.obj.totalbalance;
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
@@ -253,9 +255,9 @@ class Payment extends React.Component {
             },
             function(res){
                 if(res.err_msg === "get_brand_wcpay_request:ok") {
-                    paymentApi.successfulPaymentCallback(this.code, (rs) => {
-
-                    });
+                    // paymentApi.successfulPaymentCallback(this.code, (rs) => {
+                    //
+                    // });
 
                     this.linkTo({pathname: '/my/order', state:2});
                 } else if (res.err_msg === "get_brand_wcpay_request:cancel") {
