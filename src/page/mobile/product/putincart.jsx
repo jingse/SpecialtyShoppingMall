@@ -50,6 +50,7 @@ export default class PutInCart extends React.Component {
                     unselectedTintColor="#949494"
                     tintColor="#f28b12"
                     barTintColor="#fff"
+                    
                 >
                     <TabBar.Item
                         key="首页"
@@ -102,7 +103,7 @@ export default class PutInCart extends React.Component {
             </span>
 
             <Button type="primary" inline
-                    style={{ marginLeft:'35%', marginTop: '4px', marginBottom:'4px', marginRight:'4px', width:'30%', backgroundColor:'darkorange', fontSize:'1rem'}}
+                    style={{ marginLeft:'37%', marginTop: '4px', marginBottom:'4px', marginRight:'4px', width:'30%', backgroundColor:'darkorange', fontSize:'1rem'}}
                     onClick={()=>{this.props.addToCart()}}>
                 加购物车
             </Button>

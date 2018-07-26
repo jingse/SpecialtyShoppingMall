@@ -12,6 +12,7 @@ import cartApi from "../../../api/cart.jsx";
 import './index.less';
 import {getServerIp} from "../../../config.jsx";
 
+
 const Item = Popover.Item;
 var items = [];  //为了传递给下个界面
 const alert = Modal.alert;
@@ -484,14 +485,14 @@ class Cart extends React.Component {
                     </div>
                     <div style={{display:this.state.showEdit[index]===true?'block':'none'}}>
                         <div className="step1">              
-                            <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}>
-                            -
+                            <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}
+                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                             </div>
                             <div className="value">
                             {this.state.num}
                             </div>
-                            <div className="add_minus"onClick={() => {this.addNum(this.state.num)}}>
-                            +
+                            <div className="add_minus"onClick={() => {this.addNum(this.state.num)}}
+                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                             </div>
                         </div>
                     </div>

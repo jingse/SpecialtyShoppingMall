@@ -171,15 +171,15 @@ export default class CartModal extends React.Component {
                 <div style={{float:'left', marginLeft:'1rem', marginRight:'1rem'}}>规格</div>
                 {dataSet}
                 <div style={{float:'left', marginLeft:'1rem'}}>数量</div>
-                <div className="step">
-                        <div className="add" onClick={() => {this.setState({val:this.state.val+1})}}>
-                        +
+                <div className="step">  
+                        <div className="add_minus" onClick={() => {this.setState({val:this.state.val+1})}}
+                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
                         <div className="value">
                         {this.state.val}
                         </div>
-                        <div className="minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}>
-                        -
+                        <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
+                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
                     </div>
                 {/* <div>

@@ -28,6 +28,10 @@ class Recharge extends React.Component {
             rechargeInfo: {},
 
             couponMoneyId: 0,
+
+            delay:false,
+            timer:60,
+            siv:null
         };
     }
 
@@ -65,7 +69,16 @@ class Recharge extends React.Component {
     //         });
     //     }, 300);
     // }
-
+    addNum = (val) => {
+        this.setState({
+            num: (val+1)<11?val+1:10,
+        });
+    };
+    minusNum = (val) => {
+        this.setState({
+            num: (val-1)>1?val-1:1,
+        });
+    };
     onNumChange = (val) => {
         // console.log(val);
         this.setState({
@@ -103,6 +116,18 @@ class Recharge extends React.Component {
             couponApi.getCouponCode(this.state.phone, (rs)=>{
                 if (rs && rs.success) {
                     Toast.info("发送成功，注意查收", 1);
+                    let siv = setInterval(() => {
+                        this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
+                            if (this.state.timer === 0) {
+                                clearInterval(siv);
+                                this.setState({ delay: false })
+                            }
+                        });
+                    }, 1000);
+                }
+                else{
+                    Toast.info(rs.msg);
+                    console.log(rs);
                 }
             });
         }
@@ -163,24 +188,37 @@ class Recharge extends React.Component {
                     <Flex>
                         <Flex.Item style={{flex:'0 0 20%', fontSize:'1.1rem'}}>数量</Flex.Item>
                         <Flex.Item style={{flex:'0 0 80%'}}>
-                            <Stepper
+                            {/* <Stepper
                                 style={{ width: '30%', minWidth: '100px', touchAction: 'none' }}
                                 showNumber
                                 //max={10}
                                 min={1}
                                 value={this.state.num}
-                                onChange={this.onNumChange}/>
+                                onChange={this.onNumChange}/> */}
+                        <div className="step1">              
+                            <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}
+                            style={{backgroundImage:'url(./images/icons/minus.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                            </div>
+                            <div className="value">
+                            {this.state.num}
+                            </div>
+                            <div className="add_minus"onClick={() => {this.addNum(this.state.num)}}
+                            style={{backgroundImage:'url(./images/icons/add.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                            </div>
+                        </div>
                         </Flex.Item>
                     </Flex>
                 </WingBlank>
                 <InputItem type="phone" onChange={this.onPhoneChange}>手机号</InputItem>
                 <Flex>
-                    <Flex.Item style={{flex:'0 0 80%'}}>
+                    <Flex.Item style={{flex:'0 0 65%'}}>
                         <InputItem type="number" {...getFieldProps('confirmCode')}>验证码</InputItem>
                     </Flex.Item>
                     <Flex.Item>
-                        <Button type="primary" inline size="small" style={{ marginRight: '4px' }}
-                                onClick={() => {this.getCode()}}>获取</Button>
+                        <Button disabled={this.state.delay} type="primary" inline size="small" style={{ marginRight: '4px' }}
+                                onClick={() => {this.getCode()}}>
+                                {this.state.delay===false?'获取验证码':'重新发送('+this.state.timer+')'}
+                        </Button>
                     </Flex.Item>
                 </Flex>
 

@@ -11,18 +11,24 @@ export default class Balance extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+        this.state={
+            balance:0,
+        }
     }
 
     componentWillMount() {
+        console.log('rs11')
         this.requestInfo(wechatId);
     }
-
+   
     requestInfo(wechatId) {
         myApi.getInfo(wechatId, (rs) => {
             if (rs && rs.success) {
+                console.log('rs',rs)
                 const balance = rs.obj.totalbalance;
                 if (balance) {
-                    localStorage.setItem("balance", balance.toString());
+                    // localStorage.setItem("balance", balance.toString());
+                    this.setState({balance:balance})
                 }
             }
         });
@@ -48,7 +54,7 @@ export default class Balance extends React.Component {
                 <WhiteSpace/>
                 <WingBlank>余额账户（元）</WingBlank>
                 <WingBlank style={{fontSize:'2rem', marginTop:'2rem'}}>
-                    {(!localStorage.getItem("balance")) ? 0.00 : localStorage.getItem("balance")}
+                    {this.state.balance}
                 </WingBlank>
             </div>
 

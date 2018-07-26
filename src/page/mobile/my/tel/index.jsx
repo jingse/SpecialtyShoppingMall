@@ -9,26 +9,58 @@ import PropTypes from "prop-types";
 
 const wechatId = localStorage.getItem("wechatId");
 
-
 export default class TelBinding extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             //wechat_id: 1,
             phone: '',
-            code: ''
+            code: '',
+            delay:false,
+            timer:60,
+            siv:null
         };
     }
-
+    
     validatePhone() {
         const phone = this.state.phone.replace(/\s+/g,"");
         console.log("phone", phone);
         myApi.validatePhone(phone, (rs)=>{
+            console.log("rs", rs);
             if(rs && rs.success) {
                 Toast.info("发送成功，注意查收", 1);
                 console.log(rs);
+                // this.setState({delay:true},()=>{
+                //     setTimeout(() => {
+                //         this.setState({delay:false})
+                //     }, 1000*30);
+                // })
+                let siv = setInterval(() => {
+                    this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
+                        if (this.state.timer === 0) {
+                            clearInterval(siv);
+                            this.setState({ delay: false })
+                        }
+                    });
+                }, 1000);
+                
+            }
+            else{
+                Toast.info(rs.msg);
+                console.log(rs);
+                // let siv = setInterval(() => {
+                //     this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
+                //         if (this.state.timer === 0) {
+                //             clearInterval(siv);
+                //             this.setState({ delay: false })
+                //         }
+                //     });
+                // }, 1000);
             }
         });
+    }
+    componentWillUnmount(){
+        clearInterval(this.state.siv);
     }
 
     bindTel(wechatId, phone, code) {
@@ -75,13 +107,15 @@ export default class TelBinding extends React.Component {
                         <InputItem type="number" placeholder="请填写获取的激活码" onChange={(val)=>{this.setState({code: val})}}>激活码</InputItem>
                     </Flex.Item>
                     <Flex.Item>
-                        <Button type="primary" inline size="small" style={{ marginRight: '4px' }} onClick={this.validatePhone.bind(this)}>获取激活码</Button>
+                        <Button disabled={this.state.delay} type="primary" inline size="small" style={{ marginRight: '4px' }} onClick={this.validatePhone.bind(this)}>
+                        {this.state.delay===false?'获取激活码':'重新发送('+this.state.timer+')'}
+                        </Button>
                     </Flex.Item>
                 </Flex>
 
             </Card>
 
-            <Button type="primary" style={{ marginLeft:'4px', marginRight: '4px' }}
+            <Button  type="primary" style={{ marginLeft:'4px', marginRight: '4px' }}
                     onClick={() => {this.bindTel(wechatId, this.state.phone.replace(/\s+/g,""), this.state.code)}}>
                 绑定手机
             </Button>

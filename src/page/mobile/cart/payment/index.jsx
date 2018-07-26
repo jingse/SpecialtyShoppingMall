@@ -16,14 +16,15 @@ import cartApi from "../../../../api/cart.jsx";
 import paymentApi from "../../../../api/payment.jsx";
 import {getServerIp} from "../../../../config.jsx";
 import couponApi from "../../../../api/coupon.jsx";
+import myApi from "../../../../api/my.jsx";
 
 // 设置全局变量
-var balance = 0;
-var shipType = 0;
-var shipFee = 0;
-var couponSub = 0.0;
+// var balance = 0;
 
-var products = [];
+// var shipFee = 0;
+// var couponSub = 0.0;
+
+// var products = [];
 const webusinessId = (!localStorage.getItem("uid")) ? 26 : parseInt(localStorage.getItem("uid"));
 
 
@@ -34,6 +35,7 @@ class Payment extends React.Component {
             address:[],
             products:[],
             orderPrice:[],
+            priceResult:0,
             marks:'',
             // orderCode: '',
             available: true,
@@ -42,28 +44,34 @@ class Payment extends React.Component {
 
             ids: [],
             orderItems: [],
+            balance:0,//余额
+            balanceInput:'',//使用余额
+            shipFee:0,
+            couponSub:0,//电子券
         };
     }
 
     componentWillMount() {
 
         // get the items ticked in the shopping cart
-        this.state.products = (!this.props.location.products) ? JSON.parse(localStorage.getItem("products")) : this.props.location.products;
-        products = this.state.products;
-        this.state.priceResult = (!this.props.location.price) ? JSON.parse(localStorage.getItem("priceResult")) : this.props.location.price;
-        this.setState({
-            products: this.state.products,
-            priceResult: this.state.priceResult,
-        });
+        console.log('this.props.location',this.props.location)
+        let products = (!this.props.location.products) ? JSON.parse(localStorage.getItem("products")) : this.props.location.products;
+        let priceResult = (!this.props.location.price) ? JSON.parse(localStorage.getItem("priceResult")) : this.props.location.price;
+        let shipType = 0;
+        let shipFee = 0;
+        let couponSub = 0.0;
+
+        
 
         //根据特产的id拿到shipType，来判断显示哪种地址
         //shipType=0：送货到家
         //shipType=1：加钱送货到家
         //shipType=2：门店自提
-        console.log("address this.state.products", this.state.products);
-        this.state.products && this.state.products.map((item, index) => {
+        
+        products && products.map((item, index) => {
             productApi.getSpecialtySpecificationDetailBySpecialtyID(item.specialtyId, (rs) => {
                 if (rs && rs.success) {
+                    console.log('rsn',rs)
                     if (rs.obj[0].shipType > shipType) {
                         shipType = rs.obj.shipType;
                     }
@@ -92,6 +100,7 @@ class Payment extends React.Component {
                 this.requestDefaultMerchantAddress(uid);
                 break;
         }
+        
 
 
         if (this.props.location.products && this.props.location.price) {
@@ -106,6 +115,13 @@ class Payment extends React.Component {
             couponSub = parseFloat(localStorage.getItem("reduce"));
             console.log("couponSub", couponSub);
         }
+        this.setState({
+            products: products,
+            priceResult: priceResult,
+            shipType:shipType,
+            shipFee:shipFee,
+            couponSub:couponSub,
+        });
 
         // calculate the should pay money
         // const price = this.state.priceResult;
@@ -115,7 +131,7 @@ class Payment extends React.Component {
         // });
 
         //设拿到可用优惠券的参数
-        const payMoney = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + shipFee;
+        const payMoney = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee;
         localStorage.setItem("price", payMoney.toString());
         this.requestAvailableCoupon(payMoney.toString());
 
@@ -140,6 +156,18 @@ class Payment extends React.Component {
                 jsApiList: ["chooseWXPay","onMenuShareTimeline","onMenuShareAppMessage"]
             });
         });
+        myApi.getInfo(localStorage.getItem("wechatId"), (rs) => {
+            if (rs && rs.success) {
+                console.log('rs余额',rs)
+                let balance = rs.obj.totalbalance;
+                if (balance) {
+                    // localStorage.setItem("balance", balance.toString());
+                    this.setState({balance:balance})
+                }
+            }
+        });
+
+
     }
 
     componentWillUnmount() {
@@ -147,7 +175,6 @@ class Payment extends React.Component {
         localStorage.removeItem("useCouponId");
         localStorage.removeItem("choose");
         localStorage.removeItem("reduce");
-        couponSub = 0.0;
     }
 
     componentDidMount() {
@@ -306,11 +333,12 @@ class Payment extends React.Component {
 
             "totalMoney":this.state.priceResult.totalMoney.toFixed(2),
             "promotionAmount":this.state.priceResult.promotionMoney.toFixed(2),
-            "shipFee":shipFee.toFixed(2),
-            "shouldPayMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + shipFee - couponSub - balance).toFixed(2),
-            "couponMoney":couponSub.toFixed(2),
-            "balanceMoney":balance.toFixed(2),
-            "payMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + shipFee).toFixed(2),
+            "shipFee":this.state.shipFee.toFixed(2),
+            "shouldPayMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balanceInput).toFixed(2),
+            "couponMoney":this.state.couponSub.toFixed(2),
+            // "balanceMoney":balance.toFixed(2),
+            "balanceMoney":this.state.balanceInput,
+            "payMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee).toFixed(2),
 
             // "receiverRmark":"请送到我家",
             // "receiverName":"王五",
@@ -322,7 +350,7 @@ class Payment extends React.Component {
             "receiverName":this.state.address.receiverName,
             "receiverAddress":this.state.address.receiverAddress,
             "receiverPhone":this.state.address.receiverMobile,
-            "receiverType":shipType,
+            "receiverType":this.state.shipType,
 
             // "orderItems":[
             //     {
@@ -363,7 +391,7 @@ class Payment extends React.Component {
         // const openid = 'ocgJPv1kyOAGEJbNYlhmOry7lgBg';
         // const fee = '1';
         const openid = localStorage.getItem("openid");
-        const shouldPay = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + shipFee - couponSub - balance;
+        const shouldPay = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balanceInput;
         const fee = Math.round(shouldPay * 100);
 
 
@@ -419,7 +447,8 @@ class Payment extends React.Component {
     checkBalance() {
         const { getFieldProps } = this.props.form;
 
-        if (localStorage.getItem("balance") && parseInt(localStorage.getItem("balance")) !== 0) {
+        // if (localStorage.getItem("balance") && parseInt(localStorage.getItem("balance")) !== 0) {
+        if (this.state.balance !== 0) {
             // return <div className="balance_discount">
             //     {/*<div className="discount_select">个人明细</div>*/}
             //     {/*<div className="discount_title">发票信息</div>*/}
@@ -432,30 +461,40 @@ class Payment extends React.Component {
 
             return <List style={{borderBottom: '1px solid #ccc'}}>
                 <InputItem
-                {...getFieldProps('balanceInput', {
-                    normalize: (v, prev) => {
-                        if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                            if (v === '.') {
-                                return '0.';
-                            }
-                            return prev;
-                        }
-                        return v;
-                    },
-                })}
+                // {...getFieldProps('balanceInput', {
+                //     normalize: (v, prev) => {
+                //         if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
+                //             if (v === '.') {
+                //                 return '0.';
+                //             }
+                //             return prev;
+                //         }
+                //         return v;
+                //     },
+                // })}
                 type='money'
+                value={this.state.balanceInput}
                 placeholder="输入金额"
-                // style={{width:"6rem"}} //没用
-                // ref={el => this.customFocusInst = el}
+                labelNumber={7}
+                onChange={value => this.checkNum(value)}
                 clear
-            >余额 <span style={{"color": 'orange'}}>￥{localStorage.getItem("balance")}</span></InputItem>
+            >余额<div  style={{"color": 'orange',display:'inline'}}>￥{this.state.balance}</div></InputItem>
             </List>
         }
         return null
     }
-
+    checkNum(v){
+        // console.log('v',v)
+        let moneyMax=this.state.balance;
+        let moneyp = (this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub);
+        moneyp = moneyp>moneyMax?moneyMax:moneyp;
+        if(parseInt(v) > moneyp){
+            v = moneyp.toString()
+        }
+        this.setState({balanceInput:v})
+    }
     checkShipType() {
-        switch (shipType) {
+        switch (this.state.shipType) {
             case 0: return "送货到家";
             case 1: return "价钱送货到家";
             case 2: return "门店自提";
@@ -463,11 +502,10 @@ class Payment extends React.Component {
     }
 
     checkFinalBalance() {
-        if (this.props.form.getFieldValue("balanceInput") && this.props.form.getFieldValue("balanceInput") !== "") {
-            balance = parseFloat(this.props.form.getFieldValue("balanceInput"));
+        if (this.state.balanceInput && this.state.balanceInput !== "") {
             // return this.props.form.getFieldValue("balanceInput")
             return <div>
-                <div className="discount_select price_text">-￥{balance}</div>
+                <div className="discount_select price_text">-￥{this.state.balanceInput}</div>
                 <div className="discount_title">余额</div>
                 <WhiteSpace size="xs"/>
             </div>
@@ -628,14 +666,14 @@ class Payment extends React.Component {
                         <WhiteSpace size="xs"/>
                         {this.checkPromotionMoney(this.state.priceResult.promotionMoney)}
                         {this.checkFinalBalance()}
-                        <div className="discount_select price_text">+￥{shipFee}</div>
+                        <div className="discount_select price_text">+￥{this.state.shipFee}</div>
                         <div className="discount_title">运费</div>
                         <WhiteSpace size="xs"/>
-                        <div className="discount_select price_text">-￥{couponSub}</div>
+                        <div className="discount_select price_text">-￥{this.state.couponSub}</div>
                         <div className="discount_title">电子券</div>
                         <WhiteSpace size="xs"/>
                         <div className="discount_select price_text total">
-                            ￥{(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + shipFee - couponSub - balance).toFixed(2)}
+                            ￥{(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balanceInput).toFixed(2)}
                         </div>
                     </div>
                     </List.Item>
