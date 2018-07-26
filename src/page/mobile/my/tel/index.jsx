@@ -71,7 +71,6 @@ export default class TelBinding extends React.Component {
                 localStorage.setItem("bindPhone", this.state.phone.replace(/\s+/g,""));
                 Toast.info(rs.msg, 1);
                 // history.back();
-                this.context.router.history.push('/my');
             } else {
                 Toast.info(rs.msg, 1);
             }
@@ -117,7 +116,10 @@ export default class TelBinding extends React.Component {
             </Card>
 
             <Button  type="primary" style={{ marginLeft:'4px', marginRight: '4px' }}
-                    onClick={() => {this.bindTel(wechatId, this.state.phone.replace(/\s+/g,""), this.state.code)}}>
+                    onClick={() => {
+                        this.bindTel(wechatId, this.state.phone.replace(/\s+/g,""), this.state.code);
+                        this.context.router.history.push('/my');
+                    }}>
                 绑定手机
             </Button>
 
