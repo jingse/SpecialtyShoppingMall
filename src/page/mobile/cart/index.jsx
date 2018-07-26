@@ -488,13 +488,13 @@ class Cart extends React.Component {
                     <div style={{display:this.state.showEdit[index]===true?'block':'none'}}>
                         <div className="step1">              
                             <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}
-                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                            style={{backgroundImage:'url(./images/icons/minus.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                             </div>
                             <div className="value">
                             {this.state.num}
                             </div>
                             <div className="add_minus"onClick={() => {this.addNum(this.state.num)}}
-                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                            style={{backgroundImage:'url(./images/icons/add.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                             </div>
                         </div>
                     </div>

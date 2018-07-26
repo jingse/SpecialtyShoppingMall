@@ -121,6 +121,10 @@ class Payment extends React.Component {
             shipType:shipType,
             shipFee:shipFee,
             couponSub:couponSub,
+        },()=>{
+            const payMoney = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee;
+            localStorage.setItem("price", payMoney.toString());
+            this.requestAvailableCoupon(payMoney.toString());
         });
 
         // calculate the should pay money
@@ -131,9 +135,7 @@ class Payment extends React.Component {
         // });
 
         //设拿到可用优惠券的参数
-        const payMoney = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee;
-        localStorage.setItem("price", payMoney.toString());
-        this.requestAvailableCoupon(payMoney.toString());
+        
 
         // // create the order
         // const items = this.getOrderItems();
@@ -303,7 +305,7 @@ class Payment extends React.Component {
 
     getOrderItems() {
         console.log("this.props.location.products:", this.props.location.products);
-        const items =  products && products.map((item, index) =>{
+        const items =  this.state.products && this.state.products.map((item, index) =>{
             if (localStorage.getItem("origin") === "cart") {
                 this.state.ids.push(item.id);
                 this.setState({ids : this.state.ids});

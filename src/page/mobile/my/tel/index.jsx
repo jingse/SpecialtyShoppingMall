@@ -39,7 +39,7 @@ export default class TelBinding extends React.Component {
                     this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
                         if (this.state.timer === 0) {
                             clearInterval(siv);
-                            this.setState({ delay: false })
+                            this.setState({ delay: false,timer:60 })
                         }
                     });
                 }, 1000);
