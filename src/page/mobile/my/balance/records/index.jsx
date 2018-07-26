@@ -36,7 +36,7 @@ export default class BalanceRecords extends React.Component {
         switch(type) {
             case 1: return "线路赠送";
             case 2: return "销售奖励";
-            case 3: return "商城赠送";
+            case 3: return "商城销售";
             case 4: return "大客户购买";
             default: return "未知";
         }
