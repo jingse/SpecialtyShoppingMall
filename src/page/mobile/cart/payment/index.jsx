@@ -46,6 +46,7 @@ class Payment extends React.Component {
             orderItems: [],
             balance:0,//余额
             balanceInput:'',//使用余额
+            balancenum:0,
             shipFee:0,
             couponSub:0,//电子券
         };
@@ -338,10 +339,10 @@ class Payment extends React.Component {
             "totalMoney":this.state.priceResult.totalMoney.toFixed(2),
             "promotionAmount":this.state.priceResult.promotionMoney.toFixed(2),
             "shipFee":this.state.shipFee.toFixed(2),
-            "shouldPayMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balanceInput).toFixed(2),
+            "shouldPayMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balancenum).toFixed(2),
             "couponMoney":this.state.couponSub.toFixed(2),
             // "balanceMoney":balance.toFixed(2),
-            "balanceMoney":this.state.balanceInput,
+            "balanceMoney":(this.state.balancenum).toFixed(2),
             "payMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee).toFixed(2),
 
             // "receiverRmark":"请送到我家",
@@ -395,7 +396,7 @@ class Payment extends React.Component {
         // const openid = 'ocgJPv1kyOAGEJbNYlhmOry7lgBg';
         // const fee = '1';
         const openid = localStorage.getItem("openid");
-        const shouldPay = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balanceInput;
+        const shouldPay = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balancenum;
         const fee = Math.round(shouldPay * 100);
 
 
@@ -492,17 +493,17 @@ class Payment extends React.Component {
         let moneyMax=this.state.balance;
         let moneyp = (this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub);
         if(moneyMax < moneyp){
-            if(parseInt(v) > moneyMax){
+            if(parseFloat(v) > moneyMax){
                 v = moneyMax.toString()
             }
         }
         if(moneyMax >= moneyp){
-            if(parseInt(v) > moneyp){
+            if(parseFloat(v) > moneyp){
                 v = (moneyp-0.01).toString()
             }
         }
         
-        this.setState({balanceInput:v})
+        this.setState({balanceInput:v,balancenum:parseFloat(v)})
     }
     checkShipType() {
         switch (this.state.shipType) {
@@ -513,7 +514,7 @@ class Payment extends React.Component {
     }
 
     checkFinalBalance() {
-        if (this.state.balanceInput && this.state.balanceInput !== "") {
+        if (this.state.balancenum && this.state.balanceInput !== "") {
             // return this.props.form.getFieldValue("balanceInput")
             return <div>
                 <div className="discount_select price_text">-￥{this.state.balanceInput}</div>
@@ -684,7 +685,7 @@ class Payment extends React.Component {
                         <div className="discount_title">电子券</div>
                         <WhiteSpace size="xs"/>
                         <div className="discount_select price_text total">
-                            ￥{(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balanceInput).toFixed(2)}
+                            ￥{(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balancenum).toFixed(2)}
                         </div>
                     </div>
                     </List.Item>
