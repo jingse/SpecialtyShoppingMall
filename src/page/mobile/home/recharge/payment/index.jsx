@@ -149,7 +149,8 @@ export default class CouponBalance extends React.Component {
 
             <Card>
                 <div style={{fontSize:'1rem', marginLeft:'2rem', padding:'0.8rem'}}>电子券余额：余额</div>
-                <div style={{fontSize:'1rem', marginLeft:'2rem', padding:'0.8rem'}}>电子券金额：￥{this.state.payInfo.price}</div>
+                <div style={{fontSize:'1rem', marginLeft:'2rem', padding:'0.8rem'}}>电子券面值：￥{this.state.payInfo.faceValue}</div>
+                <div style={{fontSize:'1rem', marginLeft:'2rem', padding:'0.8rem'}}>电子券单价：￥{this.state.payInfo.price}</div>
                 <div style={{fontSize:'1rem', marginLeft:'2rem', padding:'0.8rem'}}>电子券数量：{this.state.payInfo.num}</div>
                 <div style={{fontSize:'1rem', marginLeft:'2rem', padding:'0.8rem'}}>接收手机号：{this.state.payInfo.phone}</div>
             </Card>

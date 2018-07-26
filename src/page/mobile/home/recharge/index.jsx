@@ -19,6 +19,7 @@ class Recharge extends React.Component {
         this.state = {
             couponAvailable: [],
             price: 0,
+            faceValue: 0,
             phone: "",
             num: 1,
 
@@ -100,11 +101,12 @@ class Recharge extends React.Component {
         });
     };
 
-    onClose = (key, val, price) => () => {
+    onClose = (key, val, price, faceValue) => () => {
         this.setState({
             modal2: false,
             choose: val,
             price: price,
+            faceValue: faceValue,
             couponMoneyId: key,
         });
     };
@@ -136,6 +138,7 @@ class Recharge extends React.Component {
     rechargePay() {
         var info = {
             "price": this.state.price,
+            "faceValue": this.state.faceValue,
             // "price": '0.01',
             "phone": this.state.phone,
             "confirmCode":  this.props.form.getFieldsValue().confirmCode,
@@ -247,7 +250,7 @@ class Recharge extends React.Component {
                     {this.state.couponAvailable.map((item, index) => (
                         <Item key={index} multipleLine
                               onClick = {
-                                  this.onClose(item.couponMoneyId, item.discountPrice + " 代 " + item.price, item.price)
+                                  this.onClose(item.couponMoneyId, item.discountPrice + " 代 " + item.price, item.discountPrice, item.price)
                               }
                               extra={<span style={{textDecoration:'line-through'}}>￥{item.price}</span>}>
                             <span>￥{item.discountPrice}</span>
