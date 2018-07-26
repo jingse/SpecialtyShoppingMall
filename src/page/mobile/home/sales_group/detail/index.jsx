@@ -36,6 +36,8 @@ export default class SalesGroupDetail extends React.Component {
         }
 
         this.requestGroupPromotionDetail(groupPromotionId);
+
+        localStorage.removeItem("inputBalance");
     }
 
     requestGroupPromotionDetail(groupPromotionId) {

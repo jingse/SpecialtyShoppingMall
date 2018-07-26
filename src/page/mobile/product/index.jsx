@@ -90,6 +90,8 @@ class Product extends React.Component {
                 jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"]
             });
         });
+
+        localStorage.removeItem("inputBalance");
     }
 
     componentDidMount() {

@@ -33,7 +33,7 @@ export default class GridCategory extends React.Component {
             },
             {
                 icon: './images/category/充值.png',
-                text: `购买`,
+                text: `电子券`,
                 urlTo: 'home/recharge',
                 category: '充值区',
             },

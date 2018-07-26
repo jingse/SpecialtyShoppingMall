@@ -247,7 +247,7 @@ class Recharge extends React.Component {
                     {this.state.couponAvailable.map((item, index) => (
                         <Item key={index} multipleLine
                               onClick = {
-                                  this.onClose(item.couponMoneyId, item.discountPrice + " 代 " + item.price, item.discountPrice)
+                                  this.onClose(item.couponMoneyId, item.discountPrice + " 代 " + item.price, item.price)
                               }
                               extra={<span style={{textDecoration:'line-through'}}>￥{item.price}</span>}>
                             <span>￥{item.discountPrice}</span>
