@@ -21,6 +21,8 @@ export default class CouponChoose extends React.Component {
 
     componentWillMount() {
         const price = parseFloat(localStorage.getItem("price"));
+        console.log("localStorage.getItem(\"price\")", localStorage.getItem("price"));
+
         this.requestAvailableCoupon(price);
     }
 
