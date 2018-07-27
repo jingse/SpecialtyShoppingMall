@@ -17,12 +17,11 @@ export default class CouponBalance extends React.Component {
             orderId: '',
         };
     }
-
     componentWillMount() {
         console.log('this.props.location',this.props.location)
         let payInfo = this.props.location.state.rechargeInfo;
         let orderId = this.props.location.state.orderId;
-        console.log("this.props.location.state: ", this.props.location.state);
+        console.log("payInfo    orderId", payInfo,orderId);
         this.setState({
             payInfo: payInfo,
             orderId: orderId,
@@ -112,7 +111,6 @@ export default class CouponBalance extends React.Component {
         console.log("paycharge ",this.state.orderId, fee, openid);
         couponApi.confirmCouponPayment(this.state.orderId, fee, openid, (rs) => {
             console.log("confirmCouponPayment rs: ", rs);
-
             this.appId = rs.result.appId;
             this.nonceStr = rs.result.nonceStr;
             this.package = rs.result.package;
