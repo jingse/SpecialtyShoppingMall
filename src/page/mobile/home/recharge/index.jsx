@@ -138,13 +138,12 @@ class Recharge extends React.Component {
         }
     }
 
-    createCouponOrderOperation(phone, confirmCode, couponTypeId, amount) {
+    createCouponOrderOperation(phone, confirmCode, couponTypeId, amount,info) {
         console.log("create coupon order: ");
         couponApi.submitCouponOrder(wechatId, phone, confirmCode, couponTypeId, amount, (rs)=>{
-            
             console.log("submitCouponOrder_rs", rs);
             if (rs && rs.success) {
-                this.context.router.history.push({pathname: '/home/recharge/payment', state: {rechargeInfo:this.state.rechargeInfo,orderId:rs.obj} });
+                this.context.router.history.push({pathname: '/home/recharge/payment', state: {rechargeInfo:info,orderId:rs.obj} });
             }
             else{
                 Toast.info("请输入正确的验证码",1)
@@ -167,7 +166,7 @@ class Recharge extends React.Component {
         this.setState({
             rechargeInfo: this.state.rechargeInfo,
         });
-        this.createCouponOrderOperation(this.state.phone,this.props.form.getFieldsValue().confirmCode,this.state.couponMoneyId,this.state.num);
+        this.createCouponOrderOperation(this.state.phone,this.props.form.getFieldsValue().confirmCode,this.state.couponMoneyId,this.state.num,info);
 
         // this.context.router.history.push({pathname: '/home/recharge/payment', state: this.state.rechargeInfo});
         // this.linkTo('/home/recharge/payment');
