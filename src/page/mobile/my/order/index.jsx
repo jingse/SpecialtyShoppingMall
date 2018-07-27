@@ -627,6 +627,9 @@ export default class Order extends React.Component {
     payCharge(orderCode, payMoney, event) {
         const openid = localStorage.getItem("openid");
         console.log("payMoney", payMoney);
+        orderApi.getOrderDetailByCode(orderCode,(rs)=>{
+            console.log('getOrderDetailByCode_rs',rs)
+        })
 
         paymentApi.confirmOrder(orderCode, payMoney, openid, (rs) => {
             console.log("confirmOrder rs", rs);
