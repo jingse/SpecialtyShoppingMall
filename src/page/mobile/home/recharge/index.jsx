@@ -12,7 +12,7 @@ import { createForm } from 'rc-form';
 
 const Item = List.Item;
 const Brief = Item.Brief;
-
+const wechatId = localStorage.getItem("wechatId");
 class Recharge extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -42,6 +42,9 @@ class Recharge extends React.Component {
 
     componentWillMount() {
         this.requestRechargeCoupon();
+    }
+    componentWillUnmount(){
+        clearInterval(this.state.siv);
     }
 
     requestRechargeCoupon() {
@@ -135,6 +138,21 @@ class Recharge extends React.Component {
         }
     }
 
+    createCouponOrderOperation(phone, confirmCode, couponTypeId, amount) {
+        console.log("create coupon order: ");
+        couponApi.submitCouponOrder(wechatId, phone, confirmCode, couponTypeId, amount, (rs)=>{
+            
+            console.log("submitCouponOrder_rs", rs);
+            if (rs && rs.success) {
+                this.context.router.history.push({pathname: '/home/recharge/payment', state: {rechargeInfo:this.state.rechargeInfo,orderId:rs.obj} });
+            }
+            else{
+                Toast.info("请输入正确的验证码",1)
+            }
+        });
+    }
+
+
     rechargePay() {
         var info = {
             "price": this.state.price,
@@ -149,8 +167,9 @@ class Recharge extends React.Component {
         this.setState({
             rechargeInfo: this.state.rechargeInfo,
         });
+        this.createCouponOrderOperation(this.state.phone,this.props.form.getFieldsValue().confirmCode,this.state.couponMoneyId,this.state.num);
 
-        this.context.router.history.push({pathname: '/home/recharge/payment', state: this.state.rechargeInfo});
+        // this.context.router.history.push({pathname: '/home/recharge/payment', state: this.state.rechargeInfo});
         // this.linkTo('/home/recharge/payment');
     }
 
