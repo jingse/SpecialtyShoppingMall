@@ -73,7 +73,7 @@ export default class Order extends React.Component {
             this.setState({
                 tab: tab,
             });
-            this.clearData();
+            // this.clearData();
             this.requestTabData(tab, 1, pageSize);
 
         } else {
@@ -140,13 +140,13 @@ export default class Order extends React.Component {
     requestAllOrder(wechatId, page, rows) {
         console.log("请求所有订单");
         //所有订单
-
         myApi.getAllOrderListByAccount(wechatId, page, rows, (rs)=>{
             const allOrder = rs.obj.rows;
+            console.log("allOrder",rs);
             if (allOrder) {
-                console.log("初始订单为空且请求数据不为空");
+                let alltemp = (page == 1)?allOrder:this.state.all.concat(allOrder);
                 this.setState({
-                    all: this.state.all.concat(allOrder),
+                    all: alltemp,
                     allPage: rs.obj.totalPages,
                 });
             }
@@ -156,14 +156,14 @@ export default class Order extends React.Component {
 
     requestPayOrder(wechatId, page, rows) {
         console.log("请求待付款订单");
-
         //待付款订单
         myApi.getOrderListByAccount(wechatId, 0, page, rows, (rs)=>{
             const payOrder = rs.obj.rows;
             console.log("请求待付款订单",rs);
             if (payOrder) {
+                let paytemp = (page == 1)?payOrder:this.state.pay.concat(payOrder);
                 this.setState({
-                    pay: this.state.pay.concat(payOrder),
+                    pay: paytemp,
                     payPage: rs.obj.totalPages,
                 });
             }
@@ -173,46 +173,49 @@ export default class Order extends React.Component {
 
     requestDeliverOrder(wechatId, page, rows) {
         console.log("请求待发货订单");
-
+        let delivertemp = (page == 1)?[]:this.state.deliver;
         //待发货订单
         myApi.getOrderListByAccount(wechatId, 1, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            if (order) {
-                this.setState({
-                    deliver: this.state.deliver.concat(order),
-                    deliverPage: this.state.deliverPage + rs.obj.totalPages,
+            let order1 = rs.obj.rows;
+            delivertemp = delivertemp.concat(order1)
+            // if (order) {
+            //     this.setState({
+            //         deliver:delivertemp.concat(order),
+            //         deliverPage: this.state.deliverPage + rs.obj.totalPages,
+            //     });
+            // }
+            myApi.getOrderListByAccount(wechatId, 2, page, rows, (rs)=>{
+                let order2 = rs.obj.rows;
+                delivertemp = delivertemp.concat(order2)
+                // if (order) {
+                //     this.setState({
+                //         deliver: delivertemp.concat(order),
+                //         deliverPage: this.state.deliverPage + rs.obj.totalPages,
+                //     });
+                // }
+                myApi.getOrderListByAccount(wechatId, 3, page, rows, (rs)=>{
+                    let order3 = rs.obj.rows;
+                    delivertemp = delivertemp.concat(order3)
+                    // if (order) {
+                        this.setState({
+                            deliver: delivertemp,
+                            deliverPage: this.state.deliverPage + rs.obj.totalPages,
+                        });
+                    // }
                 });
-            }
-        });
-        myApi.getOrderListByAccount(wechatId, 2, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            if (order) {
-                this.setState({
-                    deliver: this.state.deliver.concat(order),
-                    deliverPage: this.state.deliverPage + rs.obj.totalPages,
-                });
-            }
-        });
-        myApi.getOrderListByAccount(wechatId, 3, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            if (order) {
-                this.setState({
-                    deliver: this.state.deliver.concat(order),
-                    deliverPage: this.state.deliverPage + rs.obj.totalPages,
-                });
-            }
+            });
         });
     }
 
     requestReceiveOrder(wechatId, page, rows) {
         console.log("请求待收货订单");
-
+        let receivetemp = (page == 1)?[]:this.state.receive;
         //待收货订单
         myApi.getOrderListByAccount(wechatId, 4, page, rows, (rs)=>{
             const order = rs.obj.rows;
             if (order) {
                 this.setState({
-                    receive: this.state.receive.concat(order),
+                    receive: receivetemp.concat(order),
                     receivePage: rs.obj.totalPages,
                 });
             }
@@ -223,95 +226,108 @@ export default class Order extends React.Component {
     requestEvaluateOrder(wechatId, page, rows) {
         console.log("请求待评价订单");
         console.log("requestEvaluateOrder page", page);
-
+        let evaluateetemp = (page == 1)?[]:this.state.evaluate;
         //待评价订单
         myApi.getOrderListByAccount(wechatId, 5, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            var valid = [];
-            if (order) {
-                order && order.map((item, index) => {
+            let order1 = rs.obj.rows;
+            var valid1 = [];
+            // if (order) {
+                order1 && order1.map((item, index) => {
                     if (!item.isAppraised) {
-                        valid.push(item);
+                        valid1.push(item);
                     }
                 });
-                console.log("rs.obj.rows", rs.obj.rows);
-                this.setState({
-                    evaluate: this.state.evaluate.concat(valid),
-                    evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
-                });
-            }
+                evaluateetemp = evaluateetemp.concat(valid1)
+                // console.log("rs.obj.rows", rs.obj.rows);
+                // this.setState({
+                //     evaluate: evaluateetemp.concat(valid),
+                //     evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
+                // });
+            // }
+            myApi.getOrderListByAccount(wechatId, 6, page, rows, (rs)=>{
+                const order2 = rs.obj.rows;
+                var valid2 = [];
+                // if (order2) {
+                    order2 && order2.map((item, index) => {
+                        if (!item.isAppraised) {
+                            valid2.push(item);
+                        }
+                    });
+                    evaluateetemp = evaluateetemp.concat(valid2)
+                    this.setState({
+                        evaluate: evaluateetemp,
+                        evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
+                    });
+                // }
+            });
         });
-        myApi.getOrderListByAccount(wechatId, 6, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            console.log("rs.obj.rows", rs.obj.rows);
-            var valid = [];
-            if (order) {
-                order && order.map((item, index) => {
-                    if (!item.isAppraised) {
-                        valid.push(item);
-                    }
-                });
-                this.setState({
-                    evaluate: this.state.evaluate.concat(valid),
-                    evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
-                });
-            }
-        });
+        
     }
 
     requestRefundOrder(wechatId, page, rows) {
         console.log("请求退款订单");
-
+        let refundtemp = (page == 1)?[]:this.state.refund;
         //退款订单
         myApi.getOrderListByAccount(wechatId, 8, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            if (order) {
-                this.setState({
-                    refund: this.state.refund.concat(order),
-                    refundPage: this.state.refundPage + rs.obj.totalPages,
+            let order1 = rs.obj.rows;
+            refundtemp = refundtemp.concat(order1)
+            // if (order) {
+            //     this.setState({
+            //         refund: refundtemp.concat(order),
+            //         refundPage: this.state.refundPage + rs.obj.totalPages,
+            //     });
+            // }
+            myApi.getOrderListByAccount(wechatId, 9, page, rows, (rs)=>{
+                let order2 = rs.obj.rows;
+                refundtemp = refundtemp.concat(order2)
+                // if (order) {
+                //     this.setState({
+                //         refund: refundtemp.concat(order),
+                //         refundPage: this.state.refundPage + rs.obj.totalPages,
+                //     });
+                // }
+                myApi.getOrderListByAccount(wechatId, 10, page, rows, (rs)=>{
+                    let order3 = rs.obj.rows;
+                    refundtemp = refundtemp.concat(order3)
+                    // if (order) {
+                    //     this.setState({
+                    //         refund: refundtemp.concat(order),
+                    //         refundPage: this.state.refundPage + rs.obj.totalPages,
+                    //     });
+                    // }
+                    myApi.getOrderListByAccount(wechatId, 11, page, rows, (rs)=>{
+                        let order4 = rs.obj.rows;
+                        refundtemp = refundtemp.concat(order4)
+                        // if (order) {
+                        //     this.setState({
+                        //         refund: refundtemp.concat(order),
+                        //         refundPage: this.state.refundPage + rs.obj.totalPages,
+                        //     });
+                        // }
+                        myApi.getOrderListByAccount(wechatId, 12, page, rows, (rs)=>{
+                            let order5 = rs.obj.rows;
+                            refundtemp = refundtemp.concat(order5)
+                                this.setState({
+                                    refund: refundtemp,
+                                    refundPage: this.state.refundPage + rs.obj.totalPages,
+                                });
+                            
+                        });
+                    });
+
                 });
-            }
+
+            });
+
         });
 
-        myApi.getOrderListByAccount(wechatId, 9, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            if (order) {
-                this.setState({
-                    refund: this.state.refund.concat(order),
-                    refundPage: this.state.refundPage + rs.obj.totalPages,
-                });
-            }
-        });
+        
 
-        myApi.getOrderListByAccount(wechatId, 10, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            if (order) {
-                this.setState({
-                    refund: this.state.refund.concat(order),
-                    refundPage: this.state.refundPage + rs.obj.totalPages,
-                });
-            }
-        });
+       
 
-        myApi.getOrderListByAccount(wechatId, 11, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            if (order) {
-                this.setState({
-                    refund: this.state.refund.concat(order),
-                    refundPage: this.state.refundPage + rs.obj.totalPages,
-                });
-            }
-        });
+        
 
-        myApi.getOrderListByAccount(wechatId, 12, page, rows, (rs)=>{
-            const order = rs.obj.rows;
-            if (order) {
-                this.setState({
-                    refund: this.state.refund.concat(order),
-                    refundPage: this.state.refundPage + rs.obj.totalPages,
-                });
-            }
-        });
+        
     }
 
     // checkState(orderState) {
@@ -412,13 +428,13 @@ export default class Order extends React.Component {
                 // this.setState({
                 //     curOrderPage: this.state.curOrderPage++,
                 // });
-
-                this.setState({ down: false });
+                if(this.state.down == true)
+                    this.setState({ down: false });
                 break;
             case 2:
                 console.log("下");
-
-                this.setState({ down: true });
+                if(this.state.down == false)
+                    this.setState({ down: true });
                 break;
         }
     }
@@ -545,7 +561,7 @@ export default class Order extends React.Component {
     }
 
     onTabChange(tab, index) {
-        this.clearData();
+        // this.clearData();
         this.requestTabData(index, 1, pageSize);
         localStorage.setItem("tab", index);
 
@@ -560,7 +576,7 @@ export default class Order extends React.Component {
                 console.log("rs: ", rs);
             }
         });
-        this.clearData();
+        // this.clearData();
         this.requestTabData(3, 1, pageSize);
     }
 
@@ -569,7 +585,7 @@ export default class Order extends React.Component {
         orderApi.cancelOrder(orderId, (rs) => {
             if (rs && rs.success) {
                 console.log("rs: ", rs);
-                this.clearData();
+                // this.clearData();
                 this.requestTabData(2, 1, pageSize);
             }
         });
@@ -580,7 +596,7 @@ export default class Order extends React.Component {
         orderApi.cancelOrder(orderId, (rs) => {
             if (rs && rs.success) {
                 console.log("rs: ", rs);
-                this.clearData();
+                // this.clearData();
                 this.requestTabData(1, 1, pageSize);
             }
         });
@@ -591,7 +607,7 @@ export default class Order extends React.Component {
         orderApi.deleteOrder(orderId, (rs) => {
             if (rs && rs.success) {
                 console.log(rs.msg);
-                this.clearData();
+                // this.clearData();
                 this.requestTabData(0, 1, pageSize);
             }
         });
@@ -621,7 +637,7 @@ export default class Order extends React.Component {
                 }
             }
         );
-        this.clearData();
+        // this.clearData();
         this.requestTabData(1, 1, pageSize);
     }
 
@@ -674,13 +690,6 @@ export default class Order extends React.Component {
         var orderContent;
 
         if (!order || order.length === 0) {
-            // orderContent = () => {
-            //     return <div className="tip">
-            //         <div>您还没有{this.checkOrder(this.state.tab)}订单哦！</div>
-            //         <WhiteSpace/>
-            //         <Button type="ghost" inline size="small" onClick={()=>{this.linkTo('/home')}}>去逛逛</Button>
-            //     </div>
-            // }
             return <div className="tip">
                 <div>您还没有{this.checkOrder(this.state.tab)}订单哦！</div>
                 <WhiteSpace/>
@@ -766,7 +775,7 @@ export default class Order extends React.Component {
             onRefresh={() => {
                 this.setState({ refreshing: true });
                 if(this.state.down){//刷新事件
-                    this.clearData();
+                    // this.clearData();
                     this.requestTabData(this.state.tab, 1, pageSize);
                     this.setState({
                         curOrderPage: 2,
@@ -803,11 +812,11 @@ export default class Order extends React.Component {
 
 
     render() {
-
+        console.log("this");
         // console.log("this.state.pay: ", this.state.pay);
         // console.log("this.state.deliver: ", this.state.deliver);
         // console.log("this.state.receive: ", this.state.receive);
-        console.log("this.state.evaluate: ", this.state.evaluate);
+        // console.log("this.state.evaluate: ", this.state.evaluate);
         // console.log("this.state.refund: ", this.state.refund);
 
         const allOrders = this.getOrderContent(this.state.all, "all");

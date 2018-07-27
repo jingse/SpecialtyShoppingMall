@@ -489,16 +489,21 @@ class Payment extends React.Component {
         return null
     }
     checkNum(v){
-        // console.log('v',v)
+        console.log('v',v)
+        console.log('parseFloat(v)',parseFloat(v))
         let moneyMax=this.state.balance;
         let moneyp = (this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub);
+        console.log('moneyp',moneyp)
         if(moneyMax < moneyp){
             if(parseFloat(v) > moneyMax){
                 v = moneyMax.toString()
             }
         }
         if(moneyMax >= moneyp){
-            if(parseFloat(v) > moneyp){
+            if(parseFloat(v) >= moneyp){
+                v = (moneyp-0.01).toString()
+            }
+            else if(moneyp-parseFloat(v)<0.01){
                 v = (moneyp-0.01).toString()
             }
         }
