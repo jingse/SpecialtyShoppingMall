@@ -160,6 +160,7 @@ export default class Order extends React.Component {
         //待付款订单
         myApi.getOrderListByAccount(wechatId, 0, page, rows, (rs)=>{
             const payOrder = rs.obj.rows;
+            console.log("请求待付款订单",rs);
             if (payOrder) {
                 this.setState({
                     pay: this.state.pay.concat(payOrder),
@@ -481,7 +482,7 @@ export default class Order extends React.Component {
                 {/* <div style={{background:'#fff', textAlign:'right'}}> */}
                 {/* <WhiteSpace/> */}
                 <Button type="ghost" inline size="small" style={{marginRight:'4%', fontSize:'0.7rem'}}
-                        onClick={this.payCharge.bind(this, item.orderCode, Math.round(item.payMoney * 100))}>
+                        onClick={this.payCharge.bind(this, item, Math.round(item.payMoney * 100))}>
                     去付款
                 </Button>
                 <Button type="ghost" inline size="small" style={{marginRight:'4%', fontSize:'0.7rem'}}
@@ -624,31 +625,39 @@ export default class Order extends React.Component {
         this.requestTabData(1, 1, pageSize);
     }
 
-    payCharge(orderCode, payMoney, event) {
+    payCharge(item, payMoney, event) {
         const openid = localStorage.getItem("openid");
-        console.log("payMoney", payMoney);
-
-        paymentApi.confirmOrder(orderCode, payMoney, openid, (rs) => {
-            console.log("confirmOrder rs", rs);
-            this.appId = rs.result.appId;
-            this.nonceStr = rs.result.nonceStr;
-            this.package = rs.result.package;
-            this.paySign = rs.result.paySign;
-            this.signType = rs.result.signType;
-            this.timestamp = rs.result.timestamp;
-            this.code = orderCode;
-            // 调起微信支付接口
-            if (typeof WeixinJSBridge === "undefined") {
-                if ( document.addEventListener ) {
-                    document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
-                } else if (document.attachEvent) {
-                    document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
-                    document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
+        console.log("item", item);
+        orderApi.getOrderDetailById(item.id,(rs)=>{
+            console.log('getOrderDetailById_rs',rs)
+            let orderCode =item.orderCode;
+            let shouldPayMoney= rs.obj.baseInfo.shouldPayMoney;
+            console.log("shouldPayMoney", shouldPayMoney);
+            paymentApi.confirmOrder(orderCode, shouldPayMoney, openid, (rs) => {
+                console.log("confirmOrder rs", rs);
+                this.appId = rs.result.appId;
+                this.nonceStr = rs.result.nonceStr;
+                this.package = rs.result.package;
+                this.paySign = rs.result.paySign;
+                this.signType = rs.result.signType;
+                this.timestamp = rs.result.timestamp;
+                this.code = orderCode;
+                // 调起微信支付接口
+                if (typeof WeixinJSBridge === "undefined") {
+                    if ( document.addEventListener ) {
+                        document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
+                    } else if (document.attachEvent) {
+                        document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
+                        document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
+                    }
+                } else {
+                    this.onBridgeReady();
                 }
-            } else {
-                this.onBridgeReady();
-            }
+            });
+
         });
+
+        
     }
 
     checkAll(orderStateStr, orderId) {
