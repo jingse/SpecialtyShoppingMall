@@ -18,6 +18,7 @@ var api = {
 
 
     confirmCouponPayment(orderId, fee, openId, callback) {
+        console.log('total_fee',fee,orderId,openId)
         http.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/mp/' + orderId,
