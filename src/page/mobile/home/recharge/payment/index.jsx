@@ -19,12 +19,13 @@ export default class CouponBalance extends React.Component {
     }
 
     componentWillMount() {
-        this.state.payInfo = this.props.location.state;
-        this.state.orderId = this.props.location.orderId;
+        console.log('this.props.location',this.props.location)
+        let payInfo = this.props.location.state.rechargeInfo;
+        let orderId = this.props.location.state.orderId;
         console.log("this.props.location.state: ", this.props.location.state);
         this.setState({
-            payInfo: this.state.payInfo,
-            orderId: this.state.orderId,
+            payInfo: payInfo,
+            orderId: orderId,
         });
 
         const url = encodeURIComponent(window.location.href.split('#')[0]);
@@ -40,7 +41,7 @@ export default class CouponBalance extends React.Component {
             });
         });
 
-        this.createCouponOrderOperation(this.state.payInfo.phone, this.state.payInfo.confirmCode, this.state.payInfo.couponMoneyId, this.state.payInfo.num);
+        // this.createCouponOrderOperation(this.state.payInfo.phone, this.state.payInfo.confirmCode, this.state.payInfo.couponMoneyId, this.state.payInfo.num);
     }
 
     componentDidMount() {
@@ -59,23 +60,20 @@ export default class CouponBalance extends React.Component {
         // this.requestData();
     }
 
-    createCouponOrderOperation(phone, confirmCode, couponTypeId, amount) {
-
-        console.log("create coupon order: ");
-
-        couponApi.submitCouponOrder(wechatId, phone, confirmCode, couponTypeId, amount, (rs)=>{
-            console.log("rs.msg", rs.msg);
-            console.log("rs", rs);
-            if (rs && rs.success) {
-                const couponOrderId = rs.obj;
-                console.log("orderId: ", couponOrderId);
-
-                this.setState({
-                    orderId: couponOrderId,
-                });
-            }
-        });
-    }
+    // createCouponOrderOperation(phone, confirmCode, couponTypeId, amount) {
+    //     console.log("create coupon order: ");
+    //     couponApi.submitCouponOrder(wechatId, phone, confirmCode, couponTypeId, amount, (rs)=>{
+    //         console.log("rs.msg", rs.msg);
+    //         console.log("rs", rs);
+    //         if (rs && rs.success) {
+    //             const couponOrderId = rs.obj;
+    //             console.log("orderId: ", couponOrderId);
+    //             this.setState({
+    //                 orderId: couponOrderId,
+    //             });
+    //         }
+    //     });
+    // }
 
     // requestData() {
     //     const orderid = this.props.location.query || localStorage.getItem("nowOrderId");
@@ -115,7 +113,7 @@ export default class CouponBalance extends React.Component {
 
 
         couponApi.confirmCouponPayment(this.state.orderId, fee, openid, (rs) => {
-            console.log("confirm rs: ", rs);
+            console.log("confirmCouponPayment rs: ", rs);
 
             this.appId = rs.result.appId;
             this.nonceStr = rs.result.nonceStr;
