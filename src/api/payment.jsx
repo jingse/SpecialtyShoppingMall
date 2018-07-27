@@ -35,6 +35,7 @@ var api = {
     },
 
     confirmOrder(orderCode, fee, openid, callback) {
+        console.log('total_fee',fee,orderCode,openid)
         http.ajax({
             method: 'POST',
             url: '//admin.swczyc.com/hyapi' + '/pay/wechat/mp/' + orderCode,

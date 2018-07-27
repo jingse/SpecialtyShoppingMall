@@ -110,8 +110,6 @@ export default class CouponBalance extends React.Component {
         const openid = localStorage.getItem("openid");
         const fee = Math.round(this.state.payInfo.price * this.state.payInfo.num * 100);
         console.log("paycharge ");
-
-
         couponApi.confirmCouponPayment(this.state.orderId, fee, openid, (rs) => {
             console.log("confirmCouponPayment rs: ", rs);
 
