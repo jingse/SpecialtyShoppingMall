@@ -669,6 +669,8 @@ export default class Order extends React.Component {
                 } else {
                     this.onBridgeReady();
                 }
+                this.requestTabData(1, 1, pageSize);
+
             });
 
         });
