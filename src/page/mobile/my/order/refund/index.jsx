@@ -112,9 +112,8 @@ class RefundApply extends React.Component {
             "orderId": this.state.product.baseInfo.id,                                                              // 订单id	    int
             // "isDelivered": (refundType[this.props.form.getFieldsValue().type[0]].label === '退货退款'),           // 是否退货	    Boolean
             "deliverType": this.state.product.baseInfo.isDivided ? 1: 0 ,                                           // 发货类型	    int
-            "refundReson": refundReasonOption[this.props.form.getFieldsValue().refundReason[0]].label,              // 退款理由	    string
+            "refundReason": refundReasonOption[this.props.form.getFieldsValue().refundReason[0]].label,              // 退款理由	    string
             // "refundReson": "不想要",                                                                             // 退款理由	    string
-
             "refundItems": this.state.refundItems,
             // "refundItems": [
             //     {
@@ -457,8 +456,8 @@ class RefundApply extends React.Component {
                 <WhiteSpace/>
             </Card>
 
-            <Submit>
-                <span onClick={()=>{this.applyForRefund()}}>提交</span>
+            <Submit onClick={()=>{this.applyForRefund()}}>
+                <span >提交</span>
             </Submit>
 
         </Layout>

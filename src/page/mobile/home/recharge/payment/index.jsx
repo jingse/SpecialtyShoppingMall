@@ -17,12 +17,11 @@ export default class CouponBalance extends React.Component {
             orderId: '',
         };
     }
-
     componentWillMount() {
         console.log('this.props.location',this.props.location)
         let payInfo = this.props.location.state.rechargeInfo;
         let orderId = this.props.location.state.orderId;
-        console.log("this.props.location.state: ", this.props.location.state);
+        console.log("payInfo    orderId", payInfo,orderId);
         this.setState({
             payInfo: payInfo,
             orderId: orderId,
@@ -97,9 +96,9 @@ export default class CouponBalance extends React.Component {
             function(res){
                 if(res.err_msg === "get_brand_wcpay_request:ok") {
                     console.log("支付成功，进来了");
-                    couponApi.successfulCouponPayment(this.code, (rs) => {
-                        console.log("successfulCouponPayment rs", rs);
-                    });
+                    // couponApi.successfulCouponPayment(this.code, (rs) => {
+                    //     console.log("successfulCouponPayment rs", rs);
+                    // });
                 }
                 this.context.router.history.push({pathname: '/home'});
             }.bind(this)
@@ -112,14 +111,12 @@ export default class CouponBalance extends React.Component {
         console.log("paycharge ",this.state.orderId, fee, openid);
         couponApi.confirmCouponPayment(this.state.orderId, fee, openid, (rs) => {
             console.log("confirmCouponPayment rs: ", rs);
-
             this.appId = rs.result.appId;
             this.nonceStr = rs.result.nonceStr;
             this.package = rs.result.package;
             this.paySign = rs.result.paySign;
             this.signType = rs.result.signType;
             this.timestamp = rs.result.timestamp;
-
             this.code = this.state.orderId;
             console.log("this.code", this.code);
 

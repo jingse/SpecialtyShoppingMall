@@ -164,6 +164,7 @@ export default class OrderDetail extends React.Component {
         orderApi.confirmReceive(orderId, (rs) => {
             if (rs && rs.success) {
                 console.log("rs: ", rs);
+                history.go(-1);
             }
         });
     }
@@ -287,7 +288,8 @@ export default class OrderDetail extends React.Component {
             </div>
         }
         return <div style={{backgroundColor:'white', borderBottom:'1px solid #ccc'}}
-                    onClick={()=>{this.linkTo('/my/order/logistic')}}>
+                    // onClick={()=>{this.linkTo('/my/order/logistic')}}
+                    >
             <WhiteSpace/>
             <Flex>
                 <Flex.Item style={{flex:'0 0 10%'}}>
