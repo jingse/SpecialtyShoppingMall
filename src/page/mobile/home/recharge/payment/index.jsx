@@ -96,9 +96,9 @@ export default class CouponBalance extends React.Component {
             function(res){
                 if(res.err_msg === "get_brand_wcpay_request:ok") {
                     console.log("支付成功，进来了");
-                    couponApi.successfulCouponPayment(this.code, (rs) => {
-                        console.log("successfulCouponPayment rs", rs);
-                    });
+                    // couponApi.successfulCouponPayment(this.code, (rs) => {
+                    //     console.log("successfulCouponPayment rs", rs);
+                    // });
                 }
                 this.context.router.history.push({pathname: '/home'});
             }.bind(this)
@@ -117,7 +117,6 @@ export default class CouponBalance extends React.Component {
             this.paySign = rs.result.paySign;
             this.signType = rs.result.signType;
             this.timestamp = rs.result.timestamp;
-
             this.code = this.state.orderId;
             console.log("this.code", this.code);
 

@@ -456,8 +456,8 @@ class RefundApply extends React.Component {
                 <WhiteSpace/>
             </Card>
 
-            <Submit>
-                <span onClick={()=>{this.applyForRefund()}}>提交</span>
+            <Submit onClick={()=>{this.applyForRefund()}}>
+                <span >提交</span>
             </Submit>
 
         </Layout>

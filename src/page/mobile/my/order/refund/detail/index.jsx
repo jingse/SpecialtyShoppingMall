@@ -36,8 +36,9 @@ export default class RefundDetail extends React.Component {
         switch (state) {
             case 8: return "申请退货待确认";
             case 9: return "待退货";
-            case 10: return "待退款";
-            case 11: return "已退款";
+            case 10: return "待入库";
+            case 11: return "待退款";
+            case 12: return "已退款";
         }
     }
 
@@ -101,7 +102,7 @@ export default class RefundDetail extends React.Component {
                     <WingBlank style={{padding:'0.5rem'}}>退款金额：￥{this.state.result.refundTotalAmount}</WingBlank>
                     <WingBlank style={{padding:'0.5rem'}}>申请个数：{this.state.result.refundItems.length}</WingBlank>
                     {/*<WingBlank style={{padding:'0.5rem'}}>申请时间：{this.state.result.refund_apply_time}</WingBlank>*/}
-                    <WingBlank style={{padding:'0.5rem'}}>退款编号：{this.state.result.id}</WingBlank>
+                    <WingBlank style={{padding:'0.5rem'}}>退款编号：{this.state.result.order.orderCode}</WingBlank>
                 </div>
 
             </Card>
