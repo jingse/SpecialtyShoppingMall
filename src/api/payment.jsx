@@ -47,6 +47,7 @@ var api = {
                 "openid": openid
             }),
             success: (rs) => {
+                console.log('confirmOrder_rs',rs)
                 callback && callback(rs);
             }
         });
