@@ -647,7 +647,7 @@ export default class Order extends React.Component {
         orderApi.getOrderDetailById(item.id,(rs)=>{
             console.log('getOrderDetailById_rs',rs)
             let orderCode =item.orderCode;
-            let shouldPayMoney= rs.obj.baseInfo.shouldPayMoney;
+            let shouldPayMoney= rs.obj.baseInfo.shouldPayMoney*100;
             console.log("shouldPayMoney", shouldPayMoney);
             paymentApi.confirmOrder(orderCode, shouldPayMoney, openid, (rs) => {
                 console.log("confirmOrder rs", rs);
