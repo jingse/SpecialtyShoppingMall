@@ -139,7 +139,7 @@ class Recharge extends React.Component {
     }
 
     createCouponOrderOperation(phone, confirmCode, couponTypeId, amount,info) {
-        console.log("create coupon order: ");
+        console.log("create coupon order: " ,phone, confirmCode, couponTypeId, amount,info);
         couponApi.submitCouponOrder(wechatId, phone, confirmCode, couponTypeId, amount, (rs)=>{
             console.log("submitCouponOrder_rs", rs);
             if (rs && rs.success) {
@@ -162,11 +162,13 @@ class Recharge extends React.Component {
             "num": this.state.num,
             'couponMoneyId': this.state.couponMoneyId,
         };
-        this.state.rechargeInfo = info;
+        let rechargeInfo = info;
         this.setState({
-            rechargeInfo: this.state.rechargeInfo,
+            rechargeInfo: rechargeInfo,
+        },()=>{
+            this.createCouponOrderOperation(this.state.phone,this.props.form.getFieldsValue().confirmCode,this.state.couponMoneyId,this.state.num,info);
         });
-        this.createCouponOrderOperation(this.state.phone,this.props.form.getFieldsValue().confirmCode,this.state.couponMoneyId,this.state.num,info);
+        // this.createCouponOrderOperation(this.state.phone,this.props.form.getFieldsValue().confirmCode,this.state.couponMoneyId,this.state.num,info);
 
         // this.context.router.history.push({pathname: '/home/recharge/payment', state: this.state.rechargeInfo});
         // this.linkTo('/home/recharge/payment');
