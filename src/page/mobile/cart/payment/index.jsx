@@ -582,6 +582,7 @@ class Payment extends React.Component {
             //         </div>
             //     </Card>
             // }
+            console.log('item11111111111111111111111111111',item)
             return <List.Item  key={index}>      
                 <div className="payment_card_img">
                     <img src={"http://" + getServerIp() + item.iconURL.mediumPath}/>

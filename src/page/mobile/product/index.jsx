@@ -271,6 +271,11 @@ class Product extends React.Component {
     }
 
     buyImmediately() {
+        if(this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
+            Toast.info("您还未选择商品规格~", 1);
+            // this.showModal(1);
+            return
+        }
         const item = [{
             "id": null,
             "curPrice": this.state.currentPrePrice,

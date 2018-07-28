@@ -363,7 +363,7 @@ export default class Order extends React.Component {
                 break;
             case 6: stateStr = "已完成";
                 break;
-            case 7: stateStr = "已取消";
+            case 7: stateStr = "已取消";//////
                 break;
             case 8: stateStr = "待确认";
                 break;
@@ -683,7 +683,7 @@ export default class Order extends React.Component {
                 { text: '确认', onPress: () => {this.deleteOrder(orderId)} },
             ])}/>
         }
-        return null
+        return <div></div>
     }
 
     getOrderContent(order, orderStateStr) {
