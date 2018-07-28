@@ -5,6 +5,7 @@ import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Card from "../../../../../components/card/index.jsx";
 import Submit from "../../../../../components/submit/index.jsx";
+import LoadingHoc from "../../../../../common/loading/loading-hoc.jsx";
 import { createForm } from 'rc-form';
 import {getServerIp} from "../../../../../config.jsx";
 import myApi from  "../../../../../api/my.jsx";
@@ -59,6 +60,8 @@ class RefundApply extends React.Component {
             finalType: 0,
 
             style: { width : 0 },
+
+            isLoading: false
         };
     }
 
@@ -98,6 +101,10 @@ class RefundApply extends React.Component {
 
 
     applyForRefund() {
+        this.setState({
+            isLoading: true,
+        });
+
         console.log("退款中");
         console.log("this.state.product.baseInfo.id", this.state.product.baseInfo.id);
         console.log("this.props.form.getFieldsValue().type", this.props.form.getFieldsValue().type);
@@ -470,4 +477,5 @@ RefundApply.contextTypes = {
 };
 
 const RefundApplyWrapper = createForm()(RefundApply);
-export default RefundApplyWrapper;
+// export default RefundApplyWrapper;
+export default LoadingHoc(RefundApplyWrapper);
