@@ -177,7 +177,7 @@ export default class Order extends React.Component {
         //待发货订单
         myApi.getOrderListByAccount(wechatId, 1, page, rows, (rs)=>{
             let order1 = rs.obj.rows;
-            delivertemp = delivertemp.concat(order1)
+            delivertemp = delivertemp.concat(order1);
             // if (order) {
             //     this.setState({
             //         deliver:delivertemp.concat(order),
@@ -186,7 +186,7 @@ export default class Order extends React.Component {
             // }
             myApi.getOrderListByAccount(wechatId, 2, page, rows, (rs)=>{
                 let order2 = rs.obj.rows;
-                delivertemp = delivertemp.concat(order2)
+                delivertemp = delivertemp.concat(order2);
                 // if (order) {
                 //     this.setState({
                 //         deliver: delivertemp.concat(order),
@@ -195,7 +195,7 @@ export default class Order extends React.Component {
                 // }
                 myApi.getOrderListByAccount(wechatId, 3, page, rows, (rs)=>{
                     let order3 = rs.obj.rows;
-                    delivertemp = delivertemp.concat(order3)
+                    delivertemp = delivertemp.concat(order3);
                     // if (order) {
                         this.setState({
                             deliver: delivertemp,
@@ -237,7 +237,7 @@ export default class Order extends React.Component {
                         valid1.push(item);
                     }
                 });
-                evaluateetemp = evaluateetemp.concat(valid1)
+                evaluateetemp = evaluateetemp.concat(valid1);
                 // console.log("rs.obj.rows", rs.obj.rows);
                 // this.setState({
                 //     evaluate: evaluateetemp.concat(valid),
@@ -253,7 +253,7 @@ export default class Order extends React.Component {
                             valid2.push(item);
                         }
                     });
-                    evaluateetemp = evaluateetemp.concat(valid2)
+                    evaluateetemp = evaluateetemp.concat(valid2);
                     this.setState({
                         evaluate: evaluateetemp,
                         evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
@@ -270,7 +270,7 @@ export default class Order extends React.Component {
         //退款订单
         myApi.getOrderListByAccount(wechatId, 8, page, rows, (rs)=>{
             let order1 = rs.obj.rows;
-            refundtemp = refundtemp.concat(order1)
+            refundtemp = refundtemp.concat(order1);
             // if (order) {
             //     this.setState({
             //         refund: refundtemp.concat(order),
@@ -279,7 +279,7 @@ export default class Order extends React.Component {
             // }
             myApi.getOrderListByAccount(wechatId, 9, page, rows, (rs)=>{
                 let order2 = rs.obj.rows;
-                refundtemp = refundtemp.concat(order2)
+                refundtemp = refundtemp.concat(order2);
                 // if (order) {
                 //     this.setState({
                 //         refund: refundtemp.concat(order),
@@ -288,7 +288,7 @@ export default class Order extends React.Component {
                 // }
                 myApi.getOrderListByAccount(wechatId, 10, page, rows, (rs)=>{
                     let order3 = rs.obj.rows;
-                    refundtemp = refundtemp.concat(order3)
+                    refundtemp = refundtemp.concat(order3);
                     // if (order) {
                     //     this.setState({
                     //         refund: refundtemp.concat(order),
@@ -297,7 +297,7 @@ export default class Order extends React.Component {
                     // }
                     myApi.getOrderListByAccount(wechatId, 11, page, rows, (rs)=>{
                         let order4 = rs.obj.rows;
-                        refundtemp = refundtemp.concat(order4)
+                        refundtemp = refundtemp.concat(order4);
                         // if (order) {
                         //     this.setState({
                         //         refund: refundtemp.concat(order),
@@ -306,7 +306,7 @@ export default class Order extends React.Component {
                         // }
                         myApi.getOrderListByAccount(wechatId, 12, page, rows, (rs)=>{
                             let order5 = rs.obj.rows;
-                            refundtemp = refundtemp.concat(order5)
+                            refundtemp = refundtemp.concat(order5);
                                 this.setState({
                                     refund: refundtemp,
                                     refundPage: this.state.refundPage + rs.obj.totalPages,
@@ -676,12 +676,14 @@ export default class Order extends React.Component {
         
     }
 
-    checkAll(orderStateStr, orderId) {
+    checkAll(orderStateStr, orderStateDetail, orderId) {
         if (orderStateStr === "all") {
-            return <img src="./images/icons/删除.png" style={{width:'5%'}} onClick={() => alert('删除订单', '您确定要删除吗？', [
-                { text: '取消', onPress: () => {} },
-                { text: '确认', onPress: () => {this.deleteOrder(orderId)} },
-            ])}/>
+            if (orderStateDetail === 6 || orderStateDetail === 7 || orderStateDetail === 12) {
+                return <img src="./images/icons/删除.png" style={{width:'5%'}} onClick={() => alert('删除订单', '您确定要删除吗？', [
+                    { text: '取消', onPress: () => {} },
+                    { text: '确认', onPress: () => {this.deleteOrder(orderId)} },
+                ])}/>
+            }
         }
         return null
     }
@@ -725,7 +727,7 @@ export default class Order extends React.Component {
                             </Link>
                             <div className="order_card_group">
                                 <Flex justify="between">
-                                {this.checkAll(orderStateStr, item.id)}
+                                {this.checkAll(orderStateStr, item.orderState, item.id)}
                                 <div>共{item.orderItems.length}件商品 合计：￥{item.payMoney}</div>
                                 {this.getOrderButton(this.state.tab, item)}
                                 </Flex>
@@ -753,7 +755,7 @@ export default class Order extends React.Component {
                         </Link>
                         <div className="order_card_group">
                         <Flex justify="between">
-                            {this.checkAll(orderStateStr, item.id)}
+                            {this.checkAll(orderStateStr, item.orderState, item.id)}
                             <div>共{item.orderItems.length}件商品 合计：￥{item.payMoney}</div>
                             {this.getOrderButton(this.state.tab, item)}
                         </Flex>
