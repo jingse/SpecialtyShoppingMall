@@ -492,7 +492,7 @@ class Payment extends React.Component {
         console.log('v',v)
         console.log('parseFloat(v)',parseFloat(v))
         let moneyMax=this.state.balance;
-        let moneyp = (this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub);
+        let moneyp = (this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub).toFixed(2);
         console.log('moneyp',moneyp)
         if(moneyMax < moneyp){
             if(parseFloat(v) > moneyMax){
