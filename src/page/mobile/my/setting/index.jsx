@@ -43,6 +43,27 @@ export default class Setting extends React.Component {
 
             <List>
                 <List.Item
+                    // thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                    arrow="horizontal"
+                    onClick={() => {this.context.router.history.push('/my/setting/points')}}
+                >
+                    积分规则
+                </List.Item>
+
+                <List.Item
+                    // thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
+                    onClick={() => {this.context.router.history.push('/my/setting/member')}}
+                    arrow="horizontal"
+                >
+                    会员规则
+                </List.Item>
+            </List>
+
+            <WhiteSpace/>
+            <WhiteSpace/>
+
+            <List>
+                <List.Item
                     // thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
                     onClick={() => {this.context.router.history.push('/my/setting/help')}}
                     arrow="horizontal"
