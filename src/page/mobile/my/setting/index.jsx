@@ -62,7 +62,7 @@ export default class Setting extends React.Component {
                             Toast.info('会员生日已经设置无法修改', 1);
                     }}
                 >
-                <List.Item arrow="horizontal">会员生日</List.Item>
+                <List.Item arrow="horizontal" onClick={()=>{Toast.info('会员生日仅能设置一次', 2, null, false)}}>会员生日</List.Item>
                 </DatePicker>
 
                 <List.Item

@@ -265,6 +265,7 @@ export default class Order extends React.Component {
                     }
                 });
                 order = order.concat(valid2);
+                console.log("requestEvaluateOrder", evaluateetemp.concat(order));
                 this.setState({
                     evaluate: evaluateetemp.concat(order),
                     evaluatePage: this.state.evaluatePage + rs.obj.totalPages,

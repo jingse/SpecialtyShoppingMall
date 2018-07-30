@@ -253,24 +253,35 @@ class Cart extends React.Component {
                  <Flex.Item style={{flex:'0 0 70%'}}>
                  <div>
                     <div className="step1">              
-                        <div className="add_minus" onClick={() => {this.addNum(this.state.num)}}>
+                        {/* <div className="add_minus" onClick={() => {this.addNum(this.state.num)}}>
                         +
+                        </div> */}
+                        <div className="add_minus"onClick={() => this.addNum(this.state.num)}
+                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
                         <div className="value">
                         {this.state.num}
                         </div>
-                        <div className="add_minus"onClick={() => {this.minusNum(this.state.num)}}>
+                        {/* <div className="add_minus"onClick={() => {this.minusNum(this.state.num)}}>
                         -
+                        </div> */}
+                        <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}
+                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
                     </div>
                 </div>
-                     {/* <Stepper style={{ width: '50%', minWidth: '100px', touchAction: 'none', marginLeft:"2rem" }}
-                              showNumber
-                              max={10}
-                              min={1}
-                              value={this.state.num}
-                              onChange={this.onChange}
-                     /> */}
+                {/* <div className="step">  
+                        <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
+                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        </div>
+                        <div className="value">
+                        {this.state.val}
+                        </div>
+                        <div className="add_minus" onClick={() => {this.setState({val:(this.state.val+1 >this.state.inbound?this.state.val:this.state.val+1)})}}
+                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        </div>
+                </div> */}
+                     
 
                  </Flex.Item>
                  <Flex.Item style={{flex:'0 0 30%', backgroundColor:'darkorange', color:'white',

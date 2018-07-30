@@ -25,7 +25,7 @@ export default class Comment extends React.Component {
     requestComment(page) {
         console.log("请求页数", page);
         productApi.getSpecialtyCommentDetail(this.props.specialtyId, page, pageSize, (rs) => {
-            console.log("rs", rs);
+            console.log("rs 55555555", rs);
 
             if (rs && rs.success) {
                 const data = rs.obj.rows;

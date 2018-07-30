@@ -172,16 +172,16 @@ export default class CartModal extends React.Component {
                 {dataSet}
                 <div style={{float:'left', marginLeft:'1rem'}}>数量</div>
                 <div className="step">  
-                        <div className="add_minus" onClick={() => {this.setState({val:this.state.val+1})}}
-                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
+                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
                         <div className="value">
                         {this.state.val}
                         </div>
-                        <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
-                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        <div className="add_minus" onClick={() => {this.setState({val:(this.state.val+1 >this.state.inbound?this.state.val:this.state.val+1)})}}
+                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
-                    </div>
+                </div>
                 {/* <div>
                     <Stepper
                         style={{ width: '30%', minWidth: '100px', touchAction: 'none' }}

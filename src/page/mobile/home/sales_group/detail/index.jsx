@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Card, WingBlank, WhiteSpace, Toast, List, Stepper } from "antd-mobile";
+import { Card, WingBlank, WhiteSpace, Toast, List } from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Bottom from "./bottom.jsx";
@@ -9,6 +9,7 @@ import Bottom from "./bottom.jsx";
 import homeApi from "../../../../../api/home.jsx";
 import {getServerIp} from "../../../../../config.jsx";
 import cartApi from "../../../../../api/cart.jsx";
+import './index.less';
 
 export default class SalesGroupDetail extends React.Component {
 
@@ -19,6 +20,7 @@ export default class SalesGroupDetail extends React.Component {
             salesGroupData: [],
             isLoading: false,
             val: 1,
+            inbound:0,
 
             cartNum: localStorage.getItem("cartCount")!=0 ?localStorage.getItem("cartCount"):'',
         };
@@ -44,6 +46,7 @@ export default class SalesGroupDetail extends React.Component {
         homeApi.getGroupPromotionDetail(groupPromotionId, (rs) => {
             if(rs && rs.success) {
                 const proDetail = rs.obj;
+                console.log('proDetail',proDetail)
                 // this.state.salesGroupData = this.props.location.groupProduct;
                 this.state.salesGroupData = proDetail;
 
@@ -51,7 +54,8 @@ export default class SalesGroupDetail extends React.Component {
                 this.setState({
                     salesGroupDetail: proDetail,
                     salesGroupData: this.state.salesGroupData,
-                    isLoading: false
+                    isLoading: false,
+                    inbound:proDetail.hyGroupitemPromotions[0].promoteNum
                 });
             }
         });
@@ -64,7 +68,7 @@ export default class SalesGroupDetail extends React.Component {
 
     getSalesIconImg(salesImages) {
         var img = null;
-        console.log("this.state.groupData", this.state.salesGroupData);
+        // console.log("this.state.groupData", this.state.salesGroupData);
         console.log("imgs", salesImages);
         salesImages && salesImages.map((item, index) => {
             if (item.isTag) {
@@ -219,6 +223,7 @@ export default class SalesGroupDetail extends React.Component {
                 <WhiteSpace />
             </Link>
         });
+        console.log('inbound',this.state.inbound)
 
         // const salesContent = this.state.salesGroupDetail.sales_content && this.state.salesGroupDetail.sales_content.map((item, index) => {
         //     return <span key={index} className='tag' style={{marginRight:'0.5rem'}}>{item}</span>
@@ -265,14 +270,26 @@ export default class SalesGroupDetail extends React.Component {
             <List.Item
                 wrap
                 extra={
-                    <Stepper
-                        style={{ width: '90%', minWidth: '100px' }}
-                        showNumber
-                        // max={10}
-                        min={1}
-                        value={this.state.val}
-                        onChange={this.onChange}
-                    />}
+                    // <Stepper
+                    //     style={{ width: '90%', minWidth: '100px' }}
+                    //     showNumber
+                    //     // max={10}
+                    //     min={1}
+                    //     value={this.state.val}
+                    //     onChange={this.onChange}
+                    // />
+                    <div className="step2">  
+                        <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
+                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        </div>
+                        <div className="value">
+                        {this.state.val}
+                        </div>
+                        <div className="add_minus" onClick={() => {this.setState({val:(this.state.val+1 >this.state.inbound?this.state.val:this.state.val+1)})}}
+                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        </div>
+                </div>
+                }
             >
                 数量
             </List.Item>

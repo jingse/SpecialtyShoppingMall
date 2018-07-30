@@ -32,6 +32,7 @@ export default class Sales extends React.Component {
     requestOrdinaryPromotionList() {
         homeApi.getOrdinaryPromotionList((rs) => {
             if(rs && rs.success) {
+                console.log('getOrdinaryPromotionList',rs)
                 const proList = rs.obj;
                 this.setState({
                     data: proList,
