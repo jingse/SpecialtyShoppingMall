@@ -30,6 +30,7 @@ export default class My extends React.Component {
             refundCount: 0,
 
             balance:0,
+            points: 0,
         };
     }
 
@@ -49,7 +50,7 @@ export default class My extends React.Component {
 
         myApi.getInfo(wechatId, (rs) => {
             if (rs && rs.success) {
-                console.log('rs',rs)
+                console.log('rs',rs);
                 const balance = rs.obj.totalbalance;
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
@@ -267,6 +268,12 @@ export default class My extends React.Component {
         }
     }
 
+    checkVip() {
+        if (this.state.userData.isVip || localStorage.getItem("isVip") === "true") {
+            return "会员类型"
+        }
+        return null
+    }
 
     render() {
         // const counts = coupon_data.counts;
@@ -308,6 +315,11 @@ export default class My extends React.Component {
                             {this.nickname ? this.nickname : <a href={wxconfig.redirectUri} style={{color:"#fff"}}>点击登录</a>}
                         </div>
                         {this.checkPhone()}
+                        {/*<div className="my_header_text">*/}
+                            {/*积分：*/}
+                            {/*<Link to="/my/points/exchange">兑换</Link>*/}
+                            {/*{this.checkVip()}*/}
+                        {/*</div>*/}
                     </Flex.Item>
                 </Flex>
                 <WhiteSpace/>
@@ -446,6 +458,14 @@ export default class My extends React.Component {
 
             <Card>
                 <List>
+                    <Item
+                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        arrow="horizontal"
+                        extra={this.state.points?this.state.points:''}
+                        onClick={() => {this.context.router.history.push('/my/points')}}
+                    >
+                        积分
+                    </Item>
                     <Item
                         thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                         arrow="horizontal"

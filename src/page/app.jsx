@@ -38,6 +38,13 @@ import TelManage from "./mobile/my/setting/tel/index.jsx";
 import vipAddress from "./mobile/my/setting/vipAddress/index.jsx";
 import MyHelp from "./mobile/my/setting/help/index.jsx";
 import TelBinding from "./mobile/my/tel/index.jsx";
+
+import Points from "./mobile/my/setting/points/index.jsx";
+import Member from "./mobile/my/setting/member/index.jsx";
+import ExchangePoints from "./mobile/my/points/exchange/index.jsx";
+import ExchangeRecords from "./mobile/my/points/records/index.jsx";
+import MyPoints from "./mobile/my/points/index.jsx";
+
 import RefundApply from "./mobile/my/order/refund/index.jsx";
 import RefundDetail from "./mobile/my/order/refund/detail/index.jsx";
 import Logistic from "./mobile/my/order/logistic/index.jsx";
@@ -90,11 +97,18 @@ export default class App extends React.Component {
                         <Route component={DisposableCoupon} path='/my/coupon/disposable' exact/>
                         <Route component={ProfitShare} path='/my/merchant' exact/>
 
+                        <Route component={MyPoints} path='/my/points' exact/>
+                        <Route component={ExchangePoints} path='/my/points/exchange' exact/>
+                        <Route component={ExchangeRecords} path='/my/points/records' exact/>
+
+                        <Route component={TelBinding} path='/my/tel' exact/>
                         <Route component={Setting} path='/my/setting' exact/>
                         <Route component={TelManage} path='/my/setting/tel' exact/>
                         <Route component={MyHelp} path='/my/setting/help' exact/>
                         <Route component={vipAddress} path='/my/setting/vipAddress' exact/>
                         <Route component={TelBinding} path='/my/tel' exact/>
+                        <Route component={Points} path='/my/setting/points' exact/>
+                        <Route component={Member} path='/my/setting/member' exact/>
 
                         <Route component={RefundApply} path='/my/order/refund' exact/>
                         <Route component={RefundDetail} path='/my/order/refund/detail' exact/>
