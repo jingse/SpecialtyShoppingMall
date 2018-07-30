@@ -121,56 +121,7 @@ class CommentOn extends React.Component {
 
     commentOnProduct() {
         console.log("comment");
-        // const appraiseInfo = {
-        //     // "orderItemId": this.props.location.orderId,         // 订单明细id  int
-        //     "orderItemId": 12,         // 订单明细id  int
-        //
-        //     // "wechat_id": localStorage.getItem("openid"),        // 评价者名称 string
-        //     "wechat_id": 8,                                        // 评价者名称 string
-        //
-        //     "appraiseTime": Date.parse(new Date()),             // 评价时间  datetime
-        //     "appraiseContent": commentInfo,                     // 评价内容 string
-        //     "contentLevel": this.getStarCount(),                // 满意度 int
-        //     "isShow": !this.state.anonymous,                     // 是否匿名 boolean
-        //     // "imgURLs": [                                        // 图片url列表  list<ImgURL>
-        //     //
-        //     // ],
-        // };
-
-        // const appraiseInfo = {
-        //     "specialtyAppraise": {
-        //     "appraiseContent": "请问",
-        //         "appraiseTime": 1524797746000,
-        //         "contentLevel": 5,
-        //         "isShow": false
-        // },
-        //     "orderItemId": 12,
-        //     "wechat_id": localStorage.getItem("wechatId")
-        // };
-
-        // var appraisesInfo = {
-        //     "wechat_id": localStorage.getItem("wechatId"),
-        //     "wrapAppraises": [
-        //         {
-        //             "orderItemId": 45,
-        //             "specialtyAppraise":
-        //                 {
-        //                     "appraiseContent": "请问",
-        //                     "appraiseTime": 1524797746000,
-        //                     "contentLevel": 5,
-        //                     "isShow": false,
-        //
-        //                     "images":
-        //                         [
-        //                             {"sourcePath": "asdfasdfsdfasdf"}
-        //                         ]
-        //                 },
-        //
-        //         }
-        //     ]
-        //
-        // };
-
+        
         console.log("files[index]", this.state.files[0]);
 
         const appraises = this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
@@ -185,10 +136,6 @@ class CommentOn extends React.Component {
                         "isAnonymous": this.state.anonymous[index],
                         "isShow": true,
 
-                        // "images":
-                        //     [
-                        //         {"sourcePath": this.state.files[index].url ? this.state.files[index].url : null}
-                        //     ],
                     },
             }
         });
@@ -206,18 +153,10 @@ class CommentOn extends React.Component {
             } else {
                 Toast.info('哎呀，出错了！', 1);
             }
-            this.linkTo('/my/order');
+            // this.linkTo('/my/order');
+            history.go(-1)
         });
 
-
-        // commentApi.applyAppraise(appraiseInfo, (rs)=>{
-        //     console.log("rs: ", rs);
-        //     if (rs && rs.success) {
-        //         Toast.info('评价成功！', 1);
-        //     } else {
-        //         Toast.info('哎呀，出错了！', 1);
-        //     }
-        // });
     }
 
     linkTo(link) {

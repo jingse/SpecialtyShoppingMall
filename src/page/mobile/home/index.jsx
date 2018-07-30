@@ -1,5 +1,5 @@
 import React from 'react';
-import { WhiteSpace } from "antd-mobile";
+import { WhiteSpace ,ActivityIndicator} from "antd-mobile";
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
@@ -24,12 +24,13 @@ class Home extends React.Component {
             card: {},
             gridCategory: [],
 
-            isLoading: false
+            isLoading: false,
+            animating:false
         };
     }
 
     componentWillMount() {
-
+        this.setState({ animating: !this.state.animating });
         console.log("browser localStorage", localStorage.valueOf());
 
         // window.addEventListener("popstate", function(e) {
@@ -111,6 +112,12 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.checkLogin();  //拿到wechatId webusinessId
+        this.closeTimer = setTimeout(() => {
+            this.setState({ animating: !this.state.animating });
+          }, 500);
+    }
+    componentWillUnmount() {
+        clearTimeout(this.closeTimer);
     }
 
     getCartCount() {
@@ -278,6 +285,11 @@ class Home extends React.Component {
 
             <WhiteSpace/>
             <Bottom>技术支持：矩江科技   旅行社信息化专家</Bottom>
+            <ActivityIndicator
+                toast
+                text="Loading..."
+                animating={this.state.animating}
+              />
         </Layout>
     }
 }

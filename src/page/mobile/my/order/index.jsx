@@ -63,6 +63,7 @@ export default class Order extends React.Component {
     componentWillMount() {
         console.log("wechatId", this.state.wechatId);
         console.log("this.state.id", this.state.id);
+     
         // console.log("localstorage.getItem(tab)", localStorage.getItem("tab"));
         // console.log("!this.props.location.state", !this.props.location.state);
 
@@ -240,6 +241,7 @@ export default class Order extends React.Component {
         console.log("requestEvaluateOrder page", page);
         let evaluateetemp = (page == 1)?[]:this.state.evaluate;
         //待评价订单
+        let order = [];
         myApi.getOrderListByAccount(wechatId, 5, page, rows, (rs)=>{
             let order1 = rs.obj.rows;
             var valid1 = [];
@@ -248,7 +250,7 @@ export default class Order extends React.Component {
                         valid1.push(item);
                     }
                 });
-                order1 = order1.concat(valid1);
+                order = order.concat(valid1);
             myApi.getOrderListByAccount(wechatId, 6, page, rows, (rs)=>{
                 const order2 = rs.obj.rows;
                 var valid2 = [];
@@ -257,10 +259,10 @@ export default class Order extends React.Component {
                         valid2.push(item);
                     }
                 });
-                order1 = order1.concat(valid2);
-                if(order1.length > 0){
+                order = order.concat(valid2);
+                if(order.length > 0){
                     this.setState({
-                        evaluate: evaluateetemp.concat(order1),
+                        evaluate: evaluateetemp.concat(order),
                         evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
                     });
                 }
@@ -279,7 +281,6 @@ export default class Order extends React.Component {
         //退款订单
         myApi.getOrderListByAccount(wechatId, 8, page, rows, (rs)=>{
             let order1 = rs.obj.rows;
-            // refundtemp = refundtemp.concat(order1);
 
             myApi.getOrderListByAccount(wechatId, 9, page, rows, (rs)=>{
                 let order2 = rs.obj.rows;
@@ -570,10 +571,10 @@ export default class Order extends React.Component {
         orderApi.confirmReceive(orderId, (rs) => {
             if (rs && rs.success) {
                 console.log("rs: ", rs);
+                this.requestTabData(3, 1, pageSize);
             }
         });
-        // this.clearData();
-        this.requestTabData(3, 1, pageSize);
+          
     }
 
     cancelOrderConfirm(orderId) {

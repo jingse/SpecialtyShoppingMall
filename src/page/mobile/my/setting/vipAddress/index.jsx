@@ -1,5 +1,5 @@
 import React from "react";
-import {List,Card,InputItem} from "antd-mobile";
+import {Card,InputItem,ActivityIndicator,Toast} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Submit from "../../../../../components/submit/index.jsx";
@@ -13,15 +13,32 @@ export default class vipAddress extends React.Component {
             vipName:'',
             vipAddress:'',
             vipPhone:'',
-            editable:true
+            editable:true,
+
+            animating:false
         }
     }
 
     componentWillMount(){
         
     }
+    componentWillUnmount() {
+        clearTimeout(this.closeTimer);
+    }
 
     addUserAddress() {
+        console.log(this.state)
+        if (this.state.vipName === '') {
+            Toast.info("请输入会员姓名！", 1);
+            return
+        } else if (this.state.vipPhone === '') {
+            Toast.info("请输入会员手机号！", 1);
+            return
+        } else if (this.state.vipAddress === '') {
+            Toast.info("请输入会员详细地址！", 1);
+            return
+        } 
+        this.setState({ animating: !this.state.animating,editable:!this.state.editable});
         const address = {
             
             "vipName": this.state.vipName,
@@ -36,6 +53,10 @@ export default class vipAddress extends React.Component {
         //         history.go(-1);
         //     }
         // });
+
+        this.closeTimer = setTimeout(() => {
+            this.setState({ animating: !this.state.animating });
+          }, 500);
     }
     vipNameChange(val){
         this.setState({
@@ -66,6 +87,11 @@ export default class vipAddress extends React.Component {
             <Submit>
                 <div onClick={()=>{this.addUserAddress()}}>{this.state.editable?'确认':'修改'}</div>
             </Submit>
+            <ActivityIndicator
+                toast
+                text="Loading..."
+                animating={this.state.animating}
+              />
 
         </Layout>
 

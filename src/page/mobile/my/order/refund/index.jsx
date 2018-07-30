@@ -137,6 +137,7 @@ class RefundApply extends React.Component {
                 console.log("退款成功");
                 console.log("rs", rs);
                 Toast.info("申请成功！", 1);
+                history.replaceState(null,null,'/#/my/order')
                 this.context.router.history.push({pathname: "/my/order/refund/detail", orderId: this.state.product.baseInfo.id});
                 // this.context.router.history.push({pathname: "/my/order/refund/detail", orderId: this.state.product.baseInfo.id, refundProduct: this.state.refundItems, refundInfo: refundInfo});
             } else {

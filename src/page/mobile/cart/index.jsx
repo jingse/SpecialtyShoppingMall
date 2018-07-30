@@ -5,7 +5,7 @@ import Layout from "../../../common/layout/layout.jsx";
 import Card from "../../../components/card/index.jsx";
 import Navigation from "../../../components/navigation/index.jsx"
 //import { Link } from 'react-router-dom';
-import { Flex, WhiteSpace, Toast, Stepper, Popover, Modal,SwipeAction} from 'antd-mobile';
+import { Flex, WhiteSpace, Toast, ActivityIndicator, Popover, Modal,SwipeAction} from 'antd-mobile';
 import { createForm } from 'rc-form';
 // import cart_data from "../../../static/mockdata/cart.js"; //mock假数据
 import cartApi from "../../../api/cart.jsx";
@@ -38,11 +38,13 @@ class Cart extends React.Component {
             canDelete: false,
             visible: [],
             showEdit:[],
-            swipeoutDisabled:false
+            swipeoutDisabled:false,
+            animating:false
         };
     }
 
     componentWillMount() {
+        this.setState({ animating: !this.state.animating });
         // window.onpopstate = function(event) {this.console.log("event",event)}
        
         // console.log("window.history",window.onpopstate)
@@ -62,7 +64,14 @@ class Cart extends React.Component {
 
         localStorage.removeItem("inputBalance");
     }
-
+    componentDidMount(){
+        this.closeTimer = setTimeout(() => {
+            this.setState({ animating: !this.state.animating });
+        }, 500);
+    }
+    componentWillUnmount() {
+        clearTimeout(this.closeTimer);
+    }
     requestCartList() {
         console.log("cart wechatid",localStorage.getItem("wechatId"));
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
@@ -565,6 +574,11 @@ class Cart extends React.Component {
                     结算（{this.getPayCount()}）
                 </div>
             </div>
+            <ActivityIndicator
+                toast
+                text="Loading..."
+                animating={this.state.animating}
+              />
         </Layout>
     }
 }
