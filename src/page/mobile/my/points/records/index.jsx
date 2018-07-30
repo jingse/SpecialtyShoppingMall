@@ -8,15 +8,15 @@ export default class ExchangeRecords extends React.Component {
     render() {
         return <Layout>
 
-            <Navigation title="兑换记录" left={true}/>
+            <Navigation title="积分记录" left={true}/>
 
             <WhiteSpace/>
 
             <Card>
                 <Flex style={{textAlign:'center', background:'#F7F7F7'}}>
-                    <Flex.Item style={{padding:'0.5rem'}}>日期</Flex.Item>
-                    <Flex.Item>积分</Flex.Item>
-                    <Flex.Item>详细说明</Flex.Item>
+                    <Flex.Item style={{padding:'0.5rem'}}>变化时间</Flex.Item>
+                    <Flex.Item>变化值</Flex.Item>
+                    <Flex.Item>变化原因</Flex.Item>
                 </Flex>
                 <WhiteSpace/>
 

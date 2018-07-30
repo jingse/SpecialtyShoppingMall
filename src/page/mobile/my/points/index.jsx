@@ -43,8 +43,10 @@ export default class MyPoints extends React.Component {
             <div style={{background: 'darkorange', color:'white', height:'8rem'}}>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                <WingBlank>可用积分</WingBlank>
-                <WingBlank style={{fontSize:'2rem', marginTop:'2rem'}}>
+                <WingBlank>总积分：0</WingBlank>
+                <WhiteSpace/>
+                <WingBlank>可用积分：</WingBlank>
+                <WingBlank style={{fontSize:'2rem', marginTop:'1rem'}}>
                     {this.state.points}
                 </WingBlank>
             </div>
@@ -68,7 +70,7 @@ export default class MyPoints extends React.Component {
                     arrow="horizontal"
                     onClick={() => {this.context.router.history.push('/my/points/records')}}
                 >
-                    兑换记录
+                    积分记录
                 </List.Item>
 
                 {/*<List.Item*/}

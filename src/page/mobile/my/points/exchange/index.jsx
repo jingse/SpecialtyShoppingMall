@@ -18,7 +18,7 @@ class ExchangePoints extends React.Component {
 
             <Card>
                 <InputItem editable={false} value="xxxx">可用积分：</InputItem>
-                <InputItem editable={false} value="100积分 = 1元">兑换规则：</InputItem>
+                <InputItem editable={false} value="10积分 = 1元">兑换规则：</InputItem>
                 <InputItem
                     {...getFieldProps('number')}
                     type="number"

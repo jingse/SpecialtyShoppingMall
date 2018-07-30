@@ -234,15 +234,15 @@ export default class My extends React.Component {
                         </WingBlank>
                     </Link>
                 </div>
-                <div className="card_group">
-                    <Link to={{pathname:"/my/merchant", type:"remain"}}>
-                        <WingBlank>
-                            <div className="iconH iconH_inline icon_await" style={{marginRight:'10px'}}/>
-                            <span style={{fontSize:"0.8rem"}}>待分成</span>
-                            <span className="my_content_right">2单 ></span>
-                        </WingBlank>
-                    </Link>
-                </div>
+                {/*<div className="card_group">*/}
+                    {/*<Link to={{pathname:"/my/merchant", type:"remain"}}>*/}
+                        {/*<WingBlank>*/}
+                            {/*<div className="iconH iconH_inline icon_await" style={{marginRight:'10px'}}/>*/}
+                            {/*<span style={{fontSize:"0.8rem"}}>待分成</span>*/}
+                            {/*<span className="my_content_right">2单 ></span>*/}
+                        {/*</WingBlank>*/}
+                    {/*</Link>*/}
+                {/*</div>*/}
             </Card>
         } else{
             return null
@@ -313,6 +313,7 @@ export default class My extends React.Component {
                     <Flex.Item style={{flex:'0 0 80%'}}>
                         <div className="my_header_text">
                             {this.nickname ? this.nickname : <a href={wxconfig.redirectUri} style={{color:"#fff"}}>点击登录</a>}
+                            <span style={{marginLeft:'0.8rem'}}>会员等级</span>
                         </div>
                         {this.checkPhone()}
                         {/*<div className="my_header_text">*/}
