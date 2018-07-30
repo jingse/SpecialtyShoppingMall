@@ -144,12 +144,13 @@ export default class Order extends React.Component {
         myApi.getAllOrderListByAccount(wechatId, page, rows, (rs)=>{
             const allOrder = rs.obj.rows;
             console.log("allOrder",rs);
+            let alltemp = (page == 1)?allOrder:this.state.all.concat(allOrder);
+            this.setState({
+                all: alltemp,
+                allPage: rs.obj.totalPages,
+            });
             if (allOrder.length > 0) {
-                let alltemp = (page == 1)?allOrder:this.state.all.concat(allOrder);
-                this.setState({
-                    all: alltemp,
-                    allPage: rs.obj.totalPages,
-                });
+                
             }
             else{
                 Toast.info("没有更多订单",1);
@@ -164,12 +165,13 @@ export default class Order extends React.Component {
         myApi.getOrderListByAccount(wechatId, 0, page, rows, (rs)=>{
             const payOrder = rs.obj.rows;
             console.log("请求待付款订单",rs);
+            let paytemp = (page == 1)?payOrder:this.state.pay.concat(payOrder);
+            this.setState({
+                pay: paytemp,
+                payPage: rs.obj.totalPages,
+            });
             if (payOrder.length>0) {
-                let paytemp = (page == 1)?payOrder:this.state.pay.concat(payOrder);
-                this.setState({
-                    pay: paytemp,
-                    payPage: rs.obj.totalPages,
-                });
+                
             }
             else{
                 Toast.info("没有更多订单",1);
@@ -203,11 +205,12 @@ export default class Order extends React.Component {
                 myApi.getOrderListByAccount(wechatId, 3, page, rows, (rs)=>{
                     let order3 = rs.obj.rows;
                     order1 = order1.concat(order3);
+                    this.setState({
+                        deliver: delivertemp.concat(order1),
+                        deliverPage: this.state.deliverPage + rs.obj.totalPages,
+                    });
                     if (order1.length > 0) {
-                        this.setState({
-                            deliver: delivertemp.concat(order1),
-                            deliverPage: this.state.deliverPage + rs.obj.totalPages,
-                        });
+                        
                     }
                     else{
                         Toast.info("没有更多订单",1);
@@ -223,11 +226,13 @@ export default class Order extends React.Component {
         //待收货订单
         myApi.getOrderListByAccount(wechatId, 4, page, rows, (rs)=>{
             const order = rs.obj.rows;
+            console.log("order",order,rs);
+            console.log("receivetemp",receivetemp);
+            this.setState({
+                receive: receivetemp.concat(order),
+                receivePage: rs.obj.totalPages,
+            });
             if (order.length > 0) {
-                this.setState({
-                    receive: receivetemp.concat(order),
-                    receivePage: rs.obj.totalPages,
-                });
             }
             else{
                 Toast.info("没有更多订单",1);
@@ -260,11 +265,12 @@ export default class Order extends React.Component {
                     }
                 });
                 order = order.concat(valid2);
+                this.setState({
+                    evaluate: evaluateetemp.concat(order),
+                    evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
+                });
                 if(order.length > 0){
-                    this.setState({
-                        evaluate: evaluateetemp.concat(order),
-                        evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
-                    });
+                    
                 }
                 else{
                     Toast.info("没有更多订单",1);
@@ -297,11 +303,12 @@ export default class Order extends React.Component {
                         myApi.getOrderListByAccount(wechatId, 12, page, rows, (rs)=>{
                             let order5 = rs.obj.rows;
                             order1 = order1.concat(order5);
+                            this.setState({
+                                refund: refundtemp.concat(order1),
+                                refundPage: this.state.refundPage + rs.obj.totalPages,
+                            });
                             if(order1.length > 0){
-                                this.setState({
-                                    refund: refundtemp.concat(order1),
-                                    refundPage: this.state.refundPage + rs.obj.totalPages,
-                                });
+                                
                             }
                             else{
                                 Toast.info("没有更多订单",1);
@@ -774,9 +781,9 @@ export default class Order extends React.Component {
             onRefresh={() => {
                 this.setState({ refreshing: true });
                 this.requestTabData(this.state.tab, 1, pageSize);
-                    this.setState({
-                        curOrderPage: 2,
-                    });
+                this.setState({
+                    curOrderPage: 2,
+                });
                 // if(this.state.down){//刷新事件
                 //     // this.clearData();
                 //     this.requestTabData(this.state.tab, 1, pageSize);
