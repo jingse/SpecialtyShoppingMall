@@ -50,10 +50,10 @@ export default class Order extends React.Component {
             evaluatePage: 0,
             refundPage: 0,
 
-            touchStart:this.touchStart.bind(this),
-            touchEnd:this.touchEnd.bind(this),
+            // touchStart:this.touchStart.bind(this),
+            // touchEnd:this.touchEnd.bind(this),
             refreshing: false,                                   //刷新状态上拉
-            down: true,                                          //方向 true下拉 false上拉
+            // down: true,                                          //方向 true下拉 false上拉
             height: document.documentElement.clientHeight,       //新添加高度
 
             curOrderPage: 2,
@@ -143,12 +143,15 @@ export default class Order extends React.Component {
         myApi.getAllOrderListByAccount(wechatId, page, rows, (rs)=>{
             const allOrder = rs.obj.rows;
             console.log("allOrder",rs);
-            if (allOrder) {
+            if (allOrder.length > 0) {
                 let alltemp = (page == 1)?allOrder:this.state.all.concat(allOrder);
                 this.setState({
                     all: alltemp,
                     allPage: rs.obj.totalPages,
                 });
+            }
+            else{
+                Toast.info("没有更多订单",1);
             }
 
         });
@@ -160,12 +163,15 @@ export default class Order extends React.Component {
         myApi.getOrderListByAccount(wechatId, 0, page, rows, (rs)=>{
             const payOrder = rs.obj.rows;
             console.log("请求待付款订单",rs);
-            if (payOrder) {
+            if (payOrder.length>0) {
                 let paytemp = (page == 1)?payOrder:this.state.pay.concat(payOrder);
                 this.setState({
                     pay: paytemp,
                     payPage: rs.obj.totalPages,
                 });
+            }
+            else{
+                Toast.info("没有更多订单",1);
             }
         });
 
@@ -177,7 +183,7 @@ export default class Order extends React.Component {
         //待发货订单
         myApi.getOrderListByAccount(wechatId, 1, page, rows, (rs)=>{
             let order1 = rs.obj.rows;
-            delivertemp = delivertemp.concat(order1);
+            // delivertemp = delivertemp.concat(order1);
             // if (order) {
             //     this.setState({
             //         deliver:delivertemp.concat(order),
@@ -186,7 +192,7 @@ export default class Order extends React.Component {
             // }
             myApi.getOrderListByAccount(wechatId, 2, page, rows, (rs)=>{
                 let order2 = rs.obj.rows;
-                delivertemp = delivertemp.concat(order2);
+                order1 = order1.concat(order2);
                 // if (order) {
                 //     this.setState({
                 //         deliver: delivertemp.concat(order),
@@ -195,13 +201,16 @@ export default class Order extends React.Component {
                 // }
                 myApi.getOrderListByAccount(wechatId, 3, page, rows, (rs)=>{
                     let order3 = rs.obj.rows;
-                    delivertemp = delivertemp.concat(order3);
-                    // if (order) {
+                    order1 = order1.concat(order3);
+                    if (order1.length > 0) {
                         this.setState({
-                            deliver: delivertemp,
+                            deliver: delivertemp.concat(order1),
                             deliverPage: this.state.deliverPage + rs.obj.totalPages,
                         });
-                    // }
+                    }
+                    else{
+                        Toast.info("没有更多订单",1);
+                    }
                 });
             });
         });
@@ -213,11 +222,14 @@ export default class Order extends React.Component {
         //待收货订单
         myApi.getOrderListByAccount(wechatId, 4, page, rows, (rs)=>{
             const order = rs.obj.rows;
-            if (order) {
+            if (order.length > 0) {
                 this.setState({
                     receive: receivetemp.concat(order),
                     receivePage: rs.obj.totalPages,
                 });
+            }
+            else{
+                Toast.info("没有更多订单",1);
             }
         });
 
@@ -231,34 +243,31 @@ export default class Order extends React.Component {
         myApi.getOrderListByAccount(wechatId, 5, page, rows, (rs)=>{
             let order1 = rs.obj.rows;
             var valid1 = [];
-            // if (order) {
                 order1 && order1.map((item, index) => {
                     if (!item.isAppraised) {
                         valid1.push(item);
                     }
                 });
-                evaluateetemp = evaluateetemp.concat(valid1);
-                // console.log("rs.obj.rows", rs.obj.rows);
-                // this.setState({
-                //     evaluate: evaluateetemp.concat(valid),
-                //     evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
-                // });
-            // }
+                order1 = order1.concat(valid1);
             myApi.getOrderListByAccount(wechatId, 6, page, rows, (rs)=>{
                 const order2 = rs.obj.rows;
                 var valid2 = [];
-                // if (order2) {
-                    order2 && order2.map((item, index) => {
-                        if (!item.isAppraised) {
-                            valid2.push(item);
-                        }
-                    });
-                    evaluateetemp = evaluateetemp.concat(valid2);
+                order2 && order2.map((item, index) => {
+                    if (!item.isAppraised) {
+                        valid2.push(item);
+                    }
+                });
+                order1 = order1.concat(valid2);
+                if(order1.length > 0){
                     this.setState({
-                        evaluate: evaluateetemp,
+                        evaluate: evaluateetemp.concat(order1),
                         evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
                     });
-                // }
+                }
+                else{
+                    Toast.info("没有更多订单",1);
+                }
+
             });
         });
         
@@ -270,47 +279,33 @@ export default class Order extends React.Component {
         //退款订单
         myApi.getOrderListByAccount(wechatId, 8, page, rows, (rs)=>{
             let order1 = rs.obj.rows;
-            refundtemp = refundtemp.concat(order1);
-            // if (order) {
-            //     this.setState({
-            //         refund: refundtemp.concat(order),
-            //         refundPage: this.state.refundPage + rs.obj.totalPages,
-            //     });
-            // }
+            // refundtemp = refundtemp.concat(order1);
+
             myApi.getOrderListByAccount(wechatId, 9, page, rows, (rs)=>{
                 let order2 = rs.obj.rows;
-                refundtemp = refundtemp.concat(order2);
-                // if (order) {
-                //     this.setState({
-                //         refund: refundtemp.concat(order),
-                //         refundPage: this.state.refundPage + rs.obj.totalPages,
-                //     });
-                // }
+                order1 = order1.concat(order2);
+                
                 myApi.getOrderListByAccount(wechatId, 10, page, rows, (rs)=>{
                     let order3 = rs.obj.rows;
-                    refundtemp = refundtemp.concat(order3);
-                    // if (order) {
-                    //     this.setState({
-                    //         refund: refundtemp.concat(order),
-                    //         refundPage: this.state.refundPage + rs.obj.totalPages,
-                    //     });
-                    // }
+                    order1 = order1.concat(order3);
+                    
                     myApi.getOrderListByAccount(wechatId, 11, page, rows, (rs)=>{
                         let order4 = rs.obj.rows;
-                        refundtemp = refundtemp.concat(order4);
-                        // if (order) {
-                        //     this.setState({
-                        //         refund: refundtemp.concat(order),
-                        //         refundPage: this.state.refundPage + rs.obj.totalPages,
-                        //     });
-                        // }
+                        order1 = order1.concat(order4);
+                        
                         myApi.getOrderListByAccount(wechatId, 12, page, rows, (rs)=>{
                             let order5 = rs.obj.rows;
-                            refundtemp = refundtemp.concat(order5);
+                            order1 = order1.concat(order5);
+                            if(order1.length > 0){
                                 this.setState({
-                                    refund: refundtemp,
+                                    refund: refundtemp.concat(order1),
                                     refundPage: this.state.refundPage + rs.obj.totalPages,
                                 });
+                            }
+                            else{
+                                Toast.info("没有更多订单",1);
+                            }
+                                
                             
                         });
                     });
@@ -412,61 +407,61 @@ export default class Order extends React.Component {
     }
 
 
-    touchEnd(e) {
-        let endx, endy;
-        endx = e.changedTouches[0].pageX;
-        endy = e.changedTouches[0].pageY;
-        let direction = this.getDirection(this.startx, this.starty, endx, endy);
-        switch (direction) {
-            case 1:
-                console.log("上");
+    // touchEnd(e) {
+    //     let endx, endy;
+    //     endx = e.changedTouches[0].pageX;
+    //     endy = e.changedTouches[0].pageY;
+    //     let direction = this.getDirection(this.startx, this.starty, endx, endy);
+    //     switch (direction) {
+    //         case 1:
+    //             console.log("上");
 
-                // 请求新的数据
-                // TODO:分页
-                // console.log("请求第", this.state.curOrderPage);
-                // this.requestTabData(this.state.tab, this.state.curOrderPage, pageSize);
-                // this.setState({
-                //     curOrderPage: this.state.curOrderPage++,
-                // });
-                if(this.state.down == true)
-                    this.setState({ down: false });
-                break;
-            case 2:
-                console.log("下");
-                if(this.state.down == false)
-                    this.setState({ down: true });
-                break;
-        }
-    }
+    //             // 请求新的数据
+    //             // TODO:分页
+    //             // console.log("请求第", this.state.curOrderPage);
+    //             // this.requestTabData(this.state.tab, this.state.curOrderPage, pageSize);
+    //             // this.setState({
+    //             //     curOrderPage: this.state.curOrderPage++,
+    //             // });
+    //             if(this.state.down == true)
+    //                 this.setState({ down: false });
+    //             break;
+    //         case 2:
+    //             console.log("下");
+    //             if(this.state.down == false)
+    //                 this.setState({ down: true });
+    //             break;
+    //     }
+    // }
 
-    touchStart(e) {
-        this.startx = e.touches[0].pageX;
-        this.starty = e.touches[0].pageY;
-    }
+    // touchStart(e) {
+    //     this.startx = e.touches[0].pageX;
+    //     this.starty = e.touches[0].pageY;
+    // }
 
-    getAngle(angx,angy) {
-        return Math.atan2(angy, angx) * 180 / Math.PI;
-    }
+    // getAngle(angx,angy) {
+    //     return Math.atan2(angy, angx) * 180 / Math.PI;
+    // }
 
-    getDirection(startx, starty, endx, endy) {
-        let angx = endx - startx;
-        let angy = endy - starty;
-        let result = 0;
-        if (Math.abs(angx) < 2 && Math.abs(angy) < 2) {
-            return result;
-        }
-        let angle = this.getAngle(angx, angy);
-        if (angle >= -135 && angle <= -45) {
-            result = 1;
-        } else if (angle > 45 && angle < 135) {
-            result = 2;
-        } else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
-            result = 3;
-        } else if (angle >= -45 && angle <= 45) {
-            result = 4;
-        }
-        return result;
-    }
+    // getDirection(startx, starty, endx, endy) {
+    //     let angx = endx - startx;
+    //     let angy = endy - starty;
+    //     let result = 0;
+    //     if (Math.abs(angx) < 2 && Math.abs(angy) < 2) {
+    //         return result;
+    //     }
+    //     let angle = this.getAngle(angx, angy);
+    //     if (angle >= -135 && angle <= -45) {
+    //         result = 1;
+    //     } else if (angle > 45 && angle < 135) {
+    //         result = 2;
+    //     } else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
+    //         result = 3;
+    //     } else if (angle >= -45 && angle <= 45) {
+    //         result = 4;
+    //     }
+    //     return result;
+    // }
 
     clearData() {
         this.setState({
@@ -567,6 +562,7 @@ export default class Order extends React.Component {
 
         this.setState({
             tab: index,
+            curOrderPage: 2,
         });
     }
 
@@ -771,43 +767,54 @@ export default class Order extends React.Component {
                 height: this.state.height,
                 overflow: 'scroll',
             }}
-            indicator={this.state.down ? {} : {}} // activate:"释放加载",deactivate: '上拉加载',release:"加载中",finish: "加载完成"
-            direction={this.state.down ? 'down' : 'up'}
+            indicator={{}} // activate:"释放加载",deactivate: '上拉加载',release:"加载中",finish: "加载完成"
+            direction={'down'}
             refreshing={this.state.refreshing}
             onRefresh={() => {
                 this.setState({ refreshing: true });
-                if(this.state.down){//刷新事件
-                    // this.clearData();
-                    this.requestTabData(this.state.tab, 1, pageSize);
+                this.requestTabData(this.state.tab, 1, pageSize);
                     this.setState({
                         curOrderPage: 2,
                     });
-                }
-                else{//加载事件
-                    // 请求新的数据
-                    // TODO:分页    
-                    console.log("请求第", this.state.curOrderPage);
-                    this.requestTabData(this.state.tab, this.state.curOrderPage, pageSize);
-                    this.setState({
-                        curOrderPage: ++this.state.curOrderPage,
-                    });
-                }
-                console.log("处理刷新/加载事件");
+                // if(this.state.down){//刷新事件
+                //     // this.clearData();
+                //     this.requestTabData(this.state.tab, 1, pageSize);
+                //     this.setState({
+                //         curOrderPage: 2,
+                //     });
+                // }
+                // else{//加载事件
+                //     // 请求新的数据
+                //     // TODO:分页    
+                //     console.log("请求第", this.state.curOrderPage);
+                //     this.requestTabData(this.state.tab, this.state.curOrderPage, pageSize);
+                //     this.setState({
+                //         curOrderPage: ++this.state.curOrderPage,
+                //     });
+                // }
+                console.log("处理刷新事件");
                 
                 setTimeout(() => {
                     this.setState({ refreshing: false });
                 }, 1000);
             }}
         >
-        <div style={{
+        {/* <div style={{
                 height: this.state.height,
                 overflow: 'scroll',
-            }}> 
+            }}>  */}
             {orderContent}
-        </div>
+        {/* </div> */}
+        <div className='addMore' onClick={()=>this.addMore()}>加载更多</div>
         </PullToRefresh>
     }
 
+    addMore(){
+        this.requestTabData(this.state.tab, this.state.curOrderPage, pageSize);
+        this.setState({
+                curOrderPage: ++this.state.curOrderPage,
+        });
+    }
     linkTo(link) {
         this.context.router.history.push(link);
     }

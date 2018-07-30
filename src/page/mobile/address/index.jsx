@@ -102,9 +102,12 @@ export default class Address extends React.Component {
     }
 
     chooseAddress(item) {
+        if(this.props.location.state.fromSet === 'set')
+            return;
         console.log("item", item);
         localStorage.setItem("chooseAddress", JSON.stringify(item));
-        this.linkTo("/cart/payment");
+        history.go(-1)
+        // this.linkTo("/cart/payment");
     }
 
     linkTo(link) {
@@ -158,7 +161,7 @@ export default class Address extends React.Component {
         return <div>
 
             {/*<Navigation title="选择收货地址" left={true} back={this.linkTo('/cart/payment')}/>*/}
-            <Navigation title="选择收货地址" left={true} backLink="/cart/payment"/>
+            <Navigation title="选择收货地址" left={true} />
             <WhiteSpace/>
 
             {content}

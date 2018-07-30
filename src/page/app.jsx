@@ -35,6 +35,7 @@ import DisposableCoupon from "./mobile/my/disposableCoupon/index.jsx";
 import ProfitShare from "./mobile/my/merchant/index.jsx";
 import Setting from "./mobile/my/setting/index.jsx";
 import TelManage from "./mobile/my/setting/tel/index.jsx";
+import vipAddress from "./mobile/my/setting/vipAddress/index.jsx";
 import MyHelp from "./mobile/my/setting/help/index.jsx";
 import TelBinding from "./mobile/my/tel/index.jsx";
 import RefundApply from "./mobile/my/order/refund/index.jsx";
@@ -92,6 +93,7 @@ export default class App extends React.Component {
                         <Route component={Setting} path='/my/setting' exact/>
                         <Route component={TelManage} path='/my/setting/tel' exact/>
                         <Route component={MyHelp} path='/my/setting/help' exact/>
+                        <Route component={vipAddress} path='/my/setting/vipAddress' exact/>
                         <Route component={TelBinding} path='/my/tel' exact/>
 
                         <Route component={RefundApply} path='/my/order/refund' exact/>

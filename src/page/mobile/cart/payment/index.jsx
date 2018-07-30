@@ -598,7 +598,7 @@ class Payment extends React.Component {
 
         return <Layout header={false} footer={false}>
 
-            <Navigation title="支付" left={false}/>
+            <Navigation title="支付" left={true}/>
             <WhiteSpace/>
 
             {/*<Card className="payment_card">*/}
@@ -621,7 +621,7 @@ class Payment extends React.Component {
             {/*</Card>*/}
             
             <Card className="payment_card">
-                <Link to="/address">
+                <Link to={{pathname:"/address",state:{fromSet:'cart'}  }} >
                     <Flex>
                         <Flex.Item style={{flex:'0 0 10%'}}>
                             <img src="./images/icons/地址.png" style={{width:'%10'}}/>
