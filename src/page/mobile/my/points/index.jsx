@@ -3,7 +3,7 @@ import {WingBlank, WhiteSpace, List} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import PropTypes from "prop-types";
-// import myApi from "../../../../api/my.jsx";
+import myApi from "../../../../api/my.jsx";
 
 const wechatId = localStorage.getItem("wechatId");
 
@@ -12,27 +12,32 @@ export default class MyPoints extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state={
-            points:0,
+            totalPoints: 0,
+            availablePoints: 0,
         }
     }
 
     componentWillMount() {
-        this.requestInfo(wechatId);
+        if (this.props.location.totalPoints && this.props.location.availablePoints) {
+            localStorage.setItem("totalPoints", this.props.location.totalPoints.toString());
+            localStorage.setItem("availablePoints", this.props.location.availablePoints.toString());
+        }
+
+        this.requestInfo();
     }
 
-    requestInfo(wechatId) {
-        // myApi.getInfo(wechatId, (rs) => {
-        //     if (rs && rs.success) {
-        //         console.log('rs',rs);
-        //         const balance = rs.obj.totalbalance;
-        //         if (balance) {
-        //             // localStorage.setItem("balance", balance.toString());
-        //             this.setState({balance:balance})
-        //         }
-        //     }
-        // });
+    // 请求个人信息
+    requestInfo() {
+        myApi.getInfo(localStorage.getItem("wechatId"), (rs)=> {
+            if (rs && rs.success) {
+                console.log("rs", rs);
+                this.setState({
+                    totalPoints: rs.obj.totalpoint,
+                    availablePoints: rs.obj.point,
+                })
+            }
+        });
     }
-
 
 
     render() {
@@ -43,18 +48,24 @@ export default class MyPoints extends React.Component {
             <div style={{background: 'darkorange', color:'white', height:'8rem'}}>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                <WingBlank>总积分：0</WingBlank>
+                <WingBlank>总积分：
+                    {/*{(!this.props.location.totalPoints)? localStorage.getItem("totalPoints") : this.props.location.totalPoints}*/}
+                    {this.state.totalPoints}
+                </WingBlank>
                 <WhiteSpace/>
                 <WingBlank>可用积分：</WingBlank>
                 <WingBlank style={{fontSize:'2rem', marginTop:'1rem'}}>
-                    {this.state.points}
+                    {/*{(!this.props.location.availablePoints) ? localStorage.getItem("availablePoints") : this.props.location.availablePoints}*/}
+                    {this.state.availablePoints}
                 </WingBlank>
             </div>
 
             <List>
                 <List.Item
                     thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
-                    onClick={() => {this.context.router.history.push('/my/points/exchange')}}
+                    onClick={() => {
+                        this.context.router.history.push({pathname: '/my/points/exchange',
+                        points: this.state.availablePoints})}}
                     arrow="horizontal"
                 >
                     兑换

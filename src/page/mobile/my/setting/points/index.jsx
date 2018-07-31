@@ -1,9 +1,31 @@
 import React from 'react';
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
-import {WhiteSpace} from 'antd-mobile';
+import {WhiteSpace, Card, WingBlank} from 'antd-mobile';
+import pointsApi from "../../../../../api/points.jsx";
 
 export default class Points extends React.Component {
+
+    constructor(props, context) {
+        super(props, context);
+        this.state={
+            pointsRules: '',
+        }
+    }
+
+    componentWillMount() {
+       this.requestPointsRules();
+    }
+
+    requestPointsRules() {
+        pointsApi.getSystemSetting('积分规则', (rs) => {
+            if (rs && rs.success) {
+                this.setState({
+                    pointsRules: rs.obj.settingValue,
+                });
+            }
+        });
+    }
 
     render() {
         return <Layout>
@@ -12,9 +34,13 @@ export default class Points extends React.Component {
 
             <WhiteSpace/>
 
-            <div className="help_message">
-
-            </div>
+            <Card>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WingBlank>
+                    {this.state.pointsRules}
+                </WingBlank>
+            </Card>
 
 
         </Layout>

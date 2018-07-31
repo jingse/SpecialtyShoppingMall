@@ -7,6 +7,7 @@ import { Flex, WingBlank, WhiteSpace, Badge, List } from 'antd-mobile';
 import './index.less';
 import {wxconfig} from "../../../config.jsx";
 import myApi from "../../../api/my.jsx";
+import pointsApi from "../../../api/points.jsx";
 import PropTypes from "prop-types";
 
 const Item = List.Item;
@@ -30,7 +31,10 @@ export default class My extends React.Component {
             refundCount: 0,
 
             balance:0,
-            points: 0,
+
+            vipRank: '',
+            totalPoints: 0,
+            availablePoints: 0,
         };
     }
 
@@ -39,6 +43,7 @@ export default class My extends React.Component {
         this.headimgurl = localStorage.getItem("headimgurl");
 
         this.requestInfo();
+        this.requestVipRank();
 
         this.requestOrderCounts();
 
@@ -72,6 +77,20 @@ export default class My extends React.Component {
                 console.log("rs", rs);
                 this.setState({
                     userData: rs.obj,
+                    totalPoints: rs.obj.totalpoint,
+                    availablePoints: rs.obj.point,
+                })
+            }
+        });
+    }
+
+
+    requestVipRank() {
+        pointsApi.getVipRank(localStorage.getItem("wechatId"), (rs)=> {
+            if (rs && rs.success) {
+                console.log("rs", rs);
+                this.setState({
+                    vipRank: rs.obj.levelname,
                 })
             }
         });
@@ -268,12 +287,14 @@ export default class My extends React.Component {
         }
     }
 
-    checkVip() {
-        if (this.state.userData.isVip || localStorage.getItem("isVip") === "true") {
-            return "会员类型"
-        }
-        return null
-    }
+    // checkVip() {
+    //     if (this.state.userData.isVip || localStorage.getItem("isVip") === "true") {
+    //         this.requestVipRank();
+    //
+    //         return <span style={{marginLeft:'0.8rem'}}>{this.state.vipRank}</span>
+    //     }
+    //     return null
+    // }
 
     render() {
         // const counts = coupon_data.counts;
@@ -313,9 +334,12 @@ export default class My extends React.Component {
                     <Flex.Item style={{flex:'0 0 80%'}}>
                         <div className="my_header_text">
                             {this.nickname ? this.nickname : <a href={wxconfig.redirectUri} style={{color:"#fff"}}>点击登录</a>}
-                            <span style={{marginLeft:'0.8rem'}}>会员等级</span>
+                            {/*{this.checkVip()}*/}
+                            <span style={{marginLeft:'0.8rem'}}>{this.state.vipRank}</span>
                         </div>
+
                         {this.checkPhone()}
+
                         {/*<div className="my_header_text">*/}
                             {/*积分：*/}
                             {/*<Link to="/my/points/exchange">兑换</Link>*/}
@@ -462,8 +486,8 @@ export default class My extends React.Component {
                     <Item
                         thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                         arrow="horizontal"
-                        extra={this.state.points?this.state.points:''}
-                        onClick={() => {this.context.router.history.push('/my/points')}}
+                        extra={this.state.availablePoints?this.state.availablePoints:'0'}
+                        onClick={() => {this.context.router.history.push({pathname: '/my/points', totalPoints:this.state.totalPoints, availablePoints: this.state.availablePoints})}}
                     >
                         积分
                     </Item>
