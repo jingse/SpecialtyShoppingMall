@@ -49,6 +49,7 @@ class Payment extends React.Component {
             balancenum:'0',
             shipFee:0,
             couponSub:0,//电子券
+            presents: [],
         };
     }
 
@@ -58,6 +59,7 @@ class Payment extends React.Component {
         console.log('this.props.location',this.props.location);
         let products = (!this.props.location.products) ? JSON.parse(localStorage.getItem("products")) : this.props.location.products;
         let priceResult = (!this.props.location.price) ? JSON.parse(localStorage.getItem("priceResult")) : this.props.location.price;
+        let presents = (!this.props.location.presents) ? JSON.parse(localStorage.getItem("presents")) : this.props.location.presents;
         let shipType = 0;
         let shipFee = 0;
         let couponSub = 0.0;
@@ -104,10 +106,11 @@ class Payment extends React.Component {
         
 
 
-        if (this.props.location.products && this.props.location.price) {
+        if (this.props.location.products && this.props.location.price && this.props.location.presents) {
             // save the products and price
             localStorage.setItem("products", JSON.stringify(this.props.location.products));
             localStorage.setItem("priceResult", JSON.stringify(this.props.location.price));
+            localStorage.setItem("presents", JSON.stringify(this.props.location.presents));
         }
         console.log(this.props.location.products);
 
@@ -122,6 +125,7 @@ class Payment extends React.Component {
             shipType:shipType,
             shipFee:shipFee,
             couponSub:couponSub,
+            presents: presents,
         },()=>{
             const payMoney = this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee;
             localStorage.setItem("price", payMoney.toString());
@@ -329,8 +333,30 @@ class Payment extends React.Component {
         return items;
     }
 
+
     cartCreateOrder(wechatId, webusinessId, items) {
         console.log("this.state.address", this.state.address);
+
+        var presents = [];
+        this.state.presents && this.state.presents.map((item, index) => {
+            const present = {
+                "id": null,
+                // "iconURL": this.getSalesIconImg(item.fullPresentProduct.images),
+                "isGroupPromotion": false,
+                "curPrice": "0.00",
+                "name": item.fullPresentProduct.name,
+                "quantity": item.fullPresentProductNumber,
+                "specialtyId": item.fullPresentProduct.id,
+                "specialtySpecificationId": item.fullPresentProductSpecification.id,
+                "specification": item.fullPresentProductSpecification.specification,
+                "promotionId": item.promotionId,
+                "isGift": true,
+            };
+
+            presents.push(present);
+        });
+
+
         var order = {
             "orderPhone":localStorage.getItem("bindPhone"),
             "orderWechatId":wechatId,
@@ -368,7 +394,7 @@ class Payment extends React.Component {
             //         "promotionId": null
             //     }
             // ],
-            "orderItems":items,
+            "orderItems":items.concat(presents),
 
             // "coupons": [1,2],
             // "coupons": [parseInt(localStorage.getItem("useCouponId"))],
@@ -546,6 +572,56 @@ class Payment extends React.Component {
         return null
     }
 
+    getSalesDetailIcon(salesImages) {
+        var img = null;
+        salesImages && salesImages.map((item, index) => {
+            if (item.isLogo) {
+                img = item.mediumPath
+            }
+        });
+        console.log("img", img);
+        return img
+    }
+
+    checkFullPresents() {
+        var fullPresents = null;
+
+        console.log("this.state.presents: ", this.state.presents);
+
+        if (this.state.presents && JSON.stringify(this.state.presents) !== '[]') {
+
+            fullPresents = this.state.presents && this.state.presents.map((item, index) => {
+                console.log("item:", item);
+                return <Flex style={{background:'#fff'}} key={index}>
+                        <Flex.Item style={{flex: '0 0 30%'}}>
+                            <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
+                        </Flex.Item>
+                        <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
+                            <WhiteSpace/>
+                            <div style={{marginBottom: 10, fontWeight:'bold'}}>
+                                {item.fullPresentProduct.name}
+                                <span style={{color:'darkorange', fontWeight:'bold'}}> (赠)</span>
+                            </div>
+                            <div style={{marginBottom: 10}}>赠品数量：<span style={{color:'red'}}>{item.fullPresentProductNumber}</span></div>
+                            <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
+                            {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
+                            <WhiteSpace/>
+                        </Flex.Item>
+                    </Flex>
+            });
+
+            return <Card className="payment_card clearfix">
+                <List renderHeader={() => '赠品'}>
+                {/*<List>*/}
+                    {/*<div>赠品</div>*/}
+                    {fullPresents}
+                </List>
+            </Card>
+        }
+
+        return fullPresents
+    }
+
     backTo(specialtyId) {
         if (localStorage.getItem("origin") === "cart") {
             localStorage.removeItem("origin");
@@ -658,6 +734,12 @@ class Payment extends React.Component {
             {orderProducts}
             </List>
             </Card>
+
+            <WhiteSpace size="xs"/>
+
+            {this.checkFullPresents()}
+
+
 
             <Card className="payment_card">
                 <div>

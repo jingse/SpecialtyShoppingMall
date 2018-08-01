@@ -310,6 +310,12 @@ export default class OrderDetail extends React.Component {
         </div>
     }
 
+    checkPresent(isPresent) {
+        if (isPresent) {
+            return <span style={{color:'darkorange', fontWeight:'bold'}}> (赠)</span>
+        }
+    }
+
 
     render() {
         console.log("this.state.detail: ", this.state.detail);
@@ -351,7 +357,10 @@ export default class OrderDetail extends React.Component {
                         <img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{width: '60%', margin:'0.8rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 40%', color:'black', fontSize:'0.8rem'}}>
-                        <div style={{marginBottom: 10}}>{item.name}</div>
+                        <div style={{marginBottom: 10}}>
+                            {item.name}
+                            {this.checkPresent(item.isGift)}
+                        </div>
                         <div style={{marginBottom: 10, color:'#ccc'}}>{item.specification}</div>
                         <WhiteSpace/>
                     </Flex.Item>

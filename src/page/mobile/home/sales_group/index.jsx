@@ -73,6 +73,10 @@ export default class SalesGroup extends React.Component {
             content = discounts && discounts.map((item, index) => {
                 return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
             });
+        } else if (ruleType === "满赠") {
+            content = presents && presents.map((item, index) => {
+                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProductNumber
+            });
         } else {
 
         }

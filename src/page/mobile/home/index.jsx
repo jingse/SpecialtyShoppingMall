@@ -164,7 +164,7 @@ class Home extends React.Component {
 
         //为了测试使用
         if (!localStorage.getItem("wechatId")) {
-            localStorage.setItem("wechatId", "15");
+            localStorage.setItem("wechatId", "12");
             localStorage.setItem("isWebusiness", "1");
         }
 

@@ -64,7 +64,7 @@ export default class Sales extends React.Component {
         return img
     }
 
-    getSalesContent(ruleType, substracts, discounts) {
+    getSalesContent(ruleType, substracts, discounts, presents) {
         var content = null;
 
         if (ruleType === "满减") {
@@ -75,7 +75,12 @@ export default class Sales extends React.Component {
             content = discounts && discounts.map((item, index) => {
                 return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
             });
-        } else {
+        } else if (ruleType === "满赠") {
+            content = presents && presents.map((item, index) => {
+                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProductNumber
+            });
+        }
+        else {
 
         }
 
@@ -107,7 +112,7 @@ export default class Sales extends React.Component {
                             <span style={{color:'red', border:'1px solid darkorange', padding:'2px', marginRight:'0.5rem'}}>
                                 {item.ruleType}
                             </span>
-                            {this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts)}
+                            {this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}
                         </div>
                         <Flex style={{marginBottom: 10}}>
                             <Flex.Item style={{flex:'0 0 30%'}}>

@@ -71,13 +71,6 @@ class Product extends React.Component {
             specialtyId
         });
 
-
-        if (this.props.location.isPromotion) {
-            this.setState({
-                isGroupPromotion: this.props.location.isPromotion,
-            })
-        }
-
         // console.log("split specialtyId", specialtyId);
         // console.log("window.location.href.split('#')", window.location.href.split('#'));
 

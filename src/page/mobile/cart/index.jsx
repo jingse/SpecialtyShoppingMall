@@ -39,7 +39,9 @@ class Cart extends React.Component {
             visible: [],
             showEdit:[],
             swipeoutDisabled:false,
-            animating:false
+            animating:false,
+
+            presents: [],
         };
     }
 
@@ -90,12 +92,26 @@ class Cart extends React.Component {
     requestTotalPrice(cartItems) {
         console.log("requestTotalPrice");
         cartApi.getTotalPriceInCart(cartItems, (rs) => {
+            console.log("拿到总价：", rs);
             if(rs && rs.success) {
                 const price = rs.obj.finalMoney;
+
+                var presents = [];
+                rs.obj.promotions && rs.obj.promotions.map((item, index) => {
+                    if (item.promotion.promotionRule === "满赠") {
+                        item.promotionCondition && item.promotionCondition.map((pre, index2) => {
+                            pre.promotionId = item.promotionId;
+                            presents.push(pre);
+                        });
+                    }
+                });
+
+                console.log("赠品：", presents);
 
                 this.setState({
                     totalPrice: price,
                     priceResult: rs.obj,
+                    presents: presents,
                 });
             }
         });
@@ -364,7 +380,7 @@ class Cart extends React.Component {
     linkTo(link) {
         // console.log("items", items);
         // console.log("priceresult", this.state.priceResult);
-        this.context.router.history.push({pathname: link, products: items, price: this.state.priceResult});
+        this.context.router.history.push({pathname: link, products: items, price: this.state.priceResult, presents: this.state.presents});
     }
 
 

@@ -94,13 +94,19 @@ export default class ExchangeRecords extends React.Component {
         }
     }
 
+    checkChangeValue(value) {
+        if (value > 0)
+            return "+" + value;
+        return value
+    }
+
 
     render() {
 
         const recordContent = this.state.pointsRecords && this.state.pointsRecords.map((item, index) => {
             return <Flex key={index} style={{textAlign:'center'}}>
                 <Flex.Item style={{padding:'0.5rem'}}>{this.getDate(new Date(item.createTime))}</Flex.Item>
-                <Flex.Item>{item.changevalue}</Flex.Item>
+                <Flex.Item>{this.checkChangeValue(item.changevalue)}</Flex.Item>
                 <Flex.Item>{item.reason}</Flex.Item>
             </Flex>
         });
