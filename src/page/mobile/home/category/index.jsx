@@ -33,6 +33,8 @@ export default class Category extends React.Component {
         this.state = {
             categoryData: [],
 
+            // nextPage:2,//next请求页数
+
             dataSource,
             value: '',
             isLoading: true,
@@ -55,13 +57,18 @@ export default class Category extends React.Component {
 
         console.log("this.props.location.categoryId", this.props.location.categoryId);
     }
+    // addMore(){
+    //     let ty = this.checkType(this.state.tabIndex);
+        
+    //     this.requestCategoryList(categoryId, this.state.nextPage, 10, ty);
+    // }
 
     requestCategoryList(categoryId, page, rows, condition) {
         homeApi.getCategoryList(categoryId, page, rows, condition, (rs)=>{
-            console.log("data", rs);
+            console.log("rsdata", rs);
             if (rs && rs.success) {
                 const data = rs.obj.rows;
-                
+                console.log("data", data);
                 this.setState({
                     categoryData: data,
                 });
@@ -128,7 +135,7 @@ export default class Category extends React.Component {
     checkType(index) {
         switch(index) {
             case 0: return 0;
-            case 1: return 3;
+            case 1: return (this.state.ascChoose)?3:2;
             case 2: return 1;
         }
     }
@@ -249,7 +256,7 @@ export default class Category extends React.Component {
                 </div>
             );
         };
-
+        console.log('row',row)
         return <Layout header={true} footer={true}>
 
             {/* <SearchNavBar/> */}
@@ -294,7 +301,10 @@ export default class Category extends React.Component {
                 scrollRenderAheadDistance={500}
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={10}
-            />
+            >
+            {/* <div className='addMore' onClick={()=>this.addMore()}>加载更多</div> */}
+            </ListView>
+            
         </Layout>
     }     
 }
