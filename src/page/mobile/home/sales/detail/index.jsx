@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, WhiteSpace, Flex } from "antd-mobile";
+import { Card, WhiteSpace, Flex, NoticeBar } from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import SearchNavBar from "../../../../../components/search/index.jsx";
 import "./index.less";
@@ -15,6 +15,11 @@ export default class SalesDetail extends React.Component {
         this.state = {
             salesDetail: [],
             isLoading: false,
+
+            ruleType: '',
+            presents: [],
+            subtracts: [],
+            discounts: [],
         };
     }
 
@@ -27,6 +32,45 @@ export default class SalesDetail extends React.Component {
             promotionId = this.props.location.state;
             localStorage.setItem("promotionId", this.props.location.state);
         }
+
+        //判断是从上个优惠页面回来的，还是从产品页面回来的
+        var ruleType = '';
+        if (!this.props.location.ruleType) {
+            ruleType = localStorage.getItem("ruleType");
+        } else {
+            ruleType = this.props.location.ruleType;
+            localStorage.setItem("ruleType", this.props.location.ruleType);
+        }
+        this.setState({
+            ruleType: ruleType,
+        });
+
+        if (ruleType === '满赠') {
+            //判断有没有满赠商品
+            if (this.props.location.presents && JSON.stringify(this.props.location.presents) !== '[]') {
+                this.setState({
+                    presents: this.props.location.presents,
+                });
+                localStorage.setItem("presents", JSON.stringify(this.props.location.presents));
+            } else {
+                this.setState({
+                    presents: JSON.parse(localStorage.getItem("presents")),
+                });
+            }
+        }
+
+        var subtracts, discounts;
+        if (!this.props.location.subtracts) {
+            subtracts = localStorage.getItem("subtracts");
+            discounts = localStorage.getItem("discounts");
+        } else {
+            subtracts = this.props.location.subtracts;
+            discounts = this.props.location.discounts;
+        }
+        this.setState({
+            subtracts: subtracts,
+            discounts: discounts,
+        });
 
         this.requestOrdinaryPromotionDetail(promotionId);
     }
@@ -54,53 +98,56 @@ export default class SalesDetail extends React.Component {
         return img
     }
 
-    // componentDidMount() {
-    //     this.requestData();
-    // }
-    //
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const data = sales_detail;   //mock假数据
-    //         this.setState({
-    //             salesDetail: data,
-    //             isLoading: false
-    //         });
-    //     }, 300);
-    // }
+    checkNoticeBar() {
+        if (this.state.ruleType === '满赠') {
+            return <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }} mode="closable" action={<span style={{ color: '#a1a1a1' }}>不再提示</span>}>
+                您只需要点金优惠商品内购买即可，赠品会附带上
+            </NoticeBar>
+        }
+    }
+
+    checkPresents() {
+        var fullPresents = null;
+        if (this.state.presents && JSON.stringify(this.state.presents) !== '[]') {
+            fullPresents = this.state.presents && this.state.presents.map((item, index) => {
+                return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false}} key={index}>
+                    <Flex style={{background:'#fff'}}>
+                        <Flex.Item style={{flex: '0 0 30%'}}>
+                            <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
+                        </Flex.Item>
+                        <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
+                            <WhiteSpace/>
+                            <div style={{marginBottom: 10, fontWeight:'bold'}}>
+                                {item.fullPresentProduct.name}
+                                <span style={{color:'darkorange', fontWeight:'bold'}}> (赠)</span>
+                            </div>
+                            <div style={{marginBottom: 10}}>赠品数量：<span style={{color:'red'}}>{item.fullPresentProductNumber}</span></div>
+                            <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
+                            {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
+                            <WhiteSpace/>
+                        </Flex.Item>
+                    </Flex>
+                    <WhiteSpace />
+                </Link>
+            });
+        }
+        return fullPresents
+    }
+
 
     render() {
 
-        // const content = this.state.salesDetail.data && this.state.salesDetail.data.map((item, index) => {
-        //     return <Link to={`/product/${item.id}`} key={index}>
-        //         <Flex style={{background:'#fff'}}>
-        //             <Flex.Item style={{flex: '0 0 30%'}}>
-        //                 <img src={item.img_url} style={{width: '70%', margin:'0.4rem'}}/>
-        //             </Flex.Item>
-        //             <Flex.Item style={{flex: '0 0 60%', color:'black', fontSize:'0.3rem'}}>
-        //                 <WhiteSpace/>
-        //                 <div style={{marginBottom: 10}}>{item.name}</div>
-        //                 <div style={{marginBottom: 10}}>优惠价格：<span style={{color:'red'}}>￥{item.price}元</span></div>
-        //                 <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.price}</span></div>
-        //                 <div>销量：<span style={{color:'red'}}>{item.sales_count}</span></div>
-        //                 <WhiteSpace/>
-        //             </Flex.Item>
-        //         </Flex>
-        //         <WhiteSpace />
-        //     </Link>
-        // });
-        // console.log("this.state.salesDetail.hySingleitemPromotions", this.state.salesDetail.hySingleitemPromotions);
-
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
-            return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true}} key={index}>
+            return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true, ruleType: this.state.ruleType,
+                discounts: this.state.discounts, subtracts: this.state.subtracts, presents: this.state.presents,
+                promoteNum: item.promoteNum, limitedNum: item.limitedNum}} key={index}>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
                         <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.specialtyId.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
                         <WhiteSpace/>
-                        <div style={{marginBottom: 10}}>{item.specialtyId.name}</div>
+                        <div style={{marginBottom: 10, fontWeight:'bold'}}>{item.specialtyId.name}</div>
                         <div style={{marginBottom: 10}}>优惠价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
                         <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
                         <div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
@@ -111,9 +158,6 @@ export default class SalesDetail extends React.Component {
             </Link>
         });
 
-        // const salesContent = this.state.salesDetail.sales_content && this.state.salesDetail.sales_content.map((item, index) => {
-        //     return <span key={index} className='tag' style={{marginRight:'0.5rem'}}>{item}</span>
-        // });
 
         return <Layout header={false} footer={true}>
 
@@ -140,13 +184,18 @@ export default class SalesDetail extends React.Component {
                 {/*</WingBlank>*/}
             {/*</Card>*/}
 
+
+
             <Card>
                 <div dangerouslySetInnerHTML={{ __html: this.state.salesDetail.introduction}} />
             </Card>
 
             <WhiteSpace/>
 
+            {this.checkNoticeBar()}
+
             {content}
+            {this.checkPresents()}
 
         </Layout>
     }

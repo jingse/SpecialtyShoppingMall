@@ -71,6 +71,13 @@ class Product extends React.Component {
             specialtyId
         });
 
+
+        if (this.props.location.isPromotion) {
+            this.setState({
+                isGroupPromotion: this.props.location.isPromotion,
+            })
+        }
+
         // console.log("split specialtyId", specialtyId);
         // console.log("window.location.href.split('#')", window.location.href.split('#'));
 
@@ -209,7 +216,7 @@ class Product extends React.Component {
         //id page rows
         proApi.getSpecialtyCommentDetail(id, page, rows, (rs) => {
             if(rs && rs.success) {
-                console.log('9999999',rs)
+                console.log('9999999', rs);
                 const comment = rs.obj.rows;
                 const commentNum = rs.obj.total;
                 this.setState({
@@ -368,25 +375,90 @@ class Product extends React.Component {
         });
     };
 
+    getSalesDetailIcon(salesImages) {
+        var img = null;
+        salesImages && salesImages.map((item, index) => {
+            if (item.isLogo) {
+                img = item.mediumPath
+            }
+        });
+        console.log("img", img);
+        return img
+    }
+
     displayPromotion() {
         if(this.props.location.isPromotion) {
             return <Card className="selector_container">
                 <div className="selector_sec" onClick={this.showModal2.bind(this)}>
                     <WingBlank>
                         <span>优惠规则</span>
-                        <span>{this.state.chooseCoupon}</span>
+                        {/*<span>{this.state.chooseCoupon}</span>*/}
+                        <span>{this.props.location.ruleType}</span>
                     </WingBlank>
                 </div>
                 <div className="selector_sec">
                     <WingBlank>
                         <span>优惠总量</span>
+                        <span>{this.props.location.promoteNum}</span>
+                        {/*<span>￥{proData.ship_fee}</span>*/}
+                    </WingBlank>
+                </div>
+                <div className="selector_sec">
+                    <WingBlank>
                         <span>限购数量</span>
+                        <span>{this.props.location.limitedNum}</span>
                         {/*<span>￥{proData.ship_fee}</span>*/}
                     </WingBlank>
                 </div>
             </Card>
         }
         return null
+    }
+
+    checkRuleType() {
+        var content;
+        switch (this.props.location.ruleType) {
+            case "满减":
+                content = this.props.location.subtracts && this.props.location.subtracts.map((item, index) => {
+                    return <Item key={index} multipleLine
+                          // onClick = {
+                          //     this.onClose('modal2', " 满 " + item.coupon_value + " 减 " + item.reduce_value)
+                          // }
+                    >
+                        <span>{ " 满 " + item.fullFreeRequirement + " 减 " + item.fullFreeAmount }</span>
+                        {/*<Brief>{item.coupon_start_time + " - "}{item.coupon_due_time}</Brief>*/}
+                    </Item>
+                });
+                break;
+            case "满赠":
+                content = this.props.location.presents && this.props.location.presents.map((item, index) => {
+                    return <Flex style={{background:'#fff'}} key={index}>
+                            <Flex.Item style={{flex: '0 0 30%'}}>
+                                <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
+                            </Flex.Item>
+                            <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
+                                <WhiteSpace/>
+                                <div style={{marginBottom: 10, fontWeight:'bold'}}>
+                                    {item.fullPresentProduct.name}
+                                    <span style={{color:'darkorange', fontWeight:'bold'}}> (赠)</span>
+                                </div>
+                                <div style={{marginBottom: 10}}>赠品数量：<span style={{color:'red'}}>{item.fullPresentProductNumber}</span></div>
+                                <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
+                                {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
+                                <WhiteSpace/>
+                            </Flex.Item>
+                        </Flex>
+                });
+                break;
+            case "满折":
+                content = this.props.location.discounts && this.props.location.discounts.map((item, index) => {
+                    return <Item key={index} multipleLine>
+                        <span>{ " 满 " + item.discountRequirenment + " 打 " + item.discountOff + " 折" }</span>
+                    </Item>
+                });
+                break;
+        }
+        return content;
     }
 
     getPromotionInfo() {
@@ -398,15 +470,17 @@ class Product extends React.Component {
                 animationType="slide-up"
             >
                 <List renderHeader={() => <div>优惠规则</div>} className="popup-list">
-                    {this.state.productCoupon.map((item, index) => (
-                        <Item key={index} multipleLine
-                              onClick = {
-                                  this.onClose('modal2', " 满 " + item.coupon_value + " 减 " + item.reduce_value)
-                              }>
-                            <span>{ " 满 " + item.coupon_value + " 减 " + item.reduce_value }</span>
-                            {/*<Brief>{item.coupon_start_time + " - "}{item.coupon_due_time}</Brief>*/}
-                        </Item>
-                    ))}
+                    {/*{this.state.productCoupon.map((item, index) => (*/}
+                        {/*<Item key={index} multipleLine*/}
+                              {/*onClick = {*/}
+                                  {/*this.onClose('modal2', " 满 " + item.coupon_value + " 减 " + item.reduce_value)*/}
+                              {/*}>*/}
+                            {/*<span>{ " 满 " + item.coupon_value + " 减 " + item.reduce_value }</span>*/}
+                            {/*/!*<Brief>{item.coupon_start_time + " - "}{item.coupon_due_time}</Brief>*!/*/}
+                        {/*</Item>*/}
+                    {/*))}*/}
+
+                    {this.checkRuleType()}
                 </List>
             </Modal>
         }

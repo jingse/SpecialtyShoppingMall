@@ -64,12 +64,22 @@ export default class Sales extends React.Component {
         return img
     }
 
-    getSalesContent(salesContent) {
-        const sales = salesContent && salesContent.map((item, index) => {
-            return "满" + item.fullFreeRequirement + "减" + item.fullFreeAmount
-        });
+    getSalesContent(ruleType, substracts, discounts) {
+        var content = null;
 
-        return sales
+        if (ruleType === "满减") {
+            content = substracts && substracts.map((item, index) => {
+                return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
+            });
+        } else if (ruleType === "满折") {
+            content = discounts && discounts.map((item, index) => {
+                return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
+            });
+        } else {
+
+        }
+
+        return content
     }
 
     checkDest() {
@@ -83,38 +93,9 @@ export default class Sales extends React.Component {
     render() {
 
         const content = this.state.data.rows && this.state.data.rows.map((item, index) => {
-            // return <Link to={`/home/sales/detail`} key={index}>
-            //     <Flex style={{background:'#fff'}}>
-            //         <Flex.Item style={{flex: '0 0 30%'}}>
-            //             <img src={item.img_url} style={{width: '70%', margin:'0.4rem'}}/>
-            //         </Flex.Item>
-            //         <Flex.Item style={{flex: '0 0 60%', color:'black', fontSize:'0.3rem'}}>
-            //             <WhiteSpace/>
-            //             <div style={{marginBottom: 15, fontSize:'1rem', fontWeight:'bold'}}>{item.sales_title}</div>
-            //             <div style={{marginBottom: 10}}>
-            //                 <span style={{color:'red', border:'1px solid darkorange', padding:'2px', marginRight:'0.5rem'}}>
-            //                     {item.sales_tag}
-            //                 </span>
-            //                 {item.sales_content}
-            //             </div>
-            //             <Flex style={{marginBottom: 10}}>
-            //                 <Flex.Item style={{flex:'0 0 30%'}}>
-            //                     <span style={{color:'red', border:'1px solid darkorange', padding:'2px', marginRight:'0.5rem'}}>
-            //                         时间
-            //                     </span>
-            //                 </Flex.Item>
-            //                 <Flex.Item style={{flex:'0 0 70%'}}>
-            //                     <div className="sales_time_text">{item.sales_start_time}</div>
-            //                     <div className="sales_time_text">{item.sales_end_time}</div>
-            //                 </Flex.Item>
-            //             </Flex>
-            //             <WhiteSpace/>
-            //         </Flex.Item>
-            //     </Flex>
-            //     <WhiteSpace/>
-            // </Link>
 
-            return <Link to={{pathname: `/home/sales/detail`, state: item.id}} key={index}>
+            return <Link to={{pathname: `/home/sales/detail`, state: item.id, ruleType: item.ruleType,
+                presents: item.fullPresents, subtracts: item.fullSubstracts, discounts: item.fullDiscounts}} key={index}>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
                         <img src={"http://" + getServerIp() + this.getSalesIconImg(item.pics)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
@@ -126,7 +107,7 @@ export default class Sales extends React.Component {
                             <span style={{color:'red', border:'1px solid darkorange', padding:'2px', marginRight:'0.5rem'}}>
                                 {item.ruleType}
                             </span>
-                            {this.getSalesContent(item.fullSubstracts)}
+                            {this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts)}
                         </div>
                         <Flex style={{marginBottom: 10}}>
                             <Flex.Item style={{flex:'0 0 30%'}}>
