@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, WhiteSpace, Flex, TextareaItem, Checkbox, ImagePicker, Toast } from "antd-mobile";
+import {Card, WhiteSpace, Flex, TextareaItem, Checkbox, ImagePicker, Toast ,ActivityIndicator} from "antd-mobile";
 // import { Link } from 'react-router-dom';
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
@@ -19,6 +19,7 @@ import {getServerIp} from "../../../../../config.jsx";
 //     url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
 //     id: '2122',
 // }];
+var llfkey = false;
 const AgreeItem = Checkbox.AgreeItem;
 const filesURL = new Array();;
 
@@ -45,6 +46,7 @@ class CommentOn extends React.Component {
             isLighted,
             files,
             anonymous,
+            animating:false
         };
     }
 
@@ -120,6 +122,7 @@ class CommentOn extends React.Component {
         // productApi.pushcom(formData,(rs)=>{
         //         console.log('llllllllllllllllllllllllllllllllllllfff',rs)
         // });
+        this.setState({animating: !this.state.animating});
         this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
             for(let key in this.state.files[index]){
                 let formData = new FormData();
@@ -131,15 +134,30 @@ class CommentOn extends React.Component {
                 headers: {
                 },body: formData,}).then((response) => response.json()).then((rs)=>{
                     console.log('sourcePath',rs)
-                    filesURL[index].push({"sourcePath":"http://ymymmall.swczyc.com" + rs.obj[0]}) 
+                    filesURL[index].push({"sourcePath":"http://ymymmall.swczyc.com" + rs.obj[0]});
+                    console.log("uppppppppppppp",key,index,this.state.files[index].length,this.state.order.orderItems.length)
+                    if(key == this.state.files[index].length-1 && index == this.state.order.orderItems.length-1) 
+                         {
+                            console.log('上传返回')
+                            this.createCom()
+                            this.setState({ animating: !this.state.animating });
+                         }
                 })
             }
         });
 
-        setTimeout(() => {
-            this.createCom()
-          }, 1000);
-
+        // while(1){
+        //     if(llfkey){
+        //         console.log("pkkkkkkk",llfkey)
+        //         // this.createCom()
+        //     }
+        // }
+        
+        // setTimeout(() => {
+        //     this.createCom()
+        // }, 1000);
+        
+        
     }
 
 
@@ -283,6 +301,11 @@ class CommentOn extends React.Component {
             <Submit onClick={()=>{this.commentOnProduct()}}>
                 <span>提交</span>
             </Submit>
+            <ActivityIndicator
+                toast
+                text="Loading..."
+                animating={this.state.animating}
+              />
             
         </Layout>
 
