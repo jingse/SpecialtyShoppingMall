@@ -495,7 +495,7 @@ export default class My extends React.Component {
                     <Item
                         thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                         arrow="horizontal"
-                        extra={this.state.balance?this.state.balance:''}
+                        extra={this.state.balance?this.state.balance:'0'}
                         onClick={() => {this.context.router.history.push('/my/balance')}}
                     >
                         余额
