@@ -416,7 +416,7 @@ export default class OrderDetail extends React.Component {
                     <span style={{float:'right', marginRight:'2rem'}}>￥{this.state.detail.baseInfo.totalMoney}</span>
                 </div><WhiteSpace/>
                 <div style={{marginLeft:'0.6rem'}}>商品优惠
-                    <span style={{float:'right', marginRight:'2rem'}}>￥{this.state.detail.baseInfo.totalMoney - this.state.detail.baseInfo.payMoney}</span>
+                    <span style={{float:'right', marginRight:'2rem'}}>￥{(this.state.detail.baseInfo.totalMoney - this.state.detail.baseInfo.payMoney).toFixed(2)}</span>
                 </div><WhiteSpace/>
                 <div style={{marginLeft:'0.6rem', fontSize:'1rem'}}>实付款
                     <span style={{float:'right', marginRight:'2rem', fontSize:'1rem', color:'darkorange'}}>

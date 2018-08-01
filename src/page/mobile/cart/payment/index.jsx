@@ -342,7 +342,7 @@ class Payment extends React.Component {
             "payMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balancenum).toFixed(2),
             "couponMoney":this.state.couponSub.toFixed(2),
             // "balanceMoney":balance.toFixed(2),
-            "balanceMoney":(this.state.balancenum).toFixed(2),
+            "balanceMoney":(this.state.balancenum),
             "shouldPayMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee).toFixed(2),
 
             // "receiverRmark":"请送到我家",
@@ -511,7 +511,7 @@ class Payment extends React.Component {
                 v = (moneyp-0.01).toFixed(2).toString()
             }
         }
-        v=parseFloat(v).toFixed(2);
+            v=parseFloat(v).toFixed(2);
         } 
         this.setState({balanceInput:v,balancenum:v})
     }

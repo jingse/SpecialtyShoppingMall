@@ -7,6 +7,9 @@ import Home from './mobile/home/index.jsx';
 import Cart from "./mobile/cart/index.jsx";
 import My from "./mobile/my/index.jsx";
 import Search from "./mobile/search/index.jsx";
+
+import redirect from "./mobile/product/redirect.jsx";
+
 import Product from "./mobile/product/index.jsx";
 import Recommend from "./mobile/home/recommend/index.jsx";
 import Payment from "./mobile/cart/payment/index.jsx";
@@ -77,6 +80,7 @@ export default class App extends React.Component {
 
                         <Route component={Search} path='/search'/>
                         <Route component={Product} path='/product/:id'/>
+                        <Route component={redirect} path='/redirect'/>
 
                         <Route component={Payment} path='/cart/payment' exact/>
                         <Route component={PayResult} path='/cart/payment/result' exact/>

@@ -129,16 +129,18 @@ export default class Comment extends React.Component {
         const content = this.state.data && this.state.data.map((item, index) => {
             console.log("*******************",item)
             let imgs = item.images && item.images.map((item,index)=>{
-                return <div>
-                    <img src={item.sourcePath} style={{width:'80%',paddingLeft:'10%',paddingRight:'10%',paddingTop:'1rem',paddingBottom:'1rem'}}/>
-                </div>
+                return <img src={item.sourcePath} style={{width:'30%',height:'15%',paddingLeft:'1%',paddingRight:'1%',}}/>
+            
             })
             return <Flex style={{background:'#fff', borderBottom:'1px solid #eee'}} key={index}>
                 <Flex.Item>
                     <WhiteSpace/>
                     <div>{this.generateStars(item.contentLevel)}</div>
                     <div style={{}}>{item.appraiseContent}</div>
-                    <div>{imgs}</div>
+                    <Flex wrap="wrap" justify="start" style={{paddingTop:'1rem',paddingBottom:'1rem'}}>
+                        {imgs}
+                    </Flex>
+                    
                     <div style={{color:'#ccc'}}>
                         {new Date(item.appraiseTime).toLocaleString()}
                         <span style={{color:'black', float:'right', marginRight:'1rem'}}>{this.checkAnonymous(item.isAnonymous, item.wechatName)}</span>

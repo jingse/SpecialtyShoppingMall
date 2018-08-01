@@ -621,7 +621,7 @@ class Product extends React.Component {
                 <WingBlank>
                 <video
                     id="my-player"
-                    class="video-js vjs-default-skin vjs-fluid"
+                    className="video-js vjs-default-skin vjs-fluid"
                     // x5-video-player-type="h5"
                     // x-webkit-airplay="true" 
                     // playsinline webkit-playsinline="true"

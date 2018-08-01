@@ -15,6 +15,7 @@ export default class Setting extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state={
+            isVip:localStorage.getItem("isVip"),
             dateNow:now, //当前时间
             dateSet:null, //会员设置时间
             vipAddress:null,
@@ -25,7 +26,7 @@ export default class Setting extends React.Component {
     }
     componentWillMount(){
         //获得会员地址and生日
-        // console.log(this.state.dateNow,nowTimeStamp)
+        // console.log('this.props',this.props.location.state.isVip)
         myApi.vipAddressView(wechatId,(rs)=>{
             
             console.log('会员地址and生日',rs,new Date(rs.obj.birthday))
@@ -36,7 +37,8 @@ export default class Setting extends React.Component {
                     vipAddress:vipinfo.receiverAddress,
                     vipMobile:vipinfo.receiverMobile,
                     dateSet:(!vipinfo.birthday)?null:new Date(vipinfo.birthday),
-                    vipAddressId:vipinfo.id
+                    vipAddressId:vipinfo.id,
+                    
                 })
             }
         })
@@ -73,6 +75,7 @@ export default class Setting extends React.Component {
                 >
                     收货地址管理
                 </List.Item>
+                <div style={{display:(this.state.isVip)?'inline':'none'}}>
                 <DatePicker
                     disabled={(this.state.dateSet === null) ?false:true}
                     maxDate = {this.state.dateNow}
@@ -96,7 +99,8 @@ export default class Setting extends React.Component {
                 >
                 <List.Item arrow="horizontal" onClick={()=>{Toast.info('会员生日仅能设置一次', 2, null, false)}}>会员生日</List.Item>
                 </DatePicker>
-
+                </div>
+                <div style={{display:(this.state.isVip)?'inline':'none'}}>
                 <List.Item
                     onClick={() => {this.context.router.history.push({pathname:'/my/setting/vipAddress',state:{
                         vipName:this.state.vipName,
@@ -109,6 +113,7 @@ export default class Setting extends React.Component {
                 >
                     会员地址
                 </List.Item>
+                </div>
             </List>
 
             <WhiteSpace/>

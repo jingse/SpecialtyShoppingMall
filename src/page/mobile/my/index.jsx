@@ -57,9 +57,10 @@ export default class My extends React.Component {
             if (rs && rs.success) {
                 console.log('rs',rs);
                 const balance = rs.obj.totalbalance;
+                localStorage.setItem("isVip",rs.obj.isVip)
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
-                    this.setState({balance:balance})
+                    this.setState({balance:balance,})
                 }
             }
         });
@@ -318,7 +319,7 @@ export default class My extends React.Component {
             <div className="my_setting">
                 <WingBlank>
                     <span className="my_font">我的</span>
-                    <Link to='/my/setting'>
+                    <Link to={{pathname:'/my/setting'}}  >
                         <span className="my_font" style={{float:'right'}}>设置</span>
                     </Link>
                 </WingBlank>
@@ -521,7 +522,6 @@ export default class My extends React.Component {
                     {/*</Link>*/}
                 {/*</div>*/}
             {/*</Card>*/}
-
 
         </Layout>
     }

@@ -17,7 +17,7 @@ export default class Balance extends React.Component {
     }
 
     componentWillMount() {
-        console.log('rs11')
+        console.log('rs11',wechatId)
         this.requestInfo(wechatId);
     }
    
