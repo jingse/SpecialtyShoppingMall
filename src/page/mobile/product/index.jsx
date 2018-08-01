@@ -686,9 +686,9 @@ class Product extends React.Component {
                 <WingBlank>
                     <div className="para_title">温馨提示</div>
                     <div className="paragraph">
-                            由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时*/}
-                        {/*我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！
-                        {/* {this.state.servicePromise.prompt} */}
+                            由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时
+                       我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！
+                         {/*{this.state.servicePromise.prompt}*/}
                     </div>
                 </WingBlank>
 
