@@ -146,17 +146,6 @@ class CommentOn extends React.Component {
             }
         });
 
-        // while(1){
-        //     if(llfkey){
-        //         console.log("pkkkkkkk",llfkey)
-        //         // this.createCom()
-        //     }
-        // }
-        
-        // setTimeout(() => {
-        //     this.createCom()
-        // }, 1000);
-        
         
     }
 
