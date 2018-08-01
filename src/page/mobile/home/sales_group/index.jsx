@@ -62,12 +62,22 @@ export default class SalesGroup extends React.Component {
         return img
     }
 
-    getSalesContent(salesContent) {
-        const sales = salesContent && salesContent.map((item, index) => {
-            return "满" + item.fullFreeRequirement + "减" + item.fullFreeAmount
-        });
+    getSalesContent(ruleType, substracts, discounts) {
+        var content = null;
 
-        return sales
+        if (ruleType === "满减") {
+            content = substracts && substracts.map((item, index) => {
+                return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
+            });
+        } else if (ruleType === "满折") {
+            content = discounts && discounts.map((item, index) => {
+                return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
+            });
+        } else {
+
+        }
+
+        return content
     }
 
 
@@ -119,7 +129,7 @@ export default class SalesGroup extends React.Component {
                             <span style={{color:'red', border:'1px solid darkorange', padding:'2px', marginRight:'0.5rem'}}>
                                 {item.ruleType}
                             </span>
-                            {this.getSalesContent(item.fullSubstracts)}
+                            {this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts)}
                         </div>
                         <Flex style={{marginBottom: 10}}>
                             <Flex.Item style={{flex:'0 0 30%'}}>
