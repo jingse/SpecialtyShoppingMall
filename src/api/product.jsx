@@ -44,6 +44,25 @@ var api = {
             }
         });
     },
+    // pushcom(formData,callback) {
+
+    //     http.ajax({
+    //         url: "http://admin.swczyc.com/hyapi/resource/image/upload",
+    //         method: 'POST',
+    //         date:formData,
+            
+    //         // processData: false,  
+    //         contentType: false,
+    //         // cache: false,
+    //         // crossDomain:true,
+    //         success: (rs) => {
+    //             callback && callback(rs);
+    //         },
+    //         error:(res)=>{ 
+    //             console.log('error',res)
+    //         }
+    //     });
+    // },
 
 };
 

@@ -3,10 +3,12 @@ import {List, WhiteSpace,DatePicker,Toast} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import PropTypes from "prop-types";
+import myApi from "../../../../api/my.jsx";
 
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
 const minDate = new Date('1900/01/01');
+const wechatId = localStorage.getItem("wechatId");
 
 export default class Setting extends React.Component {
 
@@ -15,11 +17,37 @@ export default class Setting extends React.Component {
         this.state={
             dateNow:now, //当前时间
             dateSet:null, //会员设置时间
+            vipAddress:null,
+            vipName:null,
+            vipMobile:null,
+            vipAddressId:null
         }
     }
     componentWillMount(){
         //获得会员地址and生日
-        console.log(this.state.dateNow,nowTimeStamp)
+        // console.log(this.state.dateNow,nowTimeStamp)
+        myApi.vipAddressView(wechatId,(rs)=>{
+            
+            console.log('会员地址and生日',rs,new Date(rs.obj.birthday))
+            if(rs && rs.success){
+                let vipinfo = rs.obj;
+                this.setState({
+                    vipName:vipinfo.receiverName,
+                    vipAddress:vipinfo.receiverAddress,
+                    vipMobile:vipinfo.receiverMobile,
+                    dateSet:(!vipinfo.birthday)?null:new Date(vipinfo.birthday),
+                    vipAddressId:vipinfo.id
+                })
+            }
+        })
+    }
+
+    formatDate(date) {
+        const pad = n => n < 10 ? `0${n}` : n;
+        const dateStr = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+        // const timeStr = `${pad(date.getHours())}:${pad(date.getMinutes())}`;${timeStr}
+        console.log('111111111',`${dateStr} `)
+        return `${dateStr} `;
     }
 
 
@@ -28,9 +56,7 @@ export default class Setting extends React.Component {
         return <Layout>
 
             <Navigation title="设置" left={true}/>
-
             <WhiteSpace/>
-
             <List>
                 <List.Item
                     // thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
@@ -56,8 +82,14 @@ export default class Setting extends React.Component {
                     extra="未设置"
                     value={this.state.dateSet}
                     onChange={date => {
-                        if(this.state.dateSet === null)
-                            this.setState({ dateSet:date })
+                        console.log('date',this.formatDate(date))
+                        if(this.state.dateSet === null){
+                            console.log('date',date)
+                            this.setState({ dateSet:date });
+                            myApi.vipBirthdayAdd(wechatId,this.formatDate(date),(rs)=>{
+                                console.log('set vip birthday rs',rs)
+                            })
+                        }
                         else
                             Toast.info('会员生日已经设置无法修改', 1);
                     }}
@@ -66,9 +98,14 @@ export default class Setting extends React.Component {
                 </DatePicker>
 
                 <List.Item
-                    onClick={() => {this.context.router.history.push('/my/setting/vipAddress')}}
+                    onClick={() => {this.context.router.history.push({pathname:'/my/setting/vipAddress',state:{
+                        vipName:this.state.vipName,
+                        vipAddress:this.state.vipAddress,
+                        vipMobile:this.state.vipMobile,
+                        id:this.state.vipAddressId,
+                    }})}}
                     arrow="horizontal"
-                    extra="未设置"
+                    extra={!this.state.vipAddress?"未设置":"修改"}
                 >
                     会员地址
                 </List.Item>

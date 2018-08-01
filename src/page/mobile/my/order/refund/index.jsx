@@ -359,7 +359,7 @@ class RefundApply extends React.Component {
                     </Flex.Item>
                     <Flex.Item style={{flex:'0 0 50%'}}>
                         <div>{item.name} <span style={{marginLeft:'0.5rem', color: '#ccc'}}>￥{item.salePrice}</span></div>
-                        <div style={{color: "darkorange"}}>退款数量：1</div>
+                        <div style={{color: "darkorange"}}>退款数量：{this.state.refundQuantity[index]}</div>
                     </Flex.Item>
                     <Flex.Item style={{flex:'0 0 %20'}}>
                         <img src='./images/icons/编辑.png'

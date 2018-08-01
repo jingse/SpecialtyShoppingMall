@@ -48,6 +48,47 @@ var api = {
         });
     },
 
+    vipAddressView(wechat_id, callback) {
+        http.ajax({
+            url: getServerHost() + '/receiver/vipAddress/view?wechat_id=' + wechat_id,
+            // dataType:"json",
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+    vipBirthdayAdd(wechat_id,birthday, callback) {
+        http.ajax({
+            url: getServerHost() + '/receiver/birthday/add?wechat_id=' + wechat_id+'&birthday='+birthday,
+            // dataType:"json",
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+    vipAddressAdd(wechat_id, receiverName,receiverMobile,receiverAddress, callback) {
+        http.ajax({
+            url: getServerHost() + '/receiver/vipAddress/add?wechat_id=' + wechat_id+'&receiverName='+receiverName+'&receiverMobile='+receiverMobile+'&receiverAddress='+receiverAddress,
+            // dataType:"json",
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+    vipAddressEdit(wechat_id, id,receiverName,receiverMobile,receiverAddress, callback) {
+        http.ajax({
+            url: getServerHost() + '/receiver/vipAddress/edit?wechat_id=' + wechat_id+'&id='+id+'&receiverName='+receiverName+'&receiverMobile='+receiverMobile+'&receiverAddress='+receiverAddress,
+            // dataType:"json",
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+
     /**
      * [webusiness part]
      */

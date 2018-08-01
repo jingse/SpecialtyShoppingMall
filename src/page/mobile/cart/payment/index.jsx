@@ -491,24 +491,29 @@ class Payment extends React.Component {
     checkNum(v){
         console.log('v',v)
         console.log('parseFloat(v)',parseFloat(v))
-        let moneyMax=this.state.balance;
+        if(v === ''){
+            v = 0;
+        }
+        else{
+            let moneyMax=this.state.balance.toFixed(2);
         let moneyp = (this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub).toFixed(2);
         console.log('moneyp',moneyp)
         if(moneyMax < moneyp){
             if(parseFloat(v) > moneyMax){
-                v = moneyMax.toString()
+                v = moneyMax.toFixed(2).toString()
             }
         }
         if(moneyMax >= moneyp){
             if(parseFloat(v) >= moneyp){
-                v = (moneyp-0.01).toString()
+                v = (moneyp-0.01).toFixed(2).toString()
             }
             else if(moneyp-parseFloat(v)<0.01){
-                v = (moneyp-0.01).toString()
+                v = (moneyp-0.01).toFixed(2).toString()
             }
         }
-        
-        this.setState({balanceInput:v,balancenum:parseFloat(v)})
+        v=parseFloat(v).toFixed(2);
+        } 
+        this.setState({balanceInput:v,balancenum:v})
     }
     checkShipType() {
         switch (this.state.shipType) {

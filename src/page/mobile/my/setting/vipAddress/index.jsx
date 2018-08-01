@@ -3,24 +3,36 @@ import {Card,InputItem,ActivityIndicator,Toast} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Submit from "../../../../../components/submit/index.jsx";
-
-
+import myApi from "../../../../../api/my.jsx";
+const wechatId = localStorage.getItem("wechatId");
 export default class vipAddress extends React.Component {
 
     constructor(props, context) {
         super(props, context);
         this.state={
-            vipName:'',
-            vipAddress:'',
-            vipPhone:'',
+            vipName:null,
+            vipAddress:null,
+            vipPhone:null,
             editable:true,
-
-            animating:false
+            id:null,
+            animating:false,
+            isZero:true,
         }
     }
 
     componentWillMount(){
-        
+        console.log("9999",this.props.location.state)
+        let sta = this.props.location.state;
+        let tempEdit = (!sta.vipAddress)?true:false;
+        console.log(tempEdit)
+        this.setState({
+            id:sta.id,
+            vipName:sta.vipName,
+            vipAddress:sta.vipAddress,
+            vipPhone:sta.vipMobile,
+            editable:tempEdit,
+            isZero:tempEdit,
+        })
     }
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
@@ -39,20 +51,44 @@ export default class vipAddress extends React.Component {
             return
         } 
         this.setState({ animating: !this.state.animating,editable:!this.state.editable});
+        if(!this.state.editable){
+            this.closeTimer = setTimeout(() => {
+                this.setState({ animating: !this.state.animating });
+              }, 500);
+            return;
+        }
         const address = {
-            
             "vipName": this.state.vipName,
             "vipAddress": this.state.vipAddress,
             "vipPhone": this.state.vipPhone,
+            'wechatId':wechatId,
+            'id':this.state.id
         };
-        console.log(address)
-        // addressApi.addAddress(address, (rs)=>{
-        //     if(rs && rs.success) {
-        //         Toast.info(rs.msg, 1);
-        //         // this.context.router.history.push("/address");
-        //         history.go(-1);
-        //     }
-        // });
+        console.log('address',address)
+        console.log('isZero',this.state.isZero)
+        if(this.state.isZero){
+            myApi.vipAddressAdd(wechatId,this.state.vipName,this.state.vipPhone,this.state.vipAddress, (rs)=>{
+                console.log('rsssssssssss',rs)
+                if(rs && rs.success) {
+                    console.log('rsssssssssss',rs)
+                    Toast.info(rs.msg, 1);
+                    // this.context.router.history.push("/address");
+                    history.go(-1);
+                }
+            });
+        }
+        else{
+            myApi.vipAddressEdit(wechatId,this.state.id,this.state.vipName,this.state.vipPhone,this.state.vipAddress, (rs)=>{
+                console.log('rsssssssssss4444',rs)
+                if(rs && rs.success) {
+                    
+                    Toast.info(rs.msg, 1);
+                    // this.context.router.history.push("/address");
+                    history.go(-1);
+                }
+            });
+        }
+        
 
         this.closeTimer = setTimeout(() => {
             this.setState({ animating: !this.state.animating });

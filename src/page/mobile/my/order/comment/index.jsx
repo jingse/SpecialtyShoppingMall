@@ -4,21 +4,23 @@ import {Card, WhiteSpace, Flex, TextareaItem, Checkbox, ImagePicker, Toast } fro
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Submit from "../../../../../components/submit/index.jsx";
-import commentApi from "../../../../../api/my.jsx";
+import productApi from "../../../../../api/product.jsx";
 import PropTypes from "prop-types";
+import commentApi from "../../../../../api/my.jsx";
 import { createForm } from 'rc-form';
 import {getServerIp} from "../../../../../config.jsx";
 
 
 // 需传入评价者名称、订单id
-const data = [{
-    url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-    id: '2121',
-}, {
-    url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-    id: '2122',
-}];
+// const data = [{
+//     url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+//     id: '2121',
+// }, {
+//     url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+//     id: '2122',
+// }];
 const AgreeItem = Checkbox.AgreeItem;
+const filesURL = new Array();;
 
 class CommentOn extends React.Component {
 
@@ -47,26 +49,10 @@ class CommentOn extends React.Component {
     }
 
     componentWillMount() {
-        // this.state.order = this.props.location.order;
-        // const length = this.props.location.order.orderItems.length;
-        // var isLighted = new Array();
-        // var files = new Array();
-        // var anonymous = new Array();
-        // for (var i = 0; i < length; i++) {
-        //     isLighted[i] = new Array();
-        //     files[i] = new Array();
-        //     anonymous[i] = false;
-        //     for (var j = 0; j < 5; j++) {
-        //         isLighted[i][j] = true;
-        //     }
-        // }
-
-        // this.setState({
-        //     order: this.state.order,
-        //     isLighted,
-        //     files,
-        //     anonymous,
-        // });
+        let length = this.props.location.order.orderItems.length;
+        for (var i = 0; i < length; i++) {
+            filesURL[i] = new Array();
+        }
     }
 
     getStarCount(index) {
@@ -121,9 +107,44 @@ class CommentOn extends React.Component {
 
     commentOnProduct() {
         console.log("comment");
+        // let formData = new FormData(this.refs.idcardFront);
+        // console.log('formData',formData.get("files"))
         
-        console.log("files[index]", this.state.files[0]);
+        // fetch("http://admin.swczyc.com/hyapi/resource/image/upload",{
+        //     method: 'POST',
+        //     headers: {
+        //     },body: formData,}).then((response) => response.json()).then((rs)=>{
+        //         console.log('11111111111111888888888888',rs)
+        // })
 
+        // productApi.pushcom(formData,(rs)=>{
+        //         console.log('llllllllllllllllllllllllllllllllllllfff',rs)
+        // });
+        this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
+            for(let key in this.state.files[index]){
+                let formData = new FormData();
+                let files = this.state.files[index][key].file;
+                formData.append("files", files);
+                console.log('formData',formData.get("files"))
+                fetch("http://admin.swczyc.com/hyapi/resource/image/upload",{
+                method: 'POST',
+                headers: {
+                },body: formData,}).then((response) => response.json()).then((rs)=>{
+                    console.log('sourcePath',rs)
+                    filesURL[index].push({"sourcePath":"http://ymymmall.swczyc.com" + rs.obj[0]}) 
+                })
+            }
+        });
+
+        setTimeout(() => {
+            this.createCom()
+          }, 1000);
+
+    }
+
+
+    createCom(){
+        console.log('filesURL',filesURL)
         const appraises = this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
             const appraiseFormName = "count"+index;
             return {
@@ -135,25 +156,22 @@ class CommentOn extends React.Component {
                         "contentLevel": this.getStarCount(index),
                         "isAnonymous": this.state.anonymous[index],
                         "isShow": true,
-
+                        "images":filesURL[index],
                     },
             }
         });
-        console.log("appraises", appraises);
-
         var appraisesInformation = {
             "wechat_id": localStorage.getItem("wechatId"),
             "wrapAppraises": appraises,
         };
-
+        console.log("appraisesInformation", appraisesInformation);
         commentApi.applyAppraises(appraisesInformation, (rs)=>{
             console.log("rs: ", rs);
             if (rs && rs.success) {
                 Toast.info('评价成功！', 1);
             } else {
                 Toast.info('哎呀，出错了！', 1);
-            }
-            // this.linkTo('/my/order');
+            } 
             history.go(-1)
         });
 
@@ -164,8 +182,8 @@ class CommentOn extends React.Component {
     }
 
     onChange = (fileIndex, files, type, index) => {
-        console.log(fileIndex, files, type, index);
-
+        console.log('onChange',fileIndex, files, type, index);
+        console.log('files', files);
         this.state.files[fileIndex] = files;
         this.setState({
             files: this.state.files,
@@ -198,7 +216,6 @@ class CommentOn extends React.Component {
         console.log("order", this.state.order);
         console.log("this.state.files", this.state.files);
         console.log("this.props.form.getFieldsValue()", this.props.form.getFieldsValue());
-
 
         const { getFieldProps } = this.props.form;
 
@@ -239,7 +256,7 @@ class CommentOn extends React.Component {
                     <ImagePicker
                         files={files}
                         onChange={this.onChange.bind(this, index)}
-                        onImageClick={(index, fs) => console.log(index, fs)}
+                        onImageClick={(index, fs) => console.log('onImageClick',index, fs)}
                         selectable={files.length < 5}
                         multiple={true}
                     />
@@ -259,11 +276,14 @@ class CommentOn extends React.Component {
             <WhiteSpace/>
 
             {comments}
-
+            {/* <form ref="idcardFront" encType="multipart/form-data">
+                <input type="file" name="files" accept="image/*">
+                </input>
+            </form> */}
             <Submit onClick={()=>{this.commentOnProduct()}}>
                 <span>提交</span>
             </Submit>
-
+            
         </Layout>
 
     }

@@ -26,10 +26,8 @@ export default class Comment extends React.Component {
         console.log("请求页数", page);
         productApi.getSpecialtyCommentDetail(this.props.specialtyId, page, pageSize, (rs) => {
             console.log("rs 55555555", rs);
-
             if (rs && rs.success) {
                 const data = rs.obj.rows;
-
                 this.setState({
                     data,
                 });
@@ -129,12 +127,18 @@ export default class Comment extends React.Component {
 
     render() {
         const content = this.state.data && this.state.data.map((item, index) => {
-
+            console.log("*******************",item)
+            let imgs = item.images && item.images.map((item,index)=>{
+                return <div>
+                    <img src={item.sourcePath} style={{width:'80%',paddingLeft:'10%',paddingRight:'10%',paddingTop:'1rem',paddingBottom:'1rem'}}/>
+                </div>
+            })
             return <Flex style={{background:'#fff', borderBottom:'1px solid #eee'}} key={index}>
                 <Flex.Item>
                     <WhiteSpace/>
                     <div>{this.generateStars(item.contentLevel)}</div>
                     <div style={{}}>{item.appraiseContent}</div>
+                    <div>{imgs}</div>
                     <div style={{color:'#ccc'}}>
                         {new Date(item.appraiseTime).toLocaleString()}
                         <span style={{color:'black', float:'right', marginRight:'1rem'}}>{this.checkAnonymous(item.isAnonymous, item.wechatName)}</span>
