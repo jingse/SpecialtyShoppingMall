@@ -50,17 +50,15 @@ export default class My extends React.Component {
 
         this.requestOrderCounts();
 
-        // const isWebusiness = localStorage.getItem("isWebusiness");
-        if (isWebusiness === "1") {
-            // const uid = localStorage.getItem("uid");
-            this.requestData(this.state.myWebusinessInfo.id);
-        }
+
+
+
 
         myApi.getInfo(wechatIdmy, (rs) => {
             if (rs && rs.success) {
                 console.log('rs',rs);
                 const balance = rs.obj.totalbalance;
-                localStorage.setItem("isVip",rs.obj.isVip)
+                localStorage.setItem("isVip",rs.obj.isVip);
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
                     this.setState({balance:balance,})
@@ -86,18 +84,27 @@ export default class My extends React.Component {
                     availablePoints: rs.obj.point,
                 })
             }
+            // const isWebusiness = localStorage.getItem("isWebusiness");
+            console.log("是微商吗？", isWebusiness);
+            if (isWebusiness === "1") {
+                // const uid = localStorage.getItem("uid");
+                console.log("进入判断, this.state.myWebusinessInfo.id: ", this.state.myWebusinessInfo.id);
+                this.requestData(this.state.myWebusinessInfo.id);
+            }
         });
+
+
     }
 
 
     requestVipRank() {
         pointsApi.getVipRank(wechatIdmy, (rs)=> {
-            console.log('isvip',rs)
+            console.log('isvip',rs);
             if (rs && rs.success) {
                 if(rs.obj == null)
-                    localStorage.setItem("isVip",false)
+                    localStorage.setItem("isVip", false);
                 else
-                    localStorage.setItem("isVip",true)
+                    localStorage.setItem("isVip", true);
                 console.log("rs", rs);
                 this.setState({
                     vipRank: rs.obj.levelname,
