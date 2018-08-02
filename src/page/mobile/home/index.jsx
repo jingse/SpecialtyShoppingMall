@@ -73,11 +73,10 @@ class Home extends React.Component {
             console.log("uid存在");
             localStorage.setItem("uid", uid);
             console.log("myopenid", myopenid);
-            homeApi.postOpenId(uid, mynickname, myopenid, (rs)=>{
-                console.log("调用postOpenId");
-                // localStorage.setItem("isWebusiness", 'true');
-                // alert(rs);
+            homeApi.postOpenId(uid, mynickname, myopenid, (rs) => {
+                console.log("提交openid给后台的结果：", rs);
             });
+
         } else {            // 分享后的链接，url不带uid字段，带from_user
             console.log("uid不存在");
             homeApi.createAccount(mynickname, myopenid, (rs)=>{
