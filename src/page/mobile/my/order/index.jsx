@@ -643,6 +643,7 @@ export default class Order extends React.Component {
             }
         );
         // this.clearData();
+        console.log('待付款刷新1')
         this.requestTabData(1, 1, pageSize);
     }
 
@@ -674,6 +675,8 @@ export default class Order extends React.Component {
                 } else {
                     this.onBridgeReady();
                 }
+                console.log('待付款刷新2')
+                this.requestTabData(1, 1, pageSize);
             });
 
         });

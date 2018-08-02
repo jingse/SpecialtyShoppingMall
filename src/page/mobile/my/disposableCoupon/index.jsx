@@ -31,11 +31,9 @@ export default class DisposableCoupon extends React.Component {
         couponApi.getDisposableCoupons(localStorage.getItem("wechatId"), (rs)=>{
             if (rs && rs.success) {
                 const coupons = rs.obj;
-
                 this.setState({
                     coupons
                 });
-
                 this.checkUnused();
             }
         });
