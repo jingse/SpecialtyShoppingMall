@@ -22,6 +22,7 @@ import {getServerIp} from "../../../../../config.jsx";
 var llfkey = false;
 const AgreeItem = Checkbox.AgreeItem;
 const filesURL = new Array();;
+let sendPic = 0;
 
 class CommentOn extends React.Component {
 
@@ -122,6 +123,11 @@ class CommentOn extends React.Component {
         // productApi.pushcom(formData,(rs)=>{
         //         console.log('llllllllllllllllllllllllllllllllllllfff',rs)
         // });
+        let picNUm = 0;
+        this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
+            picNUm = picNUm + this.state.files[index].length;
+        });
+        console.log('picNUm picNUm',picNUm)
         this.setState({animating: !this.state.animating});
         this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
             if(this.state.files[index].length == 0){
@@ -132,6 +138,7 @@ class CommentOn extends React.Component {
                 for(let key in this.state.files[index]){
                     let formData = new FormData();
                     let files = this.state.files[index][key].file;
+                    console.log('files size',files.size)
                     formData.append("files", files);
                     console.log('formData',formData.get("files"))
                     fetch("http://admin.swczyc.com/hyapi/resource/image/upload",{
@@ -140,13 +147,23 @@ class CommentOn extends React.Component {
                     },body: formData,}).then((response) => response.json()).then((rs)=>{
                         console.log('sourcePath',rs)
                         filesURL[index].push({"sourcePath":"http://ymymmall.swczyc.com" + rs.obj[0]});
-                        console.log("uppppppppppppp",key,index,this.state.files[index].length,this.state.order.orderItems.length)
-                        if(key == this.state.files[index].length-1 && index == this.state.order.orderItems.length-1)
-                            {
-                                console.log('上传返回')
-                                this.createCom()
-                                this.setState({ animating: !this.state.animating });
-                            }
+                        sendPic=sendPic+1;
+                        console.log("uppppppppppppp",sendPic,key,index)
+
+                        if(sendPic == picNUm){  
+                            console.log('上传返回')
+                            this.createCom()        
+                        }
+                            
+                        // if(key == this.state.files[index].length-1 && index == this.state.order.orderItems.length-1)
+                        //     {
+                                
+                                // this.closeTimer = setTimeout(() => {
+                                //     console.log('上传返回')
+                                //     this.createCom()
+                                // }, 5000);
+ 
+                            // }
                     })
                 }
             }
@@ -183,6 +200,7 @@ class CommentOn extends React.Component {
             } else {
                 Toast.info('哎呀，出错了！', 1);
             } 
+            this.setState({ animating: !this.state.animating });
             history.go(-1)
         });
 
