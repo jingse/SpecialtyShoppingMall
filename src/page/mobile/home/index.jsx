@@ -1,5 +1,5 @@
 import React from 'react';
-import { WhiteSpace ,ActivityIndicator} from "antd-mobile";
+import { WhiteSpace ,ActivityIndicator, Toast} from "antd-mobile";
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
@@ -75,6 +75,9 @@ class Home extends React.Component {
             console.log("myopenid", myopenid);
             homeApi.postOpenId(uid, mynickname, myopenid, (rs) => {
                 console.log("提交openid给后台的结果：", rs);
+                if (rs.msg && rs.msg !== "") {
+                    Toast.info(rs.msg);
+                }
             });
 
         } else {            // 分享后的链接，url不带uid字段，带from_user
