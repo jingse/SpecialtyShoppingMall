@@ -33,6 +33,7 @@ export default class My extends React.Component {
 
             balance:0,
 
+            myWebusinessInfo: {},
             vipRank: '',
             totalPoints: 0,
             availablePoints: 0,
@@ -51,8 +52,8 @@ export default class My extends React.Component {
 
         // const isWebusiness = localStorage.getItem("isWebusiness");
         if (isWebusiness === "1") {
-            const uid = localStorage.getItem("uid");
-            this.requestData(uid);
+            // const uid = localStorage.getItem("uid");
+            this.requestData(this.state.myWebusinessInfo.id);
         }
 
         myApi.getInfo(wechatIdmy, (rs) => {
@@ -80,6 +81,7 @@ export default class My extends React.Component {
                 console.log("rs", rs);
                 this.setState({
                     userData: rs.obj,
+                    myWebusinessInfo: rs.obj.weBusiness,
                     totalPoints: rs.obj.totalpoint,
                     availablePoints: rs.obj.point,
                 })
@@ -208,7 +210,7 @@ export default class My extends React.Component {
         });
     }
 
-    requestData(uid) {
+    requestData(myWebusinessId) {
         // myApi.getInfo(8, (rs)=>{
         //     const data = rs.obj;
         //     this.setState({
@@ -216,14 +218,14 @@ export default class My extends React.Component {
         //     });
         // });
 
-        myApi.getTotalDivide(uid, (rs)=>{
+        myApi.getTotalDivide(myWebusinessId, (rs)=>{
             const data = rs.obj;
             this.setState({
                 webusinessTotal: data
             });
         });
 
-        myApi.getDailyDivide(uid, (rs)=>{
+        myApi.getDailyDivide(myWebusinessId, (rs)=>{
             const data = rs.obj;
             this.setState({
                 webusinessDaily: data
