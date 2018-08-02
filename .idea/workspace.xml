@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="153" column="59" lean-forward="true" selection-start-line="153" selection-start-column="59" selection-end-line="153" selection-end-column="59" />
+            <state relative-caret-position="261">
+              <caret line="166" column="51" selection-start-line="166" selection-start-column="51" selection-end-line="166" selection-end-column="51" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -36,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="367" column="112" lean-forward="true" selection-start-line="367" selection-start-column="112" selection-end-line="367" selection-end-column="112" />
+            <state relative-caret-position="5460">
+              <caret line="372" column="19" selection-start-line="372" selection-start-column="19" selection-end-line="372" selection-end-column="19" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -51,8 +44,8 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="352" column="31" lean-forward="true" selection-start-line="352" selection-start-column="16" selection-end-line="352" selection-end-column="31" />
+            <state relative-caret-position="5070">
+              <caret line="352" column="31" selection-start-line="352" selection-start-column="16" selection-end-line="352" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -147,9 +140,9 @@
         <option value="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/home/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/index.jsx" />
       </list>
     </option>
   </component>
@@ -170,8 +163,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="216" />
-    <option name="y" value="68" />
+    <option name="x" value="215" />
+    <option name="y" value="67" />
     <option name="width" value="800" />
     <option name="height" value="530" />
   </component>
@@ -496,14 +489,8 @@
       <workItem from="1533045494769" duration="929000" />
       <workItem from="1533046629873" duration="523000" />
       <workItem from="1533102832520" duration="355000" />
-      <workItem from="1533108891389" duration="20598000" />
-    </task>
-    <task id="LOCAL-00027" summary="update pages">
-      <created>1525243873206</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1525243873206</updated>
+      <workItem from="1533108891389" duration="20976000" />
+      <workItem from="1533180900934" duration="70000" />
     </task>
     <task id="LOCAL-00028" summary="update api">
       <created>1525345111461</created>
@@ -841,11 +828,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533121767919</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="对了满赠的接口">
+      <created>1533137832660</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1533137832660</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1038963000" />
+    <option name="totallyTimeSpent" value="1039411000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -858,16 +852,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17635404" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17635404" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32775453" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506605" side_tool="true" weight="0.19498608" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49702382" weight="0.32850242" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.14783822" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" visible="true" weight="0.14783822" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.20781033" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" weight="0.20752089" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
@@ -881,24 +876,24 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32775453" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49702382" weight="0.32850242" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49702382" weight="0.32850242" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19714588" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32850242" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32850242" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.13519552" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50744045" side_tool="true" weight="0.14814815" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49702382" weight="0.32850242" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32850242" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32849163" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
@@ -936,7 +931,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update pages" />
     <MESSAGE value="update api" />
     <MESSAGE value="update payment page api" />
     <MESSAGE value="fix a cart bug" />
@@ -961,7 +955,8 @@
     <MESSAGE value="修改优惠的bug" />
     <MESSAGE value="修改产品详情的bug" />
     <MESSAGE value="修改余额显示的小bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改余额显示的小bug" />
+    <MESSAGE value="对了满赠的接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="对了满赠的接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1158,9 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1362,16 +1354,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="153" column="59" lean-forward="true" selection-start-line="153" selection-start-column="59" selection-end-line="153" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-114">
@@ -1392,17 +1374,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="352" column="31" lean-forward="true" selection-start-line="352" selection-start-column="16" selection-end-line="352" selection-end-column="31" />
+        <state relative-caret-position="5460">
+          <caret line="372" column="19" selection-start-line="372" selection-start-column="19" selection-end-line="372" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx">
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="367" column="112" lean-forward="true" selection-start-line="367" selection-start-column="112" selection-end-line="367" selection-end-column="112" />
+        <state relative-caret-position="5070">
+          <caret line="352" column="31" selection-start-line="352" selection-start-column="16" selection-end-line="352" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="166" column="51" selection-start-line="166" selection-start-column="51" selection-end-line="166" selection-end-column="51" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

@@ -164,12 +164,7 @@ class Home extends React.Component {
 
         //为了测试使用
         if (!localStorage.getItem("wechatId")) {
-<<<<<<< Updated upstream
             localStorage.setItem("wechatId", "12");
-=======
-            localStorage.setItem("wechatId", "19");
->>>>>>> Stashed changes
-            localStorage.setItem("isWebusiness", "1");
         }
 
         //拿到购物车的数量
