@@ -58,7 +58,7 @@ export default class My extends React.Component {
             if (rs && rs.success) {
                 console.log('rs',rs);
                 const balance = rs.obj.totalbalance;
-                localStorage.setItem("isVip",rs.obj.isVip);
+                localStorage.setItem("isVip",rs.obj.wechatAccount.isVip)
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
                     this.setState({balance:balance,})
