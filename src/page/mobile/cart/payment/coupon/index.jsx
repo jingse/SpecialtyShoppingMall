@@ -55,7 +55,6 @@ export default class CouponChoose extends React.Component {
         couponApi.getAvailableCoupon(wechatId, price, (rs) => {
             if (rs && rs.success) {
                 const availableCoupon = rs.obj;
-
                 this.setState({
                     available: availableCoupon
                 });

@@ -12,7 +12,8 @@ import PropTypes from "prop-types";
 
 const Item = List.Item;
 const pageSize =10;
-const wechatId = localStorage.getItem("wechatId");
+var wechatIdmy = localStorage.getItem("wechatId");
+const isWebusiness = localStorage.getItem('isWebusiness');
 
 export default class My extends React.Component {
 
@@ -39,6 +40,7 @@ export default class My extends React.Component {
     }
 
     componentWillMount() {
+        wechatIdmy = localStorage.getItem("wechatId");
         this.nickname = localStorage.getItem("nickname");
         this.headimgurl = localStorage.getItem("headimgurl");
 
@@ -47,13 +49,13 @@ export default class My extends React.Component {
 
         this.requestOrderCounts();
 
-        const isWebusiness = localStorage.getItem("isWebusiness");
+        // const isWebusiness = localStorage.getItem("isWebusiness");
         if (isWebusiness === "1") {
             const uid = localStorage.getItem("uid");
             this.requestData(uid);
         }
 
-        myApi.getInfo(wechatId, (rs) => {
+        myApi.getInfo(wechatIdmy, (rs) => {
             if (rs && rs.success) {
                 console.log('rs',rs);
                 const balance = rs.obj.totalbalance;
@@ -73,7 +75,7 @@ export default class My extends React.Component {
 
     // 请求个人信息
     requestInfo() {
-        myApi.getInfo(localStorage.getItem("wechatId"), (rs)=> {
+        myApi.getInfo(wechatIdmy, (rs)=> {
             if (rs && rs.success) {
                 console.log("rs", rs);
                 this.setState({
@@ -87,8 +89,13 @@ export default class My extends React.Component {
 
 
     requestVipRank() {
-        pointsApi.getVipRank(localStorage.getItem("wechatId"), (rs)=> {
+        pointsApi.getVipRank(wechatIdmy, (rs)=> {
+            console.log('isvip',rs)
             if (rs && rs.success) {
+                if(rs.obj == null)
+                    localStorage.setItem("isVip",false)
+                else
+                    localStorage.setItem("isVip",true)
                 console.log("rs", rs);
                 this.setState({
                     vipRank: rs.obj.levelname,
@@ -100,15 +107,15 @@ export default class My extends React.Component {
     requestOrderCounts() {
 
         this.requestAllOrderCount();
-        this.requestPayCount(localStorage.getItem("wechatId"));
-        this.requestDeliverCount(localStorage.getItem("wechatId"));
-        this.requestReceiveCount(localStorage.getItem("wechatId"));
-        this.requestEvaluateCount(localStorage.getItem("wechatId"));
-        this.requestRefundCount(localStorage.getItem("wechatId"));
+        this.requestPayCount();
+        this.requestDeliverCount();
+        this.requestReceiveCount();
+        this.requestEvaluateCount();
+        this.requestRefundCount();
     }
 
     requestAllOrderCount() {
-        myApi.getAllOrderListByAccount(localStorage.getItem("wechatId"), 1, pageSize, (rs)=>{
+        myApi.getAllOrderListByAccount(wechatIdmy, 1, pageSize, (rs)=>{
             this.setState({
                 allCount: rs.obj.total,
             }, ()=>{
@@ -118,42 +125,42 @@ export default class My extends React.Component {
     }
 
 
-    requestPayCount(wechatId) {
-        myApi.getOrderListByAccount(wechatId, 0, 1, pageSize, (rs)=>{
+    requestPayCount() {
+        myApi.getOrderListByAccount(wechatIdmy, 0, 1, pageSize, (rs)=>{
             this.setState({
                 payCount: rs.obj.total,
             });
         });
     }
 
-    requestDeliverCount(wechatId) {
-        myApi.getOrderListByAccount(wechatId, 1, 1, pageSize, (rs)=>{
+    requestDeliverCount() {
+        myApi.getOrderListByAccount(wechatIdmy, 1, 1, pageSize, (rs)=>{
             this.setState({
                 deliverCount: this.state.deliverCount + rs.obj.total,
             });
         });
-        myApi.getOrderListByAccount(wechatId, 2, 1, pageSize, (rs)=>{
+        myApi.getOrderListByAccount(wechatIdmy, 2, 1, pageSize, (rs)=>{
             this.setState({
                 deliverCount: this.state.deliverCount + rs.obj.total,
             });
         });
-        myApi.getOrderListByAccount(wechatId, 3, 1, pageSize, (rs)=>{
+        myApi.getOrderListByAccount(wechatIdmy, 3, 1, pageSize, (rs)=>{
             this.setState({
                 deliverCount: this.state.deliverCount + rs.obj.total,
             });
         });
     }
 
-    requestReceiveCount(wechatId) {
-        myApi.getOrderListByAccount(wechatId, 4, 1, pageSize, (rs)=>{
+    requestReceiveCount() {
+        myApi.getOrderListByAccount(wechatIdmy, 4, 1, pageSize, (rs)=>{
             this.setState({
                 receiveCount: rs.obj.total,
             });
         });
     }
 
-    requestEvaluateCount(wechatId) {
-        myApi.getOrderListByAccount(wechatId, 5, 1, pageSize, (rs)=>{
+    requestEvaluateCount() {
+        myApi.getOrderListByAccount(wechatIdmy, 5, 1, pageSize, (rs)=>{
             rs.obj.rows && rs.obj.rows.map((item, index) => {
                 if (!item.isAppraised) {
                     this.setState({
@@ -162,7 +169,7 @@ export default class My extends React.Component {
                 }
             });
         });
-        myApi.getOrderListByAccount(wechatId, 6, 1, pageSize, (rs)=>{
+        myApi.getOrderListByAccount(wechatIdmy, 6, 1, pageSize, (rs)=>{
             rs.obj.rows && rs.obj.rows.map((item, index) => {
                 if (!item.isAppraised) {
                     this.setState({
@@ -173,28 +180,28 @@ export default class My extends React.Component {
         });
     }
 
-    requestRefundCount(wechatId) {
-        myApi.getOrderListByAccount(wechatId, 8, 1, pageSize, (rs)=>{
+    requestRefundCount() {
+        myApi.getOrderListByAccount(wechatIdmy, 8, 1, pageSize, (rs)=>{
             this.setState({
                 refundCount: this.state.refundCount + rs.obj.total,
             });
         });
-        myApi.getOrderListByAccount(wechatId, 9, 1, pageSize, (rs)=>{
+        myApi.getOrderListByAccount(wechatIdmy, 9, 1, pageSize, (rs)=>{
             this.setState({
                 refundCount: this.state.refundCount + rs.obj.total,
             });
         });
-        myApi.getOrderListByAccount(wechatId, 10, 1, pageSize, (rs)=>{
+        myApi.getOrderListByAccount(wechatIdmy, 10, 1, pageSize, (rs)=>{
             this.setState({
                 refundCount: this.state.refundCount + rs.obj.total,
             });
         });
-        myApi.getOrderListByAccount(wechatId, 11, 1, pageSize, (rs)=>{
+        myApi.getOrderListByAccount(wechatIdmy, 11, 1, pageSize, (rs)=>{
             this.setState({
                 refundCount: this.state.refundCount + rs.obj.total,
             });
         });
-        myApi.getOrderListByAccount(wechatId, 12, 1, pageSize, (rs)=>{
+        myApi.getOrderListByAccount(wechatIdmy, 12, 1, pageSize, (rs)=>{
             this.setState({
                 refundCount: this.state.refundCount + rs.obj.total,
             });
@@ -226,8 +233,8 @@ export default class My extends React.Component {
 
 
     checkWebusiness() {
-        const isWebusiness = localStorage.getItem('isWebusiness');
-         console.log("isWebusiness", isWebusiness);
+        
+        //  console.log("isWebusiness", isWebusiness);
 
         if (isWebusiness === '1') {
             return <Card>

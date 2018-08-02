@@ -182,9 +182,9 @@ var api = {
 
     //----------------------------------ordinary preferential api-------------------------------------------
 
-    getOrdinaryPromotionList(callback) {
+    getOrdinaryPromotionList(page,rows,callback) {
         http.ajax({
-            url: getServerHost() + '/promotion/normal/list?page=1&rows=10',
+            url: getServerHost() + '/promotion/normal/list?page='+page+'&rows='+rows,
             crossDomain:true,
             success: (rs) => {
                 callback && callback(rs);
@@ -205,9 +205,9 @@ var api = {
 
     //----------------------------------group preferential api-------------------------------------------
 
-    getGroupPromotionList(callback) {
+    getGroupPromotionList(page,rows,callback) {
         http.ajax({
-            url: getServerHost() + '/promotion/group/list?page=1&rows=10',
+            url: getServerHost() + '/promotion/group/list?page='+page+'&rows='+rows,
             crossDomain:true,
             success: (rs) => {
                 callback && callback(rs);

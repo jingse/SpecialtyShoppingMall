@@ -15,7 +15,7 @@ export default class Setting extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state={
-            isVip:localStorage.getItem("isVip"),
+            isVip:(localStorage.getItem("isVip")=="true")?true:false,
             dateNow:now, //当前时间
             dateSet:null, //会员设置时间
             vipAddress:null,
@@ -26,7 +26,7 @@ export default class Setting extends React.Component {
     }
     componentWillMount(){
         //获得会员地址and生日
-        // console.log('this.props',this.props.location.state.isVip)
+        console.log('this.props isVip',localStorage.getItem("isVip"))
         myApi.vipAddressView(wechatId,(rs)=>{
             
             console.log('会员地址and生日',rs,new Date(rs.obj.birthday))

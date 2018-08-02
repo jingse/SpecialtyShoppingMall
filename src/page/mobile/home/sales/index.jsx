@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Flex, WhiteSpace } from "antd-mobile";
+import { Flex, WhiteSpace,Toast } from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import SearchNavBar from "../../../../components/search/index.jsx";
 import Bottom from "../../../../components/bottom/index.jsx";
@@ -17,11 +17,13 @@ export default class Sales extends React.Component {
         this.state = {
             data: [],
             isLoading: false,
+            nextPage:2,
+            isEnd:false
         };
     }
 
     componentWillMount() {
-        this.requestOrdinaryPromotionList();
+        this.requestOrdinaryPromotionList(1);
         localStorage.setItem("categoryName", "促销");
     }
 
@@ -29,17 +31,50 @@ export default class Sales extends React.Component {
     //     this.requestData();
     // }
 
-    requestOrdinaryPromotionList() {
-        homeApi.getOrdinaryPromotionList((rs) => {
+    requestOrdinaryPromotionList(page) {
+        homeApi.getOrdinaryPromotionList(page,10,(rs) => {
             if(rs && rs.success) {
-                console.log('getOrdinaryPromotionList',rs)
-                const proList = rs.obj;
-                this.setState({
-                    data: proList,
-                    isLoading: false
-                });
+                console.log('rs',rs)
+                let numlist = (rs.obj.pageNumber-1)*10 + rs.obj.rows.length;
+                let isEnd1 = false;
+                if(numlist == rs.obj.total){
+                    isEnd1 = true;
+                }
+
+                const proList = rs.obj.rows;
+                if(page == 1){
+                    console.log('getOrdinaryPromotionList',rs.obj.total)
+                    this.setState({
+                        data: proList,
+                        isLoading: false,
+                        isEnd:isEnd1
+                    });
+                }
+                else{
+                    if(this.state.isEnd) {
+                        Toast.info("没有更多信息",1);
+                        return;
+                    }
+                    
+                    console.log('getOrdinaryPromotionList2',rs,page,proList.length,numlist)
+                    this.setState({
+                        data: this.state.data.concat(proList),
+                        isLoading: false,
+                        nextPage:page+1,
+                        isEnd:isEnd1
+                    });
+                }
+                // console.log('getOrdinaryPromotionList',rs)
+                // const proList = rs.obj;
+                // this.setState({
+                //     data: proList,
+                //     isLoading: false
+                // });
             }
         });
+    }
+    addMore(){
+        this.requestOrdinaryPromotionList(this.state.nextPage);
     }
 
     // requestData() {
@@ -97,7 +132,7 @@ export default class Sales extends React.Component {
 
     render() {
 
-        const content = this.state.data.rows && this.state.data.rows.map((item, index) => {
+        const content = this.state.data && this.state.data.map((item, index) => {
 
             return <Link to={{pathname: `/home/sales/detail`, state: item.id, ruleType: item.ruleType,
                 presents: item.fullPresents, subtracts: item.fullSubstracts, discounts: item.fullDiscounts}} key={index}>
@@ -161,8 +196,8 @@ export default class Sales extends React.Component {
 
             {content}
 
-
-            <Bottom>我是有底线的</Bottom>
+            <div className='addMore' onClick={()=>this.addMore()}>加载更多</div>
+            {/* <Bottom>我是有底线的</Bottom> */}
         </Layout>
     }
 }

@@ -6,7 +6,7 @@ import SearchNavBar from "../../../components/search/index.jsx";
 import Card from "../../../components/card/index.jsx";
 import Comment from "./comment.jsx";
 import Recommend from "./recommend.jsx";
-import { Carousel, WhiteSpace, WingBlank, Flex, Toast, Modal, List } from 'antd-mobile';
+import { Carousel, WhiteSpace, WingBlank, Flex, Toast, Modal, List ,} from 'antd-mobile';
 import Select from './select.jsx';
 import CartModal from './cartmodal.jsx';
 import PutInCart from './putincart.jsx';
@@ -50,7 +50,7 @@ class Product extends React.Component {
             modal2: false,
             currentPrePrice: 0,
             currentMarketPrice: 0,
-
+            
             isadd: 0,
             //加购物车相关参数
             // specialtyId: this.props.location.state?71:71,
@@ -752,6 +752,7 @@ class Product extends React.Component {
             {/*</Modal>*/}
 
             {this.getPromotionInfo()}
+            
             
         </Layout>
     }

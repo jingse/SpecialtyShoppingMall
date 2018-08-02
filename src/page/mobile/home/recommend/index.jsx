@@ -13,9 +13,15 @@ import "./index.less";
  * @ListView 使用了一些react-native中ListView的API，可以查询 https://mobile.ant.design/components/list-view-cn/
  * @ListView.dataSource 同上，查询 https://reactnative.cn/docs/0.26/listviewdatasource.html
  */
-var page = 1;
-var hasMore = false;
 
+var hasMore = false;
+const NUM_SECTIONS = 5;
+const NUM_ROWS_PER_SECTION = 5;
+let pageIndex = 0;
+
+let dataBlobs = {};
+let sectionIDs = [];
+let rowIDs = [];
 
 export default class RecommendProducts extends React.Component {
 
@@ -65,10 +71,10 @@ export default class RecommendProducts extends React.Component {
         // setTimeout(() => this.lv.scrollTo(0, 120), 800);
 
         //fixed id length bug
-        sectionIDs = [];
-        rowIDs = [];
-        pageIndex = 0;
-        dataBlobs = {};
+        // sectionIDs = [];
+        // rowIDs = [];
+        // pageIndex = 0;
+        // dataBlobs = {};
 
         const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
         // simulate initial Ajax
@@ -81,7 +87,7 @@ export default class RecommendProducts extends React.Component {
             });
             //console.log(dataBlobs)
         }, 600);
-        //console.log(dataBlobs)
+        console.log('dataBlobs',dataBlobs,this.state.dataSource)
     }
 
     onEndReached = (event) => {
@@ -257,13 +263,8 @@ function MyBody(props) {
 
 
 
-const NUM_SECTIONS = 5;
-const NUM_ROWS_PER_SECTION = 5;
-let pageIndex = 0;
 
-let dataBlobs = {};
-let sectionIDs = [];
-let rowIDs = [];
+
 function genData(pIndex = 0) {
     for (let i = 0; i < NUM_SECTIONS; i++) {
         const ii = (pIndex * NUM_SECTIONS) + i;
@@ -280,6 +281,7 @@ function genData(pIndex = 0) {
     }
     sectionIDs = [...sectionIDs];
     rowIDs = [...rowIDs];
+    console.log('188188',dataBlobs,sectionIDs,rowIDs)
 }
 
 RecommendProducts.contextTypes = {

@@ -124,29 +124,33 @@ class CommentOn extends React.Component {
         // });
         this.setState({animating: !this.state.animating});
         this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
-            for(let key in this.state.files[index]){
-                let formData = new FormData();
-                let files = this.state.files[index][key].file;
-                formData.append("files", files);
-                console.log('formData',formData.get("files"))
-                fetch("http://admin.swczyc.com/hyapi/resource/image/upload",{
-                method: 'POST',
-                headers: {
-                },body: formData,}).then((response) => response.json()).then((rs)=>{
-                    console.log('sourcePath',rs)
-                    filesURL[index].push({"sourcePath":"http://ymymmall.swczyc.com" + rs.obj[0]});
-                    console.log("uppppppppppppp",key,index,this.state.files[index].length,this.state.order.orderItems.length)
-                    if(key == this.state.files[index].length-1 && index == this.state.order.orderItems.length-1) 
-                         {
-                            console.log('上传返回')
-                            this.createCom()
-                            this.setState({ animating: !this.state.animating });
-                         }
-                })
+            if(this.state.files[index].length == 0){
+                this.createCom()
+                this.setState({ animating: !this.state.animating });
+            }
+            else{
+                for(let key in this.state.files[index]){
+                    let formData = new FormData();
+                    let files = this.state.files[index][key].file;
+                    formData.append("files", files);
+                    console.log('formData',formData.get("files"))
+                    fetch("http://admin.swczyc.com/hyapi/resource/image/upload",{
+                    method: 'POST',
+                    headers: {
+                    },body: formData,}).then((response) => response.json()).then((rs)=>{
+                        console.log('sourcePath',rs)
+                        filesURL[index].push({"sourcePath":"http://ymymmall.swczyc.com" + rs.obj[0]});
+                        console.log("uppppppppppppp",key,index,this.state.files[index].length,this.state.order.orderItems.length)
+                        if(key == this.state.files[index].length-1 && index == this.state.order.orderItems.length-1)
+                            {
+                                console.log('上传返回')
+                                this.createCom()
+                                this.setState({ animating: !this.state.animating });
+                            }
+                    })
+                }
             }
         });
-
-        
     }
 
 

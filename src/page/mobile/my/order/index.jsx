@@ -808,12 +808,12 @@ export default class Order extends React.Component {
                 }, 1000);
             }}
         >
-        {/* <div style={{
+        <div style={{
                 height: this.state.height,
                 overflow: 'scroll',
-            }}>  */}
+            }}> 
             {orderContent}
-        {/* </div> */}
+        </div>
         <div className='addMore' onClick={()=>this.addMore()}>加载更多</div>
         </PullToRefresh>
     }

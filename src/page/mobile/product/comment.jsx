@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pagination, Flex, WhiteSpace, Toast } from 'antd-mobile';
+import {Pagination, Flex, WhiteSpace, Toast,ActivityIndicator} from 'antd-mobile';
 // import comment from "../../../static/mockdata/product_comment.js"; //mock假数据
 import productApi from "../../../api/product.jsx";
 import './index.less'
@@ -15,6 +15,7 @@ export default class Comment extends React.Component {
             data: [],
             // totalPages: 0,
             curPage: 1,
+            animating:false,
         };
     }
 
@@ -24,12 +25,16 @@ export default class Comment extends React.Component {
 
     requestComment(page) {
         console.log("请求页数", page);
+        this.setState({ animating: !this.state.animating});
         productApi.getSpecialtyCommentDetail(this.props.specialtyId, page, pageSize, (rs) => {
             console.log("rs 55555555", rs);
             if (rs && rs.success) {
+                
                 const data = rs.obj.rows;
                 this.setState({
                     data,
+                },()=>{
+                    this.setState({ animating: !this.state.animating});
                 });
             }
         });
@@ -76,7 +81,7 @@ export default class Comment extends React.Component {
     }
 
 
-    requestFormerPage() {
+    requestFormerPage() {     
         if ((this.state.curPage - 1) < 1) {
             Toast.info("已经是第一页啦", 1);
         } else {
@@ -129,7 +134,7 @@ export default class Comment extends React.Component {
         const content = this.state.data && this.state.data.map((item, index) => {
             console.log("*******************",item)
             let imgs = item.images && item.images.map((item,index)=>{
-                return <img src={item.sourcePath} style={{width:'30%',height:'15%',paddingLeft:'1%',paddingRight:'1%',}}/>
+                return <img src={item.sourcePath} style={{width:'50%',height:'20%',paddingLeft:'1%',paddingRight:'1%',paddingTop:'1%'}}/>
             
             })
             return <Flex style={{background:'#fff', borderBottom:'1px solid #eee'}} key={index}>
@@ -156,7 +161,11 @@ export default class Comment extends React.Component {
             {content}
 
             {this.checkPagination(this.props.total)}
-
+            <ActivityIndicator
+                toast
+                text="Loading..."
+                animating={this.state.animating}
+              />
 
             </div>
 
