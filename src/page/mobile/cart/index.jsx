@@ -98,11 +98,13 @@ class Cart extends React.Component {
 
                 var presents = [];
                 rs.obj.promotions && rs.obj.promotions.map((item, index) => {
-                    if (item.promotion.promotionRule === "满赠") {
-                        item.promotionCondition && item.promotionCondition.map((pre, index2) => {
-                            pre.promotionId = item.promotionId;
-                            presents.push(pre);
-                        });
+                    if (item.promotion && JSON.stringify(item.promotion) !== '{}') {
+                        if (item.promotion.promotionRule === "满赠") {
+                            item.promotionCondition && item.promotionCondition.map((pre, index2) => {
+                                pre.promotionId = item.promotionId;
+                                presents.push(pre);
+                            });
+                        }
                     }
                 });
 
