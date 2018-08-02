@@ -88,7 +88,7 @@ export default class ExchangeRecords extends React.Component {
                                 >
                                     下一页</span>),
                             }}
-                            style={{width:'80%', marginLeft:'20%', fontSize: '0.7rem'}}
+                            style={{width:'90%', marginLeft:'5%', marginRight:'5%',fontSize: '0.7rem'}}
                 />
             </div>
         }

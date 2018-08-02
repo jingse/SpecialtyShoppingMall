@@ -1,5 +1,5 @@
 import React from "react";
-import {Flex, Card, WhiteSpace} from "antd-mobile";
+import {Flex, Card, WhiteSpace,Pagination,Toast} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
@@ -12,7 +12,9 @@ export default class BalanceRecords extends React.Component {
         super(props, context);
 
         this.state = {
-            records: []
+            records: [],
+            totalPages: 0,
+            curPage: 1,
         };
     }
 
@@ -22,14 +24,68 @@ export default class BalanceRecords extends React.Component {
 
     requestBalanceRecords(wechatId, page, rows) {
         couponApi.getBalanceRecords(wechatId, page, rows, (rs) => {
+            console.log("充值记录：", rs);
             if (rs && rs.success) {
                 const records = rs.obj.rows;
 
                 this.setState({
-                    records
+                    records,
+                    totalPages: rs.obj.totalPages,
                 });
             }
         });
+    }
+
+    requestFormerPage() {
+        if ((this.state.curPage - 1) < 1) {
+            Toast.info("已经是第一页啦", 1);
+        } else {
+            this.setState({
+                curPage: --this.state.curPage,
+            },()=>{
+                this.requestBalanceRecords(wechatId,this.state.curPage,10);
+            });
+            
+        }
+    }
+
+    requestLatterPage() {
+        if ((this.state.curPage + 1) > this.state.totalPages) {
+            Toast.info("已经是最后一页啦", 1);
+        } else {
+            this.setState({
+                curPage: ++this.state.curPage,
+            },()=>{
+                this.requestBalanceRecords(wechatId,this.state.curPage,10);
+            });
+            
+        }
+    }
+
+    checkPagination(num) {
+        console.log(num)
+        // if (num === 0 || num === 1) {
+        //     return null
+        // } else {
+            return <div>
+                <Pagination
+                            total={this.state.totalPages}
+                            className="custom-pagination"
+                            current={this.state.curPage}
+                            locale={{
+                                prevText: (<span className="arrow-align"
+                                                 onClick={() => {this.requestFormerPage()}}
+                                >
+                                    上一页</span>),
+                                nextText: (<span className="arrow-align"
+                                                 onClick={() => {this.requestLatterPage()}}
+                                >
+                                    下一页</span>),
+                            }}
+                            style={{width:'90%', marginLeft:'5%', marginRight:'5%',fontSize: '0.7rem'}}
+                />
+            </div>
+        // }
     }
 
     checkType(type) {
@@ -70,9 +126,9 @@ export default class BalanceRecords extends React.Component {
                     <Flex.Item>电子券金额</Flex.Item>
                 </Flex>
                 <WhiteSpace/>
-
                 {content}
             </Card>
+            {this.checkPagination(this.state.totalPages)}
 
         </Layout>
     }

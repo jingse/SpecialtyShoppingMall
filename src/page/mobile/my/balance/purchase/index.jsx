@@ -26,7 +26,7 @@ export default class BalancePurchase extends React.Component {
     requestBalancePurchase(wechatId) {
         console.log("requestBalancePurchase");
         couponApi.getBalancePurchase(wechatId, (rs) => {
-            console.log("接口调用");
+            console.log("我的购买",rs);
             if (rs && rs.success) {
                 const purchase = rs.obj;
 
