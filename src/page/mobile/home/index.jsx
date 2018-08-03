@@ -142,7 +142,7 @@ class Home extends React.Component {
 
         homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
             if (rs && rs.success) {
-                console.log("login rs:", rs);
+                console.log("loginCheck rs:", rs);
                 const wechatId = rs.obj.id;
                 // const isWebusiness = rs.obj.isWeBusiness;
                 // const bindPhone = rs.obj.phone;
