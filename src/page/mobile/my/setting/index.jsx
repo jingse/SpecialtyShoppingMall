@@ -1,10 +1,11 @@
 import React from "react";
-import {List, WhiteSpace,DatePicker,Toast} from "antd-mobile";
+import {List, WhiteSpace,DatePicker,Toast,Modal} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import PropTypes from "prop-types";
 import myApi from "../../../../api/my.jsx";
 
+const alert = Modal.alert;
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
 const minDate = new Date('1900/01/01');
@@ -28,7 +29,6 @@ export default class Setting extends React.Component {
         //获得会员地址and生日
         console.log('this.props isVip',localStorage.getItem("isVip"))
         myApi.vipAddressView(wechatId,(rs)=>{
-            
             console.log('会员地址and生日',rs,new Date(rs.obj.birthday))
             if(rs && rs.success){
                 let vipinfo = rs.obj;
@@ -84,17 +84,24 @@ export default class Setting extends React.Component {
                     title="选择日期"
                     extra="未设置"
                     value={this.state.dateSet}
-                    onChange={date => {
-                        console.log('date',this.formatDate(date))
-                        if(this.state.dateSet === null){
-                            console.log('date',date)
-                            this.setState({ dateSet:date });
-                            myApi.vipBirthdayAdd(wechatId,this.formatDate(date),(rs)=>{
-                                console.log('set vip birthday rs',rs)
-                            })
-                        }
-                        else
-                            Toast.info('会员生日已经设置无法修改', 1);
+                    //onChange
+                    onOk={date => {
+                        alert('提示信息', '会员生日只允许设置一次，设置后就不能修改。您是否继续设置?', [
+                            { text: '取消', onPress: () => console.log('取消设置') },
+                            { text: '确认', onPress: () => {
+                                console.log('date',this.formatDate(date))
+                                if(this.state.dateSet === null){
+                                    console.log('date',date)
+                                    this.setState({ dateSet:date });
+                                    myApi.vipBirthdayAdd(wechatId,this.formatDate(date),(rs)=>{
+                                        console.log('set vip birthday rs',rs)
+                                    })
+                                }
+                                else
+                                    Toast.info('会员生日已经设置无法修改', 1);
+                            } },
+                          ])
+                        
                     }}
                 >
                 <List.Item arrow="horizontal" onClick={()=>{Toast.info('会员生日仅能设置一次', 2, null, false)}}>会员生日</List.Item>

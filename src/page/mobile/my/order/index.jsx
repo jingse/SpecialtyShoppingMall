@@ -107,6 +107,9 @@ export default class Order extends React.Component {
     }
 
     componentDidMount() {
+        console.log('hei',this.refs.lv)
+        const hei = this.state.height - this.refs.lv;
+        console.log('hei',hei)
         wx.ready(function(){
             wx.checkJsApi({
                 jsApiList: ['chooseWXPay',"onMenuShareTimeline","onMenuShareAppMessage"],
@@ -643,6 +646,7 @@ export default class Order extends React.Component {
             }
         );
         // this.clearData();
+        console.log('待付款刷新1')
         this.requestTabData(1, 1, pageSize);
     }
 
@@ -674,6 +678,8 @@ export default class Order extends React.Component {
                 } else {
                     this.onBridgeReady();
                 }
+                console.log('待付款刷新2')
+                this.requestTabData(1, 1, pageSize);
             });
 
         });
@@ -706,7 +712,7 @@ export default class Order extends React.Component {
             orderContent = order && order.map((item, index) => {
                 if (item.orderItems.length === 1) {
                     const singleProduct = item.orderItems && item.orderItems.map((product, index2) =>{
-                        return <Card key={index} className="order_card">
+                        return <div key={index} className="order_card">
                             <div className="order_card_group">
                                 <span>游买有卖</span>
                                 {/*<span style={{marginLeft:'1rem'}}>下单人id:{this.state.wechatId}</span>*/}
@@ -738,7 +744,7 @@ export default class Order extends React.Component {
                                 </Flex>
                             </div>
                             
-                        </Card>
+                        </div>
                     });
                     return singleProduct
                 } else {
@@ -748,7 +754,7 @@ export default class Order extends React.Component {
                         </Flex.Item>
                     });
 
-                    return <Card key={index} className="order_card">
+                    return <div key={index} className="order_card">
                         <div className="order_card_group">
                             <span>游买有卖</span>
                             <span className="order_card_status">{this.checkDetailState(item.orderState)}</span>
@@ -766,12 +772,16 @@ export default class Order extends React.Component {
                         </Flex>
                         </div>
                         {/* {this.getOrderButton(this.state.tab, item)} */}
-                    </Card>
+                    </div>
                 }
             });
         }
 
-        return <PullToRefresh
+        return  <div ref={el => this.lv = el} style={{
+            height: this.state.height,
+            // overflow: 'scroll',
+        }}> 
+        <PullToRefresh
             style={{
                 height: this.state.height,
                 overflow: 'scroll',
@@ -808,14 +818,16 @@ export default class Order extends React.Component {
                 }, 1000);
             }}
         >
-        <div style={{
+        {/* <div ref={el => this.lv = el} style={{
                 height: this.state.height,
                 overflow: 'scroll',
-            }}> 
+            }}>  */}
             {orderContent}
-        </div>
-        <div className='addMore' onClick={()=>this.addMore()}>加载更多</div>
+            <div className='addMore' onClick={()=>this.addMore()}>加载更多</div>
+        {/* </div> */}
+        
         </PullToRefresh>
+        </div>
     }
 
     addMore(){
