@@ -140,6 +140,11 @@ class Home extends React.Component {
         console.log("login param openid", myopenid);
         console.log("login param wechatName", wechatName);
 
+
+        // let leoopid = 'ocgJPv95RkAVveXrTmMWaxeN_wjA';
+        // let uuuu = 26;
+        // let leoname = 'Leo';
+        // homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
         homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
             if (rs && rs.success) {
                 console.log("loginCheck rs:", rs);
