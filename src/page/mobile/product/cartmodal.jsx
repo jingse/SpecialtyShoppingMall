@@ -133,7 +133,7 @@ export default class CartModal extends React.Component {
                     <div className="salePrice_inbound">
                     价格：￥{this.state.salePrice}  库存：{this.state.inbound}
                     </div>
-                    <div className="extractPrice" style={{display:(this.state.isWebusiness === '1')?'':"none"}}>
+                    <div className="extractPrice" style={{display:(this.state.isWebusiness === '1')?'inline':"none"}}>
                     提成金额：{(this.state.divideRatio*this.state.salePrice).toFixed(2)}
                     </div>
                     </Flex>

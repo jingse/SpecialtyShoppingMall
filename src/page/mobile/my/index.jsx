@@ -243,7 +243,7 @@ export default class My extends React.Component {
 
     checkWebusiness() {
         
-        //  console.log("isWebusiness", isWebusiness);
+        console.log("isWebusiness", isWebusiness);
 
         if (isWebusiness === '1') {
             return <Card>

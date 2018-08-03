@@ -150,16 +150,22 @@ class Home extends React.Component {
             if (rs && rs.success) {
                 console.log("loginCheck rs:", rs);
                 const wechatId = rs.obj.id;
-                // const isWebusiness = rs.obj.isWeBusiness;
+                
                 // const bindPhone = rs.obj.phone;
                 const balance = rs.obj.totalbalance;
                 const isVip = rs.obj.isVip;
 
                 console.log("login wechatId", wechatId);
-                // console.log("login isWebusiness", isWebusiness);
+               
                 console.log("login balance", balance);
 
                 localStorage.setItem("wechatId", wechatId);
+                if(rs.obj.isWeBusiness){
+                    localStorage.setItem("isWebusiness", '1');
+                }
+                else{
+                    localStorage.setItem("isWebusiness", '0');
+                }
                 // localStorage.setItem("isWebusiness", isWebusiness);
                 if(rs.obj.phone) {
                     localStorage.setItem("bindPhone", rs.obj.phone);
@@ -173,7 +179,7 @@ class Home extends React.Component {
         //为了测试使用
         if (!localStorage.getItem("wechatId")) {
             localStorage.setItem("wechatId", "15");
-            localStorage.setItem("isWebusiness", "1");
+            // localStorage.setItem("isWebusiness", "1");
         }
 
         //拿到购物车的数量
@@ -247,7 +253,7 @@ class Home extends React.Component {
                     console.log("localStorage.getItem(\"openid\")", localStorage.getItem("openid"));
                     console.log("二者相等？", this.state.card.weBusiness.openid === localStorage.getItem("openid"));
 
-                    if (this.state.card.weBusiness.openid === localStorage.getItem("openid")) {
+                    if (this.state.card.weBusiness.openid === localStorage.getItem("openid")){
                         console.log("isWebusiness设为1");
                         localStorage.setItem("isWebusiness", 1);
                     }
