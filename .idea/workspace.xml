@@ -18,11 +18,12 @@
     <session id="-545881338">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.42" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -39,13 +40,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="jsx" value="334" />
+          <entry key="jsx" value="354" />
           <entry key="txt" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JSX Harmony" value="334" />
+          <entry key="JSX Harmony" value="354" />
           <entry key="PLAIN_TEXT" value="35" />
         </counts>
       </usages-collector>
@@ -56,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+            <state relative-caret-position="204">
+              <caret line="79" column="39" lean-forward="true" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="39" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -177,10 +178,10 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="215" />
     <option name="y" value="67" />
-    <option name="width" value="800" />
+    <option name="width" value="946" />
     <option name="height" value="530" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -227,7 +228,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../supermallDemo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="file.status.colors" />
   </component>
   <component name="RecentsManager">
@@ -431,14 +432,8 @@
       <workItem from="1533180900934" duration="70000" />
       <workItem from="1533189557397" duration="349000" />
       <workItem from="1533195532643" duration="4043000" />
-      <workItem from="1533200389062" duration="4755000" />
-    </task>
-    <task id="LOCAL-00032" summary="update api">
-      <created>1525509981156</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1525509981156</updated>
+      <workItem from="1533200389062" duration="4899000" />
+      <workItem from="1533263368395" duration="1276000" />
     </task>
     <task id="LOCAL-00033" summary="update api">
       <created>1525768820067</created>
@@ -776,11 +771,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533205796377</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="修改微商openid的bug">
+      <created>1533208504814</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1533208504816</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1048558000" />
+    <option name="totallyTimeSpent" value="1049978000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -792,10 +794,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
+    <frame x="215" y="67" width="946" height="530" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18053597" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2819383" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -809,7 +811,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506605" side_tool="true" weight="0.19498608" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32849163" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.16090426" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.11037234" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.20707071" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1245,8 +1247,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+        <state relative-caret-position="204">
+          <caret line="79" column="39" lean-forward="true" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="39" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
