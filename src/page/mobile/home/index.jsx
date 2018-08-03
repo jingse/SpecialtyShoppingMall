@@ -76,7 +76,8 @@ class Home extends React.Component {
             homeApi.postOpenId(uid, mynickname, myopenid, (rs) => {
                 console.log("提交openid给后台的结果：", rs);
                 if (rs.msg && rs.msg !== "") {
-                    Toast.info(rs.msg);
+                    // Toast.info(rs.msg);
+                    console.log(rs.ms);
                 }
             });
 
