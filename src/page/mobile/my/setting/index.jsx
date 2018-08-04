@@ -18,6 +18,7 @@ export default class Setting extends React.Component {
         super(props, context);
         this.state={
             isVip:(localStorage.getItem("isVip")=="true")?true:false,
+            isWebusiness:(localStorage.getItem("isWebusiness")=="1")?true:false,
             dateNow:now, //当前时间
             dateSet:null, //会员设置时间
             vipAddress:null,
@@ -128,6 +129,7 @@ export default class Setting extends React.Component {
             <WhiteSpace/>
 
             <List>
+            <div style={{display:(this.state.isWebusiness)?'inline':'none'}}>
                 <List.Item
                     // thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                     arrow="horizontal"
@@ -147,7 +149,7 @@ export default class Setting extends React.Component {
                 >
                     设置微商城名称
                 </List.Item>
- 
+            </div>
             </List>
 
             <WhiteSpace/>

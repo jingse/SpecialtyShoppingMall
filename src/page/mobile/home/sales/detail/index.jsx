@@ -138,6 +138,8 @@ export default class SalesDetail extends React.Component {
     render() {
 
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
+            
+            console.log('itemitemitemitem',item)
             return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true, ruleType: this.state.ruleType,
                 discounts: this.state.discounts, subtracts: this.state.subtracts, presents: this.state.presents,
                 promoteNum: item.promoteNum, limitedNum: item.limitedNum}} key={index}>

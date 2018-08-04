@@ -42,6 +42,8 @@ class Cart extends React.Component {
             animating:false,
 
             presents: [],
+            payM:0,
+            payP:0,
         };
     }
 
@@ -94,7 +96,7 @@ class Cart extends React.Component {
         cartApi.getTotalPriceInCart(cartItems, (rs) => {
             console.log("拿到总价：", rs);
             if(rs && rs.success) {
-                const price = rs.obj.finalMoney;
+                const price = rs.obj.totalMoney;
 
                 var presents = [];
                 rs.obj.promotions && rs.obj.promotions.map((item, index) => {
@@ -114,6 +116,8 @@ class Cart extends React.Component {
                     totalPrice: price,
                     priceResult: rs.obj,
                     presents: presents,
+                    payM:rs.obj.finalMoney,
+                    payP:rs.obj.promotionMoney,
                 });
             }
         });
@@ -248,6 +252,8 @@ class Cart extends React.Component {
             items = [];
             this.setState({
                 totalPrice: 0,
+                payM:0,
+                 payP:0,
             });
         }
         this.setState({
@@ -582,8 +588,8 @@ class Cart extends React.Component {
             {this.checkEdit(this.state.editId)}
             
             <div className="putincart cart_summary">
-                <div className="secondary_btn" style={{width:'60%'}}>
-                    <Flex>
+                <div className="secondary_btn" style={{width:'75%'}}>
+                    <Flex wrap='nowrap'>
                         <Flex.Item style={{flex:'0 0 6%', marginLeft:'0.8rem'}}>
                             <input type="checkbox" checked={this.state.chooseAll} onChange={()=>{
                                 this.state.chooseAll = !this.state.chooseAll;
@@ -591,16 +597,22 @@ class Cart extends React.Component {
                                 this.chooseAll();
                              }} />
                         </Flex.Item>
-                        <Flex.Item style={{flex:'0 0 15%'}}>全选</Flex.Item>
-                        <Flex.Item style={{textAlign:'right', marginRight:'0.8rem'}}>
+                        <Flex.Item style={{flex:'0 0 10%'}}>全选</Flex.Item>
+                        <Flex.Item style={{textAlign:'right'}}>
                             {/*合计：<span style={{color:'darkorange'}}>￥{this.generateTotalPrice()}</span>*/}
-                            合计：<span style={{color:'darkorange'}}>￥{this.state.totalPrice}</span>
+                            共计：<span style={{color:'darkorange'}}>￥{this.state.totalPrice}</span>
+                        </Flex.Item>
+                        <Flex.Item style={{textAlign:'right',paddingRight:"5px"}}>
+                            优惠金额：<span style={{color:'darkorange'}}>￥{this.state.payP}</span>
                         </Flex.Item>
                     </Flex>
                 </div>
-                <div className="primary_btn" style={{width:'40%'}}
+                <div className="primary_btn" style={{width:'25%'}}
                      onClick={()=>{this.checkPayCount()}}>
-                    结算（{this.getPayCount()}）
+                     <div>支付￥{this.state.payM}
+                     </div>
+                     
+                    
                 </div>
             </div>
             <ActivityIndicator
