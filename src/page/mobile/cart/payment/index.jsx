@@ -368,7 +368,7 @@ class Payment extends React.Component {
             "payMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub - this.state.balancenum).toFixed(2),
             "couponMoney":this.state.couponSub.toFixed(2),
             // "balanceMoney":balance.toFixed(2),
-            "balanceMoney":(this.state.balancenum),
+            "balanceMoney":(this.state.balancenum).toFixed(2),
             "shouldPayMoney":(this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee).toFixed(2),
 
             // "receiverRmark":"请送到我家",
