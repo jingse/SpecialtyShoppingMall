@@ -57,7 +57,7 @@ export default class My extends React.Component {
         myApi.getInfo(wechatIdmy, (rs) => {
             if (rs && rs.success) {
                 console.log('rs',rs);
-                const balance = rs.obj.totalbalance;
+                const balance = rs.obj.wechatAccount.totalbalance;
                 localStorage.setItem("isVip",rs.obj.wechatAccount.isVip)
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
@@ -80,8 +80,8 @@ export default class My extends React.Component {
                 this.setState({
                     userData: rs.obj,
                     myWebusinessInfo: rs.obj.weBusiness,
-                    totalPoints: rs.obj.totalpoint,
-                    availablePoints: rs.obj.point,
+                    totalPoints: rs.obj.wechatAccount.totalpoint,
+                    availablePoints: rs.obj.wechatAccount.point,
                 })
             }
             // const isWebusiness = localStorage.getItem("isWebusiness");

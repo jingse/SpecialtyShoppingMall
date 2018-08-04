@@ -25,7 +25,7 @@ export default class Balance extends React.Component {
         myApi.getInfo(wechatId, (rs) => {
             if (rs && rs.success) {
                 console.log('rs',rs)
-                const balance = rs.obj.totalbalance;
+                const balance = rs.obj.wechatAccount.totalbalance;
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
                     this.setState({balance:balance})

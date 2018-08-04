@@ -32,8 +32,8 @@ export default class MyPoints extends React.Component {
             if (rs && rs.success) {
                 console.log("rs", rs);
                 this.setState({
-                    totalPoints: rs.obj.totalpoint,
-                    availablePoints: rs.obj.point,
+                    totalPoints: rs.obj.wechatAccount.totalpoint,
+                    availablePoints: rs.obj.wechatAccount.point,
                 })
             }
         });

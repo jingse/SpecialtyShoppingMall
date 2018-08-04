@@ -509,11 +509,11 @@ export default class Order extends React.Component {
                     去付款
                 </Button>
                 <Button type="ghost" inline size="small" style={{marginRight:'4%', fontSize:'0.7rem'}}
-                        onClick={() => alert('取消付款', '您确定要取消吗？', [
+                        onClick={() => alert('取消订单', '您确定要取消吗？', [
                             { text: '取消', onPress: () => {} },
                             { text: '确认', onPress: () => {this.cancelOrderPay(item.id)} },
                         ])}>
-                    取消付款
+                    取消订单
                 </Button>
                 {/* <WhiteSpace/> */}
                 {/* </div> */}
