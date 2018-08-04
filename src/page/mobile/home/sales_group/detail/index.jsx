@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Card, WingBlank, WhiteSpace, Toast, List } from "antd-mobile";
+import {Card, WingBlank, WhiteSpace, Toast, List, Flex} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Bottom from "./bottom.jsx";
@@ -23,6 +23,12 @@ export default class SalesGroupDetail extends React.Component {
             inbound:0,
 
             cartNum: localStorage.getItem("cartCount")!=0 ?localStorage.getItem("cartCount"):'',
+
+
+            ruleType: '',
+            presents: [],
+            subtracts: [],
+            discounts: [],
         };
     }
 
@@ -36,6 +42,47 @@ export default class SalesGroupDetail extends React.Component {
             groupPromotionId = this.props.location.state;
             localStorage.setItem("groupPromotionId", this.props.location.state);
         }
+
+
+        //判断是从上个优惠页面回来的，还是从产品页面回来的
+        var ruleType = '';
+        if (!this.props.location.ruleType) {
+            ruleType = localStorage.getItem("ruleType");
+        } else {
+            ruleType = this.props.location.ruleType;
+            localStorage.setItem("ruleType", this.props.location.ruleType);
+        }
+        this.setState({
+            ruleType: ruleType,
+        });
+
+        if (ruleType === '满赠') {
+            //判断有没有满赠商品
+            if (this.props.location.presents && JSON.stringify(this.props.location.presents) !== '[]') {
+                this.setState({
+                    presents: this.props.location.presents,
+                });
+                localStorage.setItem("presents", JSON.stringify(this.props.location.presents));
+            } else {
+                this.setState({
+                    presents: JSON.parse(localStorage.getItem("presents")),
+                });
+            }
+        }
+
+        var subtracts, discounts;
+        if (!this.props.location.subtracts) {
+            subtracts = localStorage.getItem("subtracts");
+            discounts = localStorage.getItem("discounts");
+        } else {
+            subtracts = this.props.location.subtracts;
+            discounts = this.props.location.discounts;
+        }
+        this.setState({
+            subtracts: subtracts,
+            discounts: discounts,
+        });
+
 
         this.requestGroupPromotionDetail(groupPromotionId);
 
@@ -66,15 +113,14 @@ export default class SalesGroupDetail extends React.Component {
         this.setState({ val });
     };
 
-    getSalesIconImg(salesImages) {
+    getSalesDetailIcon(salesImages) {
         var img = null;
-        // console.log("this.state.groupData", this.state.salesGroupData);
-        console.log("imgs", salesImages);
         salesImages && salesImages.map((item, index) => {
-            if (item.isTag) {
+            if (item.isLogo) {
                 img = item.mediumPath
             }
         });
+        console.log("img", img);
         return img
     }
 
@@ -86,21 +132,35 @@ export default class SalesGroupDetail extends React.Component {
         return sales
     }
 
-    // componentDidMount() {
-    //     this.requestData();
-    // }
-    //
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const data = sales_group_detail;   //mock假数据
-    //         this.setState({
-    //             salesGroupDetail: data,
-    //             isLoading: false
-    //         });
-    //     }, 300);
-    // }
+    checkPresents() {
+        var fullPresents = null;
+        if (this.state.presents && JSON.stringify(this.state.presents) !== '[]') {
+            fullPresents = this.state.presents && this.state.presents.map((item, index) => {
+                return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false}} key={index}>
+                    <Flex style={{background:'#fff'}}>
+                        <Flex.Item style={{flex: '0 0 30%'}}>
+                            <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
+                        </Flex.Item>
+                        <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
+                            <WhiteSpace/>
+                            <div style={{marginBottom: 10, fontWeight:'bold'}}>
+                                {item.fullPresentProduct.name}
+                                <span style={{color:'darkorange', fontWeight:'bold'}}> (赠)</span>
+                            </div>
+                            <div style={{marginBottom: 10}}>赠品数量：<span style={{color:'red'}}>{item.fullPresentProductNumber}</span></div>
+                            <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
+                            {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
+                            <WhiteSpace/>
+                        </Flex.Item>
+                    </Flex>
+                    <WhiteSpace />
+                </Link>
+            });
+        }
+        return fullPresents
+    }
+
+
     getCartCount() {
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
@@ -263,6 +323,7 @@ export default class SalesGroupDetail extends React.Component {
             <WhiteSpace/>
 
             {content}
+            {this.checkPresents()}
 
             {/*<div style={{margin:'1rem'}}>*/}
                 {/**/}

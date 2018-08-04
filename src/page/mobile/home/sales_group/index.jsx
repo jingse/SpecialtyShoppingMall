@@ -93,7 +93,7 @@ export default class SalesGroup extends React.Component {
         return img
     }
 
-    getSalesContent(ruleType, substracts, discounts) {
+    getSalesContent(ruleType, substracts, discounts, presents) {
         var content = null;
 
         if (ruleType === "满减") {
@@ -113,6 +113,17 @@ export default class SalesGroup extends React.Component {
         }
 
         return content
+    }
+
+    getSalesDetailIcon(salesImages) {
+        var img = null;
+        salesImages && salesImages.map((item, index) => {
+            if (item.isLogo) {
+                img = item.mediumPath
+            }
+        });
+        console.log("img", img);
+        return img
     }
 
 
@@ -152,7 +163,8 @@ export default class SalesGroup extends React.Component {
         // });
 
         const content = this.state.data && this.state.data.map((item, index) => {
-            return <Link to={{pathname: `/home/sales_group/detail`, state: item.id}} key={index}>
+            return <Link to={{pathname: `/home/sales_group/detail`, state: item.id, ruleType: item.ruleType,
+                presents: item.fullPresents, subtracts: item.fullSubstracts, discounts: item.fullDiscounts}} key={index}>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
                         <img src={"http://" + getServerIp() + this.getSalesIconImg(item.pics)} style={{width: '70%', margin:'0.4rem'}}/>
@@ -164,7 +176,7 @@ export default class SalesGroup extends React.Component {
                             <span style={{color:'red', border:'1px solid darkorange', padding:'2px', marginRight:'0.5rem'}}>
                                 {item.ruleType}
                             </span>
-                            {this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts)}
+                            {this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}
                         </div>
                         <Flex style={{marginBottom: 10}}>
                             <Flex.Item style={{flex:'0 0 30%'}}>

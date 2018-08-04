@@ -160,6 +160,7 @@ class Home extends React.Component {
                 console.log("login balance", balance);
 
                 localStorage.setItem("wechatId", wechatId);
+
                 if(rs.obj.isWeBusiness){
                     localStorage.setItem("isWebusiness", '1');
                 }

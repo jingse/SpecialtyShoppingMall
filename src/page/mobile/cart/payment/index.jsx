@@ -168,7 +168,7 @@ class Payment extends React.Component {
         myApi.getInfo(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
                 console.log('rs余额', rs);
-                let balance = rs.obj.totalbalance;
+                let balance = rs.obj.wechatAccount.totalbalance;
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
                     this.setState({balance:balance})
