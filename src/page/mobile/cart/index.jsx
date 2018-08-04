@@ -602,9 +602,9 @@ class Cart extends React.Component {
                             {/*合计：<span style={{color:'darkorange'}}>￥{this.generateTotalPrice()}</span>*/}
                             共计：<span style={{color:'darkorange'}}>￥{this.state.totalPrice}</span>
                         </Flex.Item>
-                        <Flex.Item style={{textAlign:'right',paddingRight:"5px"}}>
+                        {/* <Flex.Item style={{textAlign:'right',paddingRight:"5px"}}>
                             优惠金额：<span style={{color:'darkorange'}}>￥{this.state.payP}</span>
-                        </Flex.Item>
+                        </Flex.Item> */}
                     </Flex>
                 </div>
                 <div className="primary_btn" style={{width:'25%'}}
