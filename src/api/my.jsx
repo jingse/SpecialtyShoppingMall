@@ -92,6 +92,31 @@ var api = {
     /**
      * [webusiness part]
      */
+    webusinessLogoEdit(weBusinessId,logoUrl,callback){
+        http.ajax({
+            // url: '//10.108.164.11:8080/hongyu/ymmall'+'/webusiness/logo/edit?weBusinessId=' + weBusinessId + '&logoUrl='+logoUrl,
+            url: getServerHost()+'/webusiness/logo/edit?weBusinessId=' + weBusinessId + '&logoUrl='+logoUrl,
+            method: "POST",
+            // crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+    webusinessShopNameEdit(weBusinessId,shopName,callback){
+        http.ajax({
+            // url: '//10.108.164.11:8080/hongyu/ymmall'+'/webusiness/shopName/edit?weBusinessId=' + weBusinessId + '&shopName='+shopName,
+            url: getServerHost()+'/webusiness/shopName/edit?weBusinessId=' + weBusinessId + '&shopName='+shopName,
+            method: "POST",
+            // crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+
+
+
     getTotalDivide(webusiness_id, callback) {
         http.ajax({
             url: getServerHost() + '/webusiness/total_divide?webusiness_id=' + webusiness_id + '&page=1&rows=10',

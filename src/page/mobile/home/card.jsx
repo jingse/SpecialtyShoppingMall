@@ -14,51 +14,46 @@ export default class InfoCard extends React.Component {
 
     render(){
         let card = this.props.cardData;
-        //console.log("card",card);
+        console.log("card",card);
         if (!card || !card.weBusiness) {
             return null;
         }
 
-        // console.log("card", this.props.cardData);
-
         return <Card className="info_card">
             <div className="card_div">
                 <WingBlank>
-                    <div className="title">土特产微商城</div>
+                    <div className="title">{card.weBusiness.shopName}</div>
                     <WhiteSpace/>
-
-                    <Flex>
-                        <Flex.Item className="info_contact">联系人：
-                            {/*<span style={{fontWeight:'initial'}}>刘传昌</span>*/}
-                            <span style={{fontWeight:'initial'}}>{this.props.cardData.weBusiness.name}</span>
-                        </Flex.Item>
-                        <Flex.Item className="info_name">手机：
-                            {/*<span style={{color:'blue', fontWeight:'initial'}}>13681582884</span>*/}
-                            <a href={"tel:" + this.props.cardData.weBusiness.mobile}
-                               style={{color:'blue', fontWeight:'initial'}}>
-                                {this.props.cardData.weBusiness.mobile}
-                            </a>
-                        </Flex.Item>
-                    </Flex>
-                    <WhiteSpace/>
-
-                    {/*<Flex>*/}
-                        {/*<Flex.Item className="info_name">座机：*/}
-                            {/*<a href={"tel:" + this.props.cardData.weBusiness.mobile}*/}
-                               {/*style={{color:'blue', fontWeight:'initial'}}>*/}
-                                {/*{this.props.cardData.weBusiness.mobile}*/}
-                            {/*</a>*/}
-                            {/*<span style={{color:'darkorange', fontWeight:'initial'}}>(点击号码直接拨号)</span>*/}
-                        {/*</Flex.Item>*/}
-
-                    {/*</Flex>*/}
-                    {/*<WhiteSpace/>*/}
-
-                    <Flex>
-                        <Flex.Item className="info_name">地址：
-                            {/*<span style={{fontWeight:'initial'}}>北京市海淀区西土城路10号</span>*/}
-                            <span style={{fontWeight:'initial'}}>{this.props.cardData.weBusiness.address}</span>
-                        </Flex.Item>
+                    <Flex direction='row'>
+                    <div style={{width:'50%',height:'8rem'}}>
+                    <img src={card.weBusiness.logo} style={{width:'80%',height:'80%',paddingLeft:'1%',paddingRight:'1%',paddingTop:'1%'}}/>
+                    </div>
+                    <div style={{width:'50%',height:'8rem'}}>
+                            <Flex direction='column' justify='start' align='start'>
+                                <WhiteSpace/>
+                                <WhiteSpace/>
+                                <Flex.Item>
+                                </Flex.Item>
+                                <Flex.Item className="info_name">联系人：
+                                    {/*<span style={{fontWeight:'initial'}}>刘传昌</span>*/}
+                                    <span style={{fontWeight:'initial'}}>{card.weBusiness.name}</span>
+                                </Flex.Item>
+                                <WhiteSpace/>
+                                <Flex.Item className="info_name">手机：
+                                    {/*<span style={{color:'blue', fontWeight:'initial'}}>13681582884</span>*/}
+                                    <a href={"tel:" + card.weBusiness.mobile}
+                                    style={{color:'blue', fontWeight:'initial'}}>
+                                        {card.weBusiness.mobile}
+                                    </a>
+                                </Flex.Item>
+                                <WhiteSpace/>
+                                <Flex.Item className="info_name">地址：
+                                    {/*<span style={{fontWeight:'initial'}}>北京市海淀区西土城路10号</span>*/}
+                                    <span style={{fontWeight:'initial'}}>{card.weBusiness.address}</span>
+                                </Flex.Item>
+                                
+                            </Flex>
+                    </div>
                     </Flex>
                     <WhiteSpace/>
 

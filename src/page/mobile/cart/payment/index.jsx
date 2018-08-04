@@ -506,6 +506,7 @@ class Payment extends React.Component {
                 type='money'
                 value={this.state.balanceInput}
                 placeholder="输入金额"
+                maxLength={5}
                 labelNumber={7}
                 onChange={value => this.checkNum(value)}
                 clear
@@ -517,29 +518,31 @@ class Payment extends React.Component {
     checkNum(v){
         console.log('v',v)
         console.log('parseFloat(v)',parseFloat(v))
+        let vNum = 0;
         if(v === ''){
-            v = 0;
+            vNum = 0;
         }
         else{
-            let moneyMax=this.state.balance.toFixed(2);
-        let moneyp = (this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub).toFixed(2);
-        console.log('moneyp',moneyp)
-        if(moneyMax < moneyp){
-            if(parseFloat(v) > moneyMax){
-                v = moneyMax.toFixed(2).toString()
+            let moneyMax=parseFloat(this.state.balance.toFixed(2));
+            let moneyp = parseFloat((this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub).toFixed(2));
+            console.log('moneyp',moneyp)
+            console.log('moneyMax',moneyMax,parseFloat(v))
+            if(moneyMax < moneyp){ 
+                if(parseFloat(v) > moneyMax){
+                    v = moneyMax.toString()
+                }
             }
-        }
-        if(moneyMax >= moneyp){
-            if(parseFloat(v) >= moneyp){
-                v = (moneyp-0.01).toFixed(2).toString()
+            if(moneyMax >= moneyp){
+                if(parseFloat(v) >= moneyp){      
+                    v = (moneyp-0.01).toString()
+                }
+                else if(moneyp-parseFloat(v)<0.01){
+                    v = (moneyp-0.01).toString()
+                }
             }
-            else if(moneyp-parseFloat(v)<0.01){
-                v = (moneyp-0.01).toFixed(2).toString()
-            }
-        }
-            v=parseFloat(v).toFixed(2);
+            vNum =parseFloat(v);
         } 
-        this.setState({balanceInput:v,balancenum:v})
+        this.setState({balanceInput:v,balancenum:vNum})
     }
     checkShipType() {
         switch (this.state.shipType) {

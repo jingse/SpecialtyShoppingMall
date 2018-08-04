@@ -1,8 +1,11 @@
 import React from 'react';
-import {Pagination, Flex, WhiteSpace, Toast,ActivityIndicator} from 'antd-mobile';
+import {Pagination, Flex, WhiteSpace, Toast,ActivityIndicator,Button} from 'antd-mobile';
 // import comment from "../../../static/mockdata/product_comment.js"; //mock假数据
 import productApi from "../../../api/product.jsx";
-import './index.less'
+import ImageView from 'react-mobile-imgview';
+import 'react-mobile-imgview/dist/react-mobile-imgview.css'
+
+import './index.less';
 
 const pageSize = 10;
 var totalPages = 0;
@@ -16,8 +19,23 @@ export default class Comment extends React.Component {
             // totalPages: 0,
             curPage: 1,
             animating:false,
+            imagelist : [
+            //    'http://pic5.photophoto.cn/20071228/0034034901778224_b.jpg',
+            //    'http://pic5.photophoto.cn/20071228/0034034901778224_b.jpg',
+            //    'http://pic5.photophoto.cn/20071228/0034034901778224_b.jpg',
+            ],
+            showViewer: false
+           
         };
     }
+
+    show(images) {
+        this.setState({ showViewer: true, imagelist:images})
+    }
+    close() {
+        this.setState({ showViewer: false})
+    }
+    
 
     componentWillMount() {
         this.requestComment(1);
@@ -131,19 +149,25 @@ export default class Comment extends React.Component {
     }
 
     render() {
-        const content = this.state.data && this.state.data.map((item, index) => {
-            console.log("*******************",item)
-            let imgs = item.images && item.images.map((item,index)=>{
-                return <img src={item.sourcePath} style={{width:'50%',height:'20%',paddingLeft:'1%',paddingRight:'1%',paddingTop:'1%'}}/>
+        
+      
+        const content = this.state.data && this.state.data.map((item, index1) => {
+            //  console.log("*******************",item.images)
+            let imgs = item.images && item.images.map((item)=>{
+                return item.sourcePath
+                // return <img src={item.sourcePath} style={{width:'50%',height:'20%',paddingLeft:'1%',paddingRight:'1%',paddingTop:'1%'}}/>
             
             })
-            return <Flex style={{background:'#fff', borderBottom:'1px solid #eee'}} key={index}>
+            // console.log("*******************",imgs,imgs.length)
+            return <Flex style={{background:'#fff', borderBottom:'1px solid #eee'}} key={index1}>
                 <Flex.Item>
                     <WhiteSpace/>
                     <div>{this.generateStars(item.contentLevel)}</div>
                     <div style={{}}>{item.appraiseContent}</div>
-                    <Flex wrap="wrap" justify="start" style={{paddingTop:'1rem',paddingBottom:'1rem'}}>
-                        {imgs}
+                    <Flex wrap="wrap" justify="end" style={{paddingTop:'1rem',paddingBottom:'1rem'}}>
+                        <div style={{display:(imgs.length == 0)?'none':'inline'}}>
+                            <Button type="ghost" size="small" inline onClick={e=>this.show(imgs)}>查看评价图片</Button>
+                        </div>
                     </Flex>
                     
                     <div style={{color:'#ccc'}}>
@@ -161,13 +185,23 @@ export default class Comment extends React.Component {
             {content}
 
             {this.checkPagination(this.props.total)}
+            
             <ActivityIndicator
                 toast
                 text="Loading..."
                 animating={this.state.animating}
               />
 
+              <div>
+                {
+                    this.state.showViewer && <ImageView imagelist={this.state.imagelist} close={this.close.bind(this)} />
+                }
+                
             </div>
+
+            </div>
+
+          
 
 
     }

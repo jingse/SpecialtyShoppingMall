@@ -6,6 +6,7 @@ var api = {
         http.ajax({
             method: 'POST',
             url: 'http://ymymmall.swczyc.com/auth',
+            withCredentials:false,
             data: {
                 url: url
             },

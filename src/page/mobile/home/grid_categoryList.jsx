@@ -21,8 +21,9 @@ export default class CategoryGrid extends React.Component {
 
     requestTopNOfCategory(categoryId) {
         // params: categoryId  size
+        console.log("categoryId",categoryId);
         homeApi.getTopNOfCategory(categoryId, 6, (rs) => {
-             console.log("llfrs",rs);
+             console.log("llfrs",rs,categoryId);
             if (rs && rs.success) {
                 const grid = rs.obj;
                 this.setState({

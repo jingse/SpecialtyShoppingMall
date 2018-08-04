@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import myApi from "../../../../api/my.jsx";
 
 const alert = Modal.alert;
+const prompt = Modal.prompt;
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
 const minDate = new Date('1900/01/01');
@@ -121,6 +122,32 @@ export default class Setting extends React.Component {
                     会员地址
                 </List.Item>
                 </div>
+            </List>
+
+            <WhiteSpace/>
+            <WhiteSpace/>
+
+            <List>
+                <List.Item
+                    // thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                    arrow="horizontal"
+                    onClick={() => {
+                        prompt('设置微商城名称', '', [
+                            { text: '取消' },
+                            { text: '设置', onPress: value => {
+                                // myApi.webusinessShopNameEdit(localStorage.getItem('WebusinessID'),value,(rs)=>{
+                                //     console.log('设置微商城名称rs',rs)
+                                // })
+                                myApi.webusinessShopNameEdit(191,value,(rs)=>{
+                                    console.log('设置微商城名称rs',rs)
+                                })
+                            } },
+                          ], 'default', '土特产微商城')
+                    }}
+                >
+                    设置微商城名称
+                </List.Item>
+ 
             </List>
 
             <WhiteSpace/>

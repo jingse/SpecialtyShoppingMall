@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 const Item = List.Item;
 const pageSize =10;
 var wechatIdmy = localStorage.getItem("wechatId");
-const isWebusiness = localStorage.getItem('isWebusiness');
+var isWebusiness = localStorage.getItem('isWebusiness');
 
 export default class My extends React.Component {
 
@@ -47,12 +47,7 @@ export default class My extends React.Component {
 
         this.requestInfo();
         this.requestVipRank();
-
         this.requestOrderCounts();
-
-
-
-
 
         myApi.getInfo(wechatIdmy, (rs) => {
             if (rs && rs.success) {
@@ -89,6 +84,10 @@ export default class My extends React.Component {
             if (isWebusiness === "1") {
                 // const uid = localStorage.getItem("uid");
                 console.log("进入判断, this.state.myWebusinessInfo.id: ", this.state.myWebusinessInfo.id);
+                localStorage.setItem('WebusinessID',this.state.myWebusinessInfo.id)
+                myApi.webusinessLogoEdit(this.state.myWebusinessInfo.id,this.headimgurl,(rs)=>{
+                    console.log('设置微商城logo rs',rs)//this.headimgurl
+                })
                 this.requestData(this.state.myWebusinessInfo.id);
             }
         });

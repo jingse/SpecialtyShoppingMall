@@ -45,6 +45,7 @@ class Home extends React.Component {
 
         const url = encodeURIComponent(window.location.href.split('#')[0]);
         wxApi.postJsApiData(url, (rs) => {
+            
             const data = rs.result;
             wx.config({
                 debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -104,10 +105,10 @@ class Home extends React.Component {
             console.log(res);
         });
 
-
+        this.checkLogin();
         // this.requestMockData();
         this.requestCarousel();
-        this.requestMerchantInfo(uid);
+        this.requestMerchantInfo(191);
         this.requestCategories();
 
         localStorage.removeItem("dest");
@@ -142,11 +143,11 @@ class Home extends React.Component {
         console.log("login param wechatName", wechatName);
 
 
-        // let leoopid = 'ocgJPv95RkAVveXrTmMWaxeN_wjA';
-        // let uuuu = 26;
-        // let leoname = 'Leo';
-        // homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
-        homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
+        let leoopid = 'ocgJPv95RkAVveXrTmMWaxeN_wjA';
+        let uuuu = 26;
+        let leoname = 'Leo';
+        homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
+        // homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
             if (rs && rs.success) {
                 console.log("loginCheck rs:", rs);
                 const wechatId = rs.obj.id;
@@ -180,7 +181,8 @@ class Home extends React.Component {
         //为了测试使用
         if (!localStorage.getItem("wechatId")) {
             localStorage.setItem("wechatId", "15");
-            // localStorage.setItem("isWebusiness", "1");
+            localStorage.setItem("uid",'26'); 
+            localStorage.setItem("isWebusiness", "1");
         }
 
         //拿到购物车的数量
@@ -258,7 +260,7 @@ class Home extends React.Component {
                         console.log("isWebusiness设为1");
                         localStorage.setItem("isWebusiness", 1);
                     }
-                    this.checkLogin();
+                    
                 });
             }
         });

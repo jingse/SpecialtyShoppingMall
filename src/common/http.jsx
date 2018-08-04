@@ -51,7 +51,10 @@ function ajax(params) {
         //client.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         client.setRequestHeader("Content-Type", params.type);
     }
-    client.withCredentials = true;
+    if(params.withCredentials == false)
+        client.withCredentials = false;
+    else
+        client.withCredentials = true;
     if (method === 'GET') {
         client.send();
     } else {
