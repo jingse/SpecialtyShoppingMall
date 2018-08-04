@@ -108,7 +108,7 @@ class Home extends React.Component {
         this.checkLogin();
         // this.requestMockData();
         this.requestCarousel();
-        this.requestMerchantInfo(191);
+        this.requestMerchantInfo(uid);
         this.requestCategories();
 
         localStorage.removeItem("dest");
@@ -143,11 +143,11 @@ class Home extends React.Component {
         console.log("login param wechatName", wechatName);
 
 
-        let leoopid = 'ocgJPv95RkAVveXrTmMWaxeN_wjA';
-        let uuuu = 26;
-        let leoname = 'Leo';
-        homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
-        // homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
+        // let leoopid = 'ocgJPv95RkAVveXrTmMWaxeN_wjA';
+        // let uuuu = 26;
+        // let leoname = 'Leo';
+        // homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
+        homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
             if (rs && rs.success) {
                 console.log("loginCheck rs:", rs);
                 const wechatId = rs.obj.id;

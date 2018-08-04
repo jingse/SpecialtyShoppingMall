@@ -135,12 +135,12 @@ export default class Setting extends React.Component {
                         prompt('设置微商城名称', '', [
                             { text: '取消' },
                             { text: '设置', onPress: value => {
-                                // myApi.webusinessShopNameEdit(localStorage.getItem('WebusinessID'),value,(rs)=>{
-                                //     console.log('设置微商城名称rs',rs)
-                                // })
-                                myApi.webusinessShopNameEdit(191,value,(rs)=>{
+                                myApi.webusinessShopNameEdit(localStorage.getItem('WebusinessID'),value,(rs)=>{
                                     console.log('设置微商城名称rs',rs)
                                 })
+                                // myApi.webusinessShopNameEdit(191,value,(rs)=>{
+                                //     console.log('设置微商城名称rs',rs)
+                                // })
                             } },
                           ], 'default', '土特产微商城')
                     }}
