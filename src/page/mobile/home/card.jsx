@@ -26,7 +26,7 @@ export default class InfoCard extends React.Component {
                     <WhiteSpace/>
                     <Flex direction='row'>
                     <div style={{width:'50%',height:'8rem'}}>
-                    <img src={card.weBusiness.logo} style={{width:'80%',height:'80%',paddingLeft:'1%',paddingRight:'1%',paddingTop:'1%'}}/>
+                    <img src={card.weBusiness.logo} style={{width:'80%',height:'80%',paddingLeft:'1%',paddingRight:'1%',paddingTop:'1%',borderRadius:'50%'}}/>
                     </div>
                     <div style={{width:'50%',height:'8rem'}}>
                             <Flex direction='column' justify='start' align='start'>

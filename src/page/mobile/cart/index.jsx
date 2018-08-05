@@ -590,26 +590,27 @@ class Cart extends React.Component {
             <div className="putincart cart_summary">
                 <div className="secondary_btn" style={{width:'75%'}}>
                     <Flex wrap='nowrap'>
-                        <Flex.Item style={{flex:'0 0 6%', marginLeft:'0.8rem'}}>
+                        <Flex.Item style={{flex:'0 0 20%', marginLeft:'0.8rem'}}>
                             <input type="checkbox" checked={this.state.chooseAll} onChange={()=>{
                                 this.state.chooseAll = !this.state.chooseAll;
                                 this.setState({chooseAll:this.state.chooseAll});
                                 this.chooseAll();
                              }} />
+                             <a style={{color:'darkorange',wordBreak:'break-word'}}>全选</a>
                         </Flex.Item>
-                        <Flex.Item style={{flex:'0 0 20%'}}>全选</Flex.Item>
-                        <Flex.Item style={{flex:'0 0 30%',textAlign:'right'}}>
+                        {/* <Flex.Item style={{flex:'0 0 15%',fontSize:'6%'}}></Flex.Item> */}
+                        <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'5%'}}>
                             {/*合计：<span style={{color:'darkorange'}}>￥{this.generateTotalPrice()}</span>*/}
-                            共计：<span style={{color:'darkorange'}}>￥{this.state.totalPrice}</span>
+                            共计：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.totalPrice}</a>
                         </Flex.Item>
-                        <Flex.Item style={{flex:'0 0 30%',textAlign:'right',paddingRight:"5px"}}>
-                            优惠：<span style={{color:'darkorange'}}>￥{this.state.payP}</span>
+                        <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'5%'}}>
+                            优惠：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.payP}</a>
                         </Flex.Item>
                     </Flex>
                 </div>
                 <div className="primary_btn" style={{width:'25%'}}
                      onClick={()=>{this.checkPayCount()}}>
-                     <div>支付￥{this.state.payM}
+                     <div style={{wordBreak:'break-word'}}> ￥{this.state.payM}
                      </div>
                      
                     
