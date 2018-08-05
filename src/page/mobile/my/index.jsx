@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
 const Item = List.Item;
 const pageSize =10;
 var wechatIdmy = localStorage.getItem("wechatId");
-var isWebusiness = localStorage.getItem('isWebusiness');
 
 export default class My extends React.Component {
 
@@ -79,9 +78,9 @@ export default class My extends React.Component {
                     availablePoints: rs.obj.wechatAccount.point,
                 })
             }
-            // const isWebusiness = localStorage.getItem("isWebusiness");
+           
             console.log("是微商吗？", isWebusiness);
-            if (isWebusiness === "1") {
+            if (localStorage.getItem('isWebusiness') === "1") {
                 // const uid = localStorage.getItem("uid");
                 console.log("进入判断, this.state.myWebusinessInfo.id: ", this.state.myWebusinessInfo.id);
                 localStorage.setItem('WebusinessID',this.state.myWebusinessInfo.id)
@@ -242,9 +241,8 @@ export default class My extends React.Component {
 
     checkWebusiness() {
         
-        console.log("isWebusiness", isWebusiness);
-
-        if (isWebusiness === '1') {
+    
+        if (localStorage.getItem('isWebusiness') === '1') {
             return <Card>
                 <div className="card_group">
                     <WingBlank>

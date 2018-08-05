@@ -274,6 +274,7 @@ class Home extends React.Component {
 
     requestCategories() {
         homeApi.getCategories((rs) => {
+            this.checkLogin();//延迟重新登录
             // console.log(rs);
             if (rs && rs.success) {
                 const gridCategory = rs.obj;
