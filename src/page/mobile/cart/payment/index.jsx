@@ -46,7 +46,7 @@ class Payment extends React.Component {
             orderItems: [],
             balance:0,//余额
             balanceInput:'',//使用余额
-            balancenum:'0',
+            balancenum:0,
             shipFee:0,
             couponSub:0,//电子券
             presents: [],
