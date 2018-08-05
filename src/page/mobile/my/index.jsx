@@ -50,9 +50,10 @@ export default class My extends React.Component {
 
         myApi.getInfo(wechatIdmy, (rs) => {
             if (rs && rs.success) {
-                console.log('rs',rs);
+                console.log('rs info',rs);
                 const balance = rs.obj.wechatAccount.totalbalance;
                 localStorage.setItem("isVip",rs.obj.wechatAccount.isVip)
+                localStorage.setItem("weBusinessID",rs.obj.weBusiness.id)
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
                     this.setState({balance:balance,})

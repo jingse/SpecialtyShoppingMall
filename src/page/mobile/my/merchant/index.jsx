@@ -66,14 +66,14 @@ export default class ProfitShare extends React.Component {
         //     });
         // }, 100);
 
-        myApi.getTotalDivideList(localStorage.getItem("uid"), (rs)=>{
+        myApi.getTotalDivideList(localStorage.getItem("weBusinessID"), (rs)=>{
             const data = rs.obj.rows;
             this.setState({
                 totalDataList: data
             });
         });
 
-        myApi.getDailyDivideList(localStorage.getItem("uid"), (rs)=>{
+        myApi.getDailyDivideList(localStorage.getItem("weBusinessID"), (rs)=>{
             const data = rs.obj.rows;
             this.setState({
                 dailyDataList: data
