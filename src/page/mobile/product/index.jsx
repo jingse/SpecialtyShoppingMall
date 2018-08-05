@@ -290,13 +290,29 @@ class Product extends React.Component {
         }];
         var price = {};
         cartApi.getTotalPriceInCart(item, (rs) => {
-            console.log("getTotalPriceInCart rs", rs);
+            console.log("getTotalPriceInCart rsllff", rs);
             if (rs && rs.success) {
                 price = rs.obj;
 
+                var presents = [];
+                rs.obj.promotions && rs.obj.promotions.map((item, index) => {
+                    if (item.promotion && JSON.stringify(item.promotion) !== '{}') {
+                        if (item.promotion.promotionRule === "满赠") {
+                            item.promotionCondition && item.promotionCondition.map((pre, index2) => {
+                                pre.promotionId = item.promotionId;
+                                presents.push(pre);
+                            });
+                        }
+                    }
+                });
+
+                console.log("赠品：", presents);
+
+
+
                 console.log("buyImmediately price", price);
                 if (price !== {}) {
-                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price, origin: "product"});
+                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price, origin: "product",presents,presents});
                 }
             }
         });

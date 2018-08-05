@@ -597,14 +597,14 @@ class Cart extends React.Component {
                                 this.chooseAll();
                              }} />
                         </Flex.Item>
-                        <Flex.Item style={{flex:'0 0 10%'}}>全选</Flex.Item>
-                        <Flex.Item style={{textAlign:'right'}}>
+                        <Flex.Item style={{flex:'0 0 20%'}}>全选</Flex.Item>
+                        <Flex.Item style={{flex:'0 0 30%',textAlign:'right'}}>
                             {/*合计：<span style={{color:'darkorange'}}>￥{this.generateTotalPrice()}</span>*/}
                             共计：<span style={{color:'darkorange'}}>￥{this.state.totalPrice}</span>
                         </Flex.Item>
-                        {/* <Flex.Item style={{textAlign:'right',paddingRight:"5px"}}>
-                            优惠金额：<span style={{color:'darkorange'}}>￥{this.state.payP}</span>
-                        </Flex.Item> */}
+                        <Flex.Item style={{flex:'0 0 30%',textAlign:'right',paddingRight:"5px"}}>
+                            优惠：<span style={{color:'darkorange'}}>￥{this.state.payP}</span>
+                        </Flex.Item>
                     </Flex>
                 </div>
                 <div className="primary_btn" style={{width:'25%'}}

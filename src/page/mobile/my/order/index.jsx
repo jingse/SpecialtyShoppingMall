@@ -639,6 +639,7 @@ export default class Order extends React.Component {
                     // paymentApi.successfulPaymentCallback(this.code, (rs) => {
                     //     // this.context.router.history.push({pathname: '/cart/payment/result', originalPrice: 0, finalPrice: this.state.shouldPay});
                     // });
+                    this.requestTabData(1, 1, pageSize);
                     this.linkTo({pathname: '/my/order', state:2});
                 } else if (res.err_msg === "get_brand_wcpay_request:fail") {
                     Toast.info("支付失败");

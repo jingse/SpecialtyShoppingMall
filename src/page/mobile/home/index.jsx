@@ -30,6 +30,8 @@ class Home extends React.Component {
     }
 
     componentWillMount() {
+        // console.log('window.location',window.location)
+        // window.location.href='www.baidu.com';
         this.setState({ animating: !this.state.animating });
         console.log("browser localStorage", localStorage.valueOf());
 
@@ -79,6 +81,9 @@ class Home extends React.Component {
                 if (rs.msg && rs.msg !== "") {
                     // Toast.info(rs.msg);
                     console.log(rs.ms);
+                }
+                if(rs.obj !== null){
+                    window.location.href = rs.obj;
                 }
             });
 
@@ -178,12 +183,12 @@ class Home extends React.Component {
         });
 
 
-        //为了测试使用
-        if (!localStorage.getItem("wechatId")) {
-            localStorage.setItem("wechatId", "15");
-            localStorage.setItem("uid",'26'); 
-            localStorage.setItem("isWebusiness", "1");
-        }
+        // 为了测试使用
+        // if (!localStorage.getItem("wechatId")) {
+        //     localStorage.setItem("wechatId", "15");
+        //     localStorage.setItem("uid",'26'); 
+        //     localStorage.setItem("isWebusiness", "1");
+        // }
 
         //拿到购物车的数量
         this.getCartCount();
