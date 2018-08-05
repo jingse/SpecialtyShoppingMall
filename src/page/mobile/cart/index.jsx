@@ -588,7 +588,7 @@ class Cart extends React.Component {
             {this.checkEdit(this.state.editId)}
             
             <div className="putincart cart_summary">
-                <div className="secondary_btn" style={{width:'75%'}}>
+                <div className="secondary_btn" style={{width:'70%'}}>
                     <Flex wrap='nowrap'>
                         <Flex.Item style={{flex:'0 0 20%', marginLeft:'0.8rem'}}>
                             <input type="checkbox" checked={this.state.chooseAll} onChange={()=>{
@@ -599,18 +599,26 @@ class Cart extends React.Component {
                              <a style={{color:'darkorange',marginLeft:"5px",wordBreak:'break-word'}}>全选</a>
                         </Flex.Item>
                         {/* <Flex.Item style={{flex:'0 0 15%',fontSize:'6%'}}></Flex.Item> */}
-                        <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'0.8rem'}}>
+                        <Flex.Item style={{flex:'0 0 70%',marginRight:"1px",textAlign:'center',height:'auto'}}>
                             {/*合计：<span style={{color:'darkorange'}}>￥{this.generateTotalPrice()}</span>*/}
-                            共计：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.totalPrice}</a>
+                            <div>
+                                <div style={{height:'2rem',lineHeight:'2rem',fontSize:'1rem'}}>
+                                合计：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.payM}</a>
+                                </div>
+                                <div style={{height:'1rem',lineHeight:'1rem',fontSize:'0.5rem'}}>
+                                总额：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.totalPrice}</a>
+                                立减：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.payP}</a>
+                                </div>
+                            </div>
                         </Flex.Item>
-                        <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'0.8rem'}}>
+                        {/* <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'0.8rem'}}>
                             优惠：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.payP}</a>
-                        </Flex.Item>
+                        </Flex.Item> */}
                     </Flex>
                 </div>
-                <div className="primary_btn" style={{width:'25%'}}
+                <div className="primary_btn" style={{width:'30%'}}
                      onClick={()=>{this.checkPayCount()}}>
-                     <div style={{wordBreak:'break-word'}}> {this.state.payM==0 ? '结算':'￥'+this.state.payM}
+                     <div style={{textAlign:'center'}}> 去结算:（{this.getPayCount()}）
                      </div>
                      
                     
