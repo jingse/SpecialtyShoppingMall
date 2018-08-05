@@ -596,21 +596,21 @@ class Cart extends React.Component {
                                 this.setState({chooseAll:this.state.chooseAll});
                                 this.chooseAll();
                              }} />
-                             <a style={{color:'darkorange',wordBreak:'break-word'}}>全选</a>
+                             <a style={{color:'darkorange',marginLeft:"5px",wordBreak:'break-word'}}>全选</a>
                         </Flex.Item>
                         {/* <Flex.Item style={{flex:'0 0 15%',fontSize:'6%'}}></Flex.Item> */}
-                        <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'5%'}}>
+                        <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'0.8rem'}}>
                             {/*合计：<span style={{color:'darkorange'}}>￥{this.generateTotalPrice()}</span>*/}
                             共计：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.totalPrice}</a>
                         </Flex.Item>
-                        <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'5%'}}>
+                        <Flex.Item style={{flex:'0 0 30%',marginRight:"1px",fontSize:'0.8rem'}}>
                             优惠：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.payP}</a>
                         </Flex.Item>
                     </Flex>
                 </div>
                 <div className="primary_btn" style={{width:'25%'}}
                      onClick={()=>{this.checkPayCount()}}>
-                     <div style={{wordBreak:'break-word'}}> ￥{this.state.payM}
+                     <div style={{wordBreak:'break-word'}}> {this.state.payM==0 ? '结算':'￥'+this.state.payM}
                      </div>
                      
                     
