@@ -113,7 +113,7 @@ export default class Category extends React.Component {
             //     height: hei,
             // });
         //console.log(dataBlobs)
-        }, 1000);
+        }, 500);
         //console.log(dataBlobs)
     }
 
@@ -131,7 +131,7 @@ export default class Category extends React.Component {
             //     dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
             //     isLoading: false,
             // });
-        }, 1000);
+        }, 500);
     };
 
     onTabsChange(tab, index) {
@@ -189,12 +189,11 @@ export default class Category extends React.Component {
         sectionIDs = [...sectionIDs];
         rowIDs = [...rowIDs];
         console.log('199199',dataBlobs,sectionIDs,rowIDs)
-
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
                 isLoading: false,
             });
-        }, 1000);
+        }, 500);
     }
 
 

@@ -100,7 +100,7 @@ export default class RecommendProducts extends React.Component {
             //     height: hei,
             // });
             //console.log(dataBlobs)
-        }, 1000);
+        }, 500);
         
     }
 
@@ -119,7 +119,7 @@ export default class RecommendProducts extends React.Component {
             //     dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
             //     isLoading: false,
             // });
-        }, 1000);
+        }, 500);
     };
 
     onTabsChange(tab, index) {
@@ -185,7 +185,7 @@ export default class RecommendProducts extends React.Component {
                 isLoading: false,
             });
             
-          }, 1000);
+          }, 500);
     
         
     }
