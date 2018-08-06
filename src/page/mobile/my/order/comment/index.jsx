@@ -128,8 +128,10 @@ class CommentOn extends React.Component {
             picNUm = picNUm + this.state.files[index].length;
         });
         console.log('picNUm picNUm',picNUm)
+
         this.setState({animating: !this.state.animating});
         this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
+            
             if(this.state.files[index].length == 0){
                 this.createCom()
                 this.setState({ animating: !this.state.animating });
@@ -152,6 +154,7 @@ class CommentOn extends React.Component {
 
                         if(sendPic == picNUm){  
                             console.log('上传返回')
+                            sendPic=0;
                             this.createCom()        
                         }
                             
