@@ -242,7 +242,7 @@ export default class OrderDetail extends React.Component {
     getButtonContent(orderState) {
         if (orderState === 0) {
             //return "取消订单";
-            orderCode = this.state.orderId;
+            orderCode = this.state.detail.baseInfo.orderCode;
             payMoney = Math.round(this.state.detail.baseInfo.payMoney * 100); //TODO
             return <Button type="ghost" inline size="small"
                            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
