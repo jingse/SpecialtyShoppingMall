@@ -133,8 +133,10 @@ class CommentOn extends React.Component {
         this.state.order.orderItems && this.state.order.orderItems.map((item, index) => {
             
             if(this.state.files[index].length == 0){
-                this.createCom()
-                this.setState({ animating: !this.state.animating });
+                if(index == this.state.order.orderItems.length-1){
+                    this.createCom()
+                    this.setState({ animating: !this.state.animating });
+                }
             }
             else{
                 for(let key in this.state.files[index]){

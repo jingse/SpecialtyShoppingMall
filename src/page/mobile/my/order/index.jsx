@@ -26,9 +26,6 @@ export default class Order extends React.Component {
         this.startx; //触摸起始点x轴坐标
         this.starty; //触摸起始点y轴坐标
 
-        // console.log("this.props.location.state", this.props.location.state);
-        // console.log("localStorage.getItem(\"tab\")", localStorage.getItem("tab"));
-        // console.log("(!this.props.location.state && this.props.location.state !== 0)", (!this.props.location.state && this.props.location.state !== 0));
 
         this.state = {
 
@@ -657,7 +654,7 @@ export default class Order extends React.Component {
         orderApi.getOrderDetailById(item.id,(rs)=>{
             console.log('getOrderDetailById_rs',rs)
             let orderCode =item.orderCode;
-            let shouldPayMoney= rs.obj.baseInfo.shouldPayMoney*100;
+            let shouldPayMoney= rs.obj.baseInfo.payMoney*100;
             console.log("shouldPayMoney", shouldPayMoney);
             paymentApi.confirmOrder(orderCode, shouldPayMoney, openid, (rs) => {
                 console.log("confirmOrder rs", rs);
@@ -780,7 +777,7 @@ export default class Order extends React.Component {
 
         return  <div ref={el => this.lv = el} style={{
             height: this.state.height,
-            // overflow: 'scroll',
+            overflow: 'scroll',
         }}> 
         <PullToRefresh
             style={{
@@ -819,13 +816,13 @@ export default class Order extends React.Component {
                 }, 1000);
             }}
         >
-        {/* <div ref={el => this.lv = el} style={{
+        <div ref={el => this.lv = el} style={{
                 height: this.state.height,
-                overflow: 'scroll',
-            }}>  */}
+                // overflow: 'scroll',
+            }}> 
             {orderContent}
             <div className='addMore' onClick={()=>this.addMore()}>加载更多</div>
-        {/* </div> */}
+        </div>
         
         </PullToRefresh>
         </div>
