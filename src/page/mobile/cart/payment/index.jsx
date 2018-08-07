@@ -413,7 +413,7 @@ class Payment extends React.Component {
                     this.cartConfirmOrder();
                 });
             } else {
-                Toast.info("创建订单失败！", 1);
+                Toast.info(rs.obj, 1);
             }
         });
     }

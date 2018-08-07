@@ -708,6 +708,7 @@ export default class Order extends React.Component {
             </div>
         } else {
             orderContent = order && order.map((item, index) => {
+                console.log('itemitemitemitemitemitemitemitem',item)
                 if (item.orderItems.length === 1) {
                     const singleProduct = item.orderItems && item.orderItems.map((product, index2) =>{
                         return <div key={index} className="order_card">
@@ -717,7 +718,7 @@ export default class Order extends React.Component {
                                 <span className="order_card_status">{this.checkDetailState(item.orderState)}</span>
                             </div>
                             {/*<Link to='/my/order/detail'>*/}
-                            <Link to={{pathname:this.isRefundOrder(item.orderState), orderId: item.id, orderState: item.orderState}}>
+                            <Link to={{pathname:this.isRefundOrder(item.orderState), orderId: item.orderCode, orderState: item.orderState}}>
                                 <Flex style={{background:'#F7F7F7'}}>
                                     <Flex.Item style={{flex: '0 0 25%'}}>
                                         <img src={"http://" + getServerIp() + product.iconURL.thumbnailPath} style={{width: '60%', margin:'0.8rem'}}/>
