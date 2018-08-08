@@ -111,7 +111,11 @@ class Home extends React.Component {
         });
 
         setTimeout(() => {
-            localStorage.setItem("firstLog", 'false');
+            if(localStorage.getItem("firstLog") == "true"){
+
+            }
+            else
+                localStorage.setItem("firstLog", 'false');
             this.checkLogin();
             // this.requestMockData();
             this.requestCarousel();
@@ -197,7 +201,6 @@ class Home extends React.Component {
         this.getCartCount();
 
         }
-
         console.log("localStorage wechatId", localStorage.getItem("wechatId"));
         console.log("localStorage isWebusiness", localStorage.getItem("isWebusiness"));
         console.log("localStorage bindPhone", localStorage.getItem("bindPhone"));
