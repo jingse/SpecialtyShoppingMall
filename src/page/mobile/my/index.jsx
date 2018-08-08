@@ -22,6 +22,7 @@ export default class My extends React.Component {
             userData: {},
             webusinessTotal: 0,
             webusinessDaily: 0,
+            isWebusiness:(localStorage.getItem("isWebusiness")=="1")?true:false,
 
             allCount: 0,
             payCount: 0,
@@ -80,8 +81,8 @@ export default class My extends React.Component {
                 })
             }
            
-            console.log("是微商吗？", isWebusiness);
-            if (localStorage.getItem('isWebusiness') === "1") {
+            console.log("是微商吗？", this.state.isWebusiness);
+            if (this.state.isWebusiness) {
                 // const uid = localStorage.getItem("uid");
                 console.log("进入判断, this.state.myWebusinessInfo.id: ", this.state.myWebusinessInfo.id);
                 localStorage.setItem('WebusinessID',this.state.myWebusinessInfo.id)
@@ -243,7 +244,7 @@ export default class My extends React.Component {
     checkWebusiness() {
         
     
-        if (localStorage.getItem('isWebusiness') === '1') {
+        if (this.state.isWebusiness) {
             return <Card>
                 <div className="card_group">
                     <WingBlank>

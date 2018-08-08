@@ -110,21 +110,26 @@ class Home extends React.Component {
             console.log(res);
         });
 
-        this.checkLogin();
-        // this.requestMockData();
-        this.requestCarousel();
-        this.requestMerchantInfo(uid);
-        this.requestCategories();
+        setTimeout(() => {
+            localStorage.setItem("firstLog", 'false');
+            this.checkLogin();
+            // this.requestMockData();
+            this.requestCarousel();
+            this.requestMerchantInfo(uid);
+            this.requestCategories();
+
+        }, 1000);
 
         localStorage.removeItem("dest");
     }
 
     componentDidMount() {
-        this.checkLogin();  //拿到wechatId webusinessId
+        // this.checkLogin();  //拿到wechatId webusinessId
         this.closeTimer = setTimeout(() => {
             this.setState({ animating: !this.state.animating });
           }, 500);
     }
+
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
     }
@@ -139,6 +144,10 @@ class Home extends React.Component {
     }
 
     checkLogin() {
+        
+        let logtemp = localStorage.getItem("firstLog")
+        if(logtemp == "false"){
+
         const uid = locManager.getUId();
         const myopenid = locManager.getMyOpenId();
         const wechatName = localStorage.getItem('nickname');
@@ -160,20 +169,13 @@ class Home extends React.Component {
                 // const bindPhone = rs.obj.phone;
                 const balance = rs.obj.totalbalance;
                 const isVip = rs.obj.isVip;
-
-                console.log("login wechatId", wechatId);
-               
-                console.log("login balance", balance);
-
                 localStorage.setItem("wechatId", wechatId);
-
                 if(rs.obj.isWeBusiness){
                     localStorage.setItem("isWebusiness", '1');
                 }
                 else{
                     localStorage.setItem("isWebusiness", '0');
                 }
-                // localStorage.setItem("isWebusiness", isWebusiness);
                 if(rs.obj.phone) {
                     localStorage.setItem("bindPhone", rs.obj.phone);
                 }
@@ -181,6 +183,7 @@ class Home extends React.Component {
                 localStorage.setItem("isVip", isVip);
             }
         });
+        localStorage.setItem("firstLog", 'true');
 
 
         // 为了测试使用
@@ -192,6 +195,8 @@ class Home extends React.Component {
 
         //拿到购物车的数量
         this.getCartCount();
+
+        }
 
         console.log("localStorage wechatId", localStorage.getItem("wechatId"));
         console.log("localStorage isWebusiness", localStorage.getItem("isWebusiness"));
@@ -274,7 +279,7 @@ class Home extends React.Component {
 
     requestCategories() {
         homeApi.getCategories((rs) => {
-            this.checkLogin();//延迟重新登录
+            // this.checkLogin();//延迟重新登录
             // console.log(rs);
             if (rs && rs.success) {
                 const gridCategory = rs.obj;
