@@ -11,7 +11,7 @@ function getServerHost() {
     let onlineURL = "//ymymmall.swczyc.com"; // 线上地址
     //let devURL = "//10.108.164.11:8080/hongyu/ymmall"; // 后台地址
     //let devURL = "//10.108.164.133/hyapi/ymmall"; // 后台地址
-    //let devURL = "//10.109.252.80/hyapi/ymmall"; // 后台地址
+    //let devURL = "//192.168.1.116:8080/hy_backend/ymmall/"; // 后台地址
     let devURL = "//admin.swczyc.com/hyapi/ymmall"; // 后台地址
 
     if (/*/huiyan\.baidu\.com/.test(location.href) || */params.apitype == "online") {

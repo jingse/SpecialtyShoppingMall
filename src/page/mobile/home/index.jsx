@@ -116,11 +116,11 @@ class Home extends React.Component {
             }
             else
                 localStorage.setItem("firstLog", 'false');
-            this.checkLogin();
+            this.checkLogin(uid);
             // this.requestMockData();
-            this.requestCarousel();
-            this.requestMerchantInfo(uid);
-            this.requestCategories();
+            // this.requestCarousel();
+            // this.requestMerchantInfo(uid);
+            // this.requestCategories();
 
         }, 1000);
 
@@ -147,9 +147,10 @@ class Home extends React.Component {
         });
     }
 
-    checkLogin() {
+    checkLogin(uid) {
         
         let logtemp = localStorage.getItem("firstLog")
+        console.log('logtemp',logtemp)
         if(logtemp == "false"){
 
         const uid = locManager.getUId();
@@ -185,7 +186,12 @@ class Home extends React.Component {
                 }
                 localStorage.setItem("balance", balance);
                 localStorage.setItem("isVip", isVip);
+                this.requestCarousel();
+                this.requestMerchantInfo(uid);
+                this.requestCategories();
             }
+
+            
         });
         localStorage.setItem("firstLog", 'true');
 
@@ -199,6 +205,13 @@ class Home extends React.Component {
 
         //拿到购物车的数量
         this.getCartCount();
+
+        }
+        else{
+                this.requestCarousel();
+                this.requestMerchantInfo(uid);
+                this.requestCategories();
+                this.getCartCount();
 
         }
         console.log("localStorage wechatId", localStorage.getItem("wechatId"));
