@@ -94,6 +94,8 @@ export default class BalanceRecords extends React.Component {
             case 2: return "销售奖励";
             case 3: return "商城销售";
             case 4: return "大客户购买";
+            case 5: return "积分兑换";
+            case 6: return "首单奖励";
             default: return "未知";
         }
     }

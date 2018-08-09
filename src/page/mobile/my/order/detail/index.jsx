@@ -173,6 +173,7 @@ export default class OrderDetail extends React.Component {
         orderApi.cancelOrder(orderId, (rs) => {
             if (rs && rs.success) {
                 console.log("rs: ", rs);
+                history.go(-1);
             }
         });
     }

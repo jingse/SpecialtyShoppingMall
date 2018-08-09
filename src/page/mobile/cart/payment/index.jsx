@@ -1,5 +1,5 @@
 import React from 'react';
-import { WhiteSpace, Flex, InputItem, List, Toast, Modal, Badge } from 'antd-mobile';
+import { WhiteSpace, Flex, InputItem, List, Toast, Modal, Badge, NoticeBar } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 // import LoadingHoc from "../../../common/loading-hoc.jsx";
 import Layout from "../../../../common/layout/layout.jsx";
@@ -41,6 +41,7 @@ class Payment extends React.Component {
             available: true,
 
             isCreated: false,
+            isNewOrder:false,
 
             ids: [],
             orderItems: [],
@@ -169,9 +170,10 @@ class Payment extends React.Component {
             if (rs && rs.success) {
                 console.log('rs余额', rs);
                 let balance = rs.obj.wechatAccount.totalbalance;
+                let isNewOrder = rs.obj.wechatAccount.isNew;
                 if (balance) {
                     // localStorage.setItem("balance", balance.toString());
-                    this.setState({balance:balance})
+                    this.setState({balance:balance,isNewOrder:isNewOrder})
                 }
             }
         });
@@ -358,7 +360,7 @@ class Payment extends React.Component {
 
 
         var order = {
-            "orderPhone":localStorage.getItem("bindPhone"),
+            "orderPhone":null,//localStorage.getItem("bindPhone")
             "orderWechatId":wechatId,
             "webusinessId":webusinessId,
 
@@ -684,7 +686,11 @@ class Payment extends React.Component {
 
             <Navigation title="支付" left={true}/>
             <WhiteSpace/>
-
+            <div style={{display:this.state.isNewOrder?'inline':'none'}}>
+            <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
+                首单奖励：全现金购买，奖励订单金额的20%余额（最多不超过50元）
+            </NoticeBar>
+            </div>
             {/*<Card className="payment_card">*/}
                 {/*<Link to="/address">*/}
                     {/*<Flex>*/}

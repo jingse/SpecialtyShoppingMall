@@ -34,7 +34,7 @@ export default class InfoCard extends React.Component {
                                 <WhiteSpace/>
                                 <Flex.Item>
                                 </Flex.Item>
-                                <Flex.Item className="info_name">联系人：
+                                <Flex.Item className="info_name">店主：
                                     {/*<span style={{fontWeight:'initial'}}>刘传昌</span>*/}
                                     <span style={{fontWeight:'initial'}}>{card.weBusiness.name}</span>
                                 </Flex.Item>

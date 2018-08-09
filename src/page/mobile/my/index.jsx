@@ -349,9 +349,17 @@ export default class My extends React.Component {
                     </Flex.Item>
                     <Flex.Item style={{flex:'0 0 80%'}}>
                         <div className="my_header_text">
-                            {this.nickname ? this.nickname : <a href={wxconfig.redirectUri} style={{color:"#fff"}}>点击登录</a>}
+                            <Flex>
+                                <div style={{overflow:'hidden',width:'50%'}}>
+                                {this.nickname ? this.nickname : <a href={wxconfig.redirectUri} style={{color:"#fff"}}>点击登录</a>}
+                                </div>
+                                <div>
+                                <span style={{marginLeft:'0.8rem',width:'50%'}}>{this.state.vipRank}</span>
+                                </div>
+                            </Flex>
+                            
                             {/*{this.checkVip()}*/}
-                            <span style={{marginLeft:'0.8rem'}}>{this.state.vipRank}</span>
+                            
                         </div>
 
                         {this.checkPhone()}

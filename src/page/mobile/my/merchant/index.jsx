@@ -138,7 +138,8 @@ export default class ProfitShare extends React.Component {
                     time: item.ordertime,
                     user_name: item.wechatName,
                     total_fee: item.totalAmount,
-                    share_fee: item.weBusinessAmount
+                    share_fee: item.weBusinessAmount,
+                    goods_name:item.itemName,
                 };
                 return <InfoCard data={data} key={index}/>
             })}
