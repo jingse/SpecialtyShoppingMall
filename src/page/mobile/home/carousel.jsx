@@ -10,6 +10,9 @@ export default class MyCarousel extends React.Component {
 
     componentDidMount() {
 
+        setTimeout(()=>{
+
+        },1000)
     }
 
     checkPromotion(isCheck) {
@@ -57,10 +60,10 @@ export default class MyCarousel extends React.Component {
         return <div className="carousel_view">
             <Carousel className="my-carousel"
                 // style={{ touchAction:'none' }}
-                autoplay={true}
+                autoplay
                 infinite
                 selectedIndex={0}
-                swipeSpeed={35}
+                swipeSpeed={12}
             >
                 {content}
             </Carousel>

@@ -670,9 +670,11 @@ class Product extends React.Component {
             {/*<Detail ImgsData={proData.images}/>*/}
             <div>
             <WingBlank>
+                <div style={{width:'100%'}}>
                 <div className="para_title">产品介绍</div>
-                <div style={{width:'100%'}} dangerouslySetInnerHTML={{ __html: proData.specialty.descriptions}} />
+                <div  className="para_html" dangerouslySetInnerHTML={{ __html: proData.specialty.descriptions}} />
                 <hr/>
+                </div>
             </WingBlank>
             </div>
             <WhiteSpace size="lg"/>
