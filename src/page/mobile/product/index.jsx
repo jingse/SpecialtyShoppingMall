@@ -516,7 +516,7 @@ class Product extends React.Component {
     render() {
         console.log(this.state);
         console.log(this.state.data);
-        console.log("recommends: ", this.state.recommends);
+        // console.log("recommends: ", this.state.recommends);
 
         if (this.state.isNull) {
             return <Layout>

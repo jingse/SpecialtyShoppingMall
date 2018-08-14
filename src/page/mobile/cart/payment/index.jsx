@@ -508,7 +508,7 @@ class Payment extends React.Component {
                 type='money'
                 value={this.state.balanceInput}
                 placeholder="输入金额"
-                maxLength={5}
+                maxLength={7}
                 labelNumber={7}
                 onChange={value => this.checkNum(value)}
                 clear
@@ -518,8 +518,8 @@ class Payment extends React.Component {
         return null
     }
     checkNum(v){
-        console.log('v',v)
-        console.log('parseFloat(v)',parseFloat(v))
+        // console.log('v',v)
+        // console.log('parseFloat(v)',parseFloat(v))
         let vNum = 0;
         if(v === ''){
             vNum = 0;
@@ -527,22 +527,21 @@ class Payment extends React.Component {
         else{
             let moneyMax=parseFloat(this.state.balance.toFixed(2));
             let moneyp = parseFloat((this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub).toFixed(2));
-            console.log('moneyp',moneyp)
-            console.log('moneyMax',moneyMax,parseFloat(v))
+            // console.log('moneyp',moneyp)
+            // console.log('moneyMax',moneyMax,parseFloat(v))
             if(moneyMax < moneyp){ 
                 if(parseFloat(v) > moneyMax){
-                    v = moneyMax.toString()
+                    v = moneyMax.toFixed(2)
                 }
             }
             if(moneyMax >= moneyp){
-                if(parseFloat(v) >= moneyp){      
-                    v = (moneyp-0.01).toString()
+                if(parseFloat(v) >= moneyp || moneyp-parseFloat(v)<0.01){      
+                    v = (moneyp-0.01).toFixed(2)
                 }
-                else if(moneyp-parseFloat(v)<0.01){
-                    v = (moneyp-0.01).toString()
-                }
+               
             }
             vNum =parseFloat(v);
+           
         } 
         this.setState({balanceInput:v,balancenum:vNum})
     }

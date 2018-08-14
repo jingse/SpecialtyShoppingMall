@@ -9,6 +9,7 @@ import { Flex, WhiteSpace, Toast, ActivityIndicator, Popover, Modal,SwipeAction}
 import { createForm } from 'rc-form';
 // import cart_data from "../../../static/mockdata/cart.js"; //mock假数据
 import cartApi from "../../../api/cart.jsx";
+import proApi from "../../../api/product.jsx";
 import './index.less';
 import {getServerIp} from "../../../config.jsx";
 
@@ -16,6 +17,7 @@ import {getServerIp} from "../../../config.jsx";
 const Item = Popover.Item;
 var items = [];  //为了传递给下个界面
 const alert = Modal.alert;
+let stock = 0;
 
 class Cart extends React.Component {
     constructor(props) {
@@ -262,9 +264,12 @@ class Cart extends React.Component {
         });
     }
     addNum = (val) => {
+        console.log('stock',stock)
         this.setState({
-            num: (val+1)<11?val+1:10,
+            num: (val+1)<=stock?val+1:stock,
         });
+        if(val == stock)
+            Toast.info("没有更多库存",0.5)
     };
     minusNum = (val) => {
         this.setState({
@@ -390,88 +395,24 @@ class Cart extends React.Component {
         // console.log("priceresult", this.state.priceResult);
         this.context.router.history.push({pathname: link, products: items, price: this.state.priceResult, presents: this.state.presents});
     }
+    getStock(id){
+        proApi.getSpecialtySpecificationDetailBySpecificationID(id, (rs) => {
+            if (!rs.success) {
+                console.log('error');
+                return
+            }
+            if(rs && rs.success) {
+                stock = rs.obj[0].inbound;
+            }
+        });
+    }
 
 
 
     render() {
         console.log("this.state.cartData", this.state.cartData);
         // console.log("this.state.cartItems", this.state.cartItems);
-        const content = this.state.cartData && this.state.cartData.map((item, index) => {
-            //如果为组合优惠
-            // if (item.isGroupPromotion) {
-            //     return <div onTouchStart={()=>{this.getStartTime()}} onTouchEnd={() => {this.getEndTime(item.id)}} key={index}>
-            //     <Card className="cart_card" key={index}>
-            //         {/*<Popover mask*/}
-            //                  {/*overlayClassName="fortest"*/}
-            //                  {/*overlayStyle={{ color: 'currentColor' }}*/}
-            //                  {/*visible={this.state.visible[index]}*/}
-            //                  {/*overlay={[*/}
-            //                      {/*(<Item key="4" value="delete" data-seed="logId">*/}
-            //                          {/*<div onClick={()=>{this.deleteCartItem(item.id)}}>*/}
-            //                              {/*删除*/}
-            //                          {/*</div>*/}
-            //                      {/*</Item>),*/}
-            //                  {/*]}*/}
-            //                  {/*align={{*/}
-            //                      {/*overflow: { adjustY: 0, adjustX: 0 },*/}
-            //                      {/*offset: [-180, -60],*/}
-            //                  {/*}}*/}
-            //                  {/*// onVisibleChange={this.handleVisibleChange}*/}
-            //                  {/*// onSelect={()=>{this.onSelect(index)}}*/}
-            //         {/*>*/}
-            //         <Flex className="cart_card_container cart_card_underline">
-            //             <input type="checkbox" checked={this.state.checkbox[index]} onChange={()=>{
-            //                 this.state.checkbox[index] = !this.state.checkbox[index];
-            //                 if (this.state.checkbox[index]) {
-            //                     this.state.cartItems.push(this.state.cartData[index]);
-            //                 } else {
-            //                     this.state.cartItems.splice(this.findItemIndex(item), 1);
-            //                 }
-            //                 this.state.chooseAll = this.isChooseAll();
-            //                 this.setState({
-            //                     checkbox: this.state.checkbox,
-            //                     chooseAll: this.state.chooseAll,
-            //                     cartItems: this.state.cartItems,
-            //                 });
-            //                 items = this.state.cartItems;
-            //                 this.requestTotalPrice(this.state.cartItems);
-            //             }} />
-            //
-            //             <div className="cart_card_img">
-            //                 <img src={"http://" + getServerIp() + item.iconURL.mediumPath} />
-            //             </div>
-            //
-            //             <div className="cart_card_img">
-            //                 <img src={"http://" + getServerIp() + item.iconURL.mediumPath} />
-            //             </div>
-            //
-            //             {/*<Flex.Item style={{flex:'0 0 60%'}}*/}
-            //             {/*onMouseDown={()=>{this.state.timeOut[index] = setTimeout(this.showToast, 1000);*/}
-            //             {/*this.setState({timeOut: this.state.timeOut})}}*/}
-            //             {/*// onMouseUp={()=>{clearTimeout(this.state.timeOut[index]);*/}
-            //             {/*//     this.setState({timeOut: this.state.timeOut})}}*/}
-            //             {/*>*/}
-            //             {/*<div className="title_text">{item.product.name}</div>*/}
-            //             {/*<div className="commodity_prop">{item.product.detail}</div>*/}
-            //             {/*<div className="price_text">￥{item.product.price}</div>*/}
-            //             {/*</Flex.Item>*/}
-            //
-            //             <Flex.Item style={{flex:'0 0 %20'}}>
-            //                 <img src='./images/icons/编辑.png'
-            //                      onClick={()=>{
-            //                          this.setEditId(item.id);
-            //                          this.getDefaultNum(item.quantity);
-            //                          this.openNav(index);
-            //                      }}/>
-            //                 <WhiteSpace/>
-            //                 <WhiteSpace/>
-            //                 <div style={{fontColor:"#ccc", fontSize:'0.8rem'}}>x {item.quantity}</div>
-            //             </Flex.Item>
-            //         </Flex>
-            //         {/*</Popover>*/}
-            //     </Card>
-            //     </div>
-            // }
+        const content = this.state.cartData && this.state.cartData.map((item, index) => {         
 
             // 普通商品
             return <div key={index} >
@@ -486,6 +427,7 @@ class Cart extends React.Component {
                             console.log("item",item)
                                  this.trueShowEdit(index);
                                  this.getDefaultNum(item.quantity);
+                                 this.getStock(item.specialtySpecificationId);
                              },
                         style: { backgroundColor: '#ddd', color: 'white' ,width:'100%'},
                     },
@@ -557,6 +499,7 @@ class Cart extends React.Component {
                                 this.setEditId(item.id);
                                 this.changeItemQuantity(item.id, this.state.num);
                                 this.fasleShowEdit(index);
+                                stock=0;
                             }}>
     
                      <WhiteSpace size="lg"/>
@@ -585,7 +528,7 @@ class Cart extends React.Component {
             {content}
             <WhiteSpace size="lg"/>
             <WhiteSpace size="lg"/>
-            {this.checkEdit(this.state.editId)}
+            {/* {this.checkEdit(this.state.editId)} */}
             
             <div className="putincart cart_summary">
                 <div className="secondary_btn" style={{width:'70%'}}>
