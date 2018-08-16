@@ -21,6 +21,7 @@ import Address from "./mobile/address/index.jsx";
 import AddAddress from "./mobile/address/add/index.jsx";
 import EditAddress from "./mobile/address/edit/index.jsx";
 import Category from "./mobile/home/category/index.jsx";
+import Tag from "./mobile/home/tag/index.jsx";
 import Sales from "./mobile/home/sales/index.jsx";
 import SalesDetail from "./mobile/home/sales/detail/index.jsx";
 import SalesGroup from "./mobile/home/sales_group/index.jsx";
@@ -68,6 +69,7 @@ export default class App extends React.Component {
                         <Route component={My} path='/my' exact />
 
                         <Route component={Category} path='/home/category' exact/>
+                        <Route component={Tag} path='/home/tag' exact/>
                         <Route component={Sales} path='/home/sales' exact/>
                         <Route component={SalesDetail} path='/home/sales/detail' exact/>
                         <Route component={SalesGroup} path='/home/sales_group' exact/>

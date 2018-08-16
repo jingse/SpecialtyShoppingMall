@@ -22,6 +22,7 @@ class Home extends React.Component {
         this.state = {
             carousel: [],
             card: {},
+            tags: [],
             gridCategory: [],
 
             isLoading: false,
@@ -176,6 +177,7 @@ class Home extends React.Component {
                 localStorage.setItem("isVip", isVip);
                 this.requestCarousel();
                 this.requestMerchantInfo(uid);
+                this.requestTags();
                 this.requestCategories();
             }
         });
@@ -272,6 +274,17 @@ class Home extends React.Component {
         console.log("requestMerchantInfo", this.state.card);
     }
 
+    requestTags() {
+        homeApi.getTags((rs) => {
+            if (rs && rs.success) {
+                const tags = rs.obj;
+                this.setState({
+                    tags
+                });
+            }
+        });
+    }
+
     requestCategories() {
         homeApi.getCategories((rs) => {
             // this.checkLogin();//延迟重新登录
@@ -301,13 +314,13 @@ class Home extends React.Component {
         return <Layout header={true} footer={true}>
             <Carousel carouselData={this.state.carousel} />
             <InfoCard cardData={this.state.card}/>
-            <GridCategory gridData={this.state.gridCategory}/>
+            <GridCategory gridData={this.state.gridCategory} tagData={this.state.tags}/>
             <WhiteSpace size="lg"/>
 
             {categories}
 
             <WhiteSpace/>
-            <Bottom>技术支持：矩江科技   旅行社信息化专家</Bottom>
+            <Bottom>已经到底啦</Bottom>
             <ActivityIndicator
                 toast
                 text="Loading..."

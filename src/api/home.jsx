@@ -85,6 +85,16 @@ var api = {
         });
     },
 
+    getTags(callback) {
+        http.ajax({
+            url: getServerHost() + '/product/labels/list/view',
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+
     getCategories(callback) {
         http.ajax({
             url: getServerHost() + '/product/category/super_categories',
@@ -107,6 +117,18 @@ var api = {
 
 
     //-----------------------------------category list api--------------------------------------------
+
+    getTagList(id, page, rows, condition, callback) {
+        http.ajax({
+            url: getServerHost() + '/product/label_specialtys/page/view?id=' + id + "&page=" + page +
+                "&rows=" + rows + "&condition=" + condition,
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
+
 
     getCategoryList(categoryId, page, rows, condition, callback) {
         http.ajax({

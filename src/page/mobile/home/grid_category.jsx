@@ -138,9 +138,11 @@ export default class GridCategory extends React.Component {
     render() {
 
         const category = this.props.gridData;
+        const tags = this.props.tagData;
+
         console.log("category: ", category);
 
-        if (!category || JSON.stringify(category) === '{}') {
+        if (!category || JSON.stringify(category) === '{}' || !tags || JSON.stringify(tags) === '{}') {
             return null
         }
 
@@ -211,7 +213,19 @@ export default class GridCategory extends React.Component {
             // return category_flex;
         });
 
-        let dataALL = this.state.data.concat(categoryFROM);
+        let tagFROM = tags && tags.map((item, index) => {
+            return {
+                icon: "http:" + getServerIp() + item.iconUrl,
+                text: item.name,
+                urlTo: '/home/tag',
+                category: item.name,
+                categoryId: item.id
+            }
+        });
+
+        let tmp = this.state.data.concat(tagFROM);
+        let dataALL = tmp.concat(categoryFROM);
+
         return <Grid data={dataALL} isCarousel={true} hasLine={false} itemStyle={{background: '#eee'}}
                      renderItem={dataItem => (
                          <div className="div_category">
