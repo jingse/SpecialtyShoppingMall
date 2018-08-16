@@ -216,7 +216,7 @@ export default class GridCategory extends React.Component {
         let tagFROM = tags && tags.map((item, index) => {
             return {
                 icon: "http:" + getServerIp() + item.iconUrl,
-                text: item.name,
+                text: item.productName,
                 urlTo: '/home/tag',
                 category: item.name,
                 categoryId: item.id
