@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="去掉产品页面写死的视频">
-      <change afterPath="$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx" afterDir="false" />
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="修改标签管理bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/app.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -53,13 +49,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="jsx" value="721" />
-          <entry key="txt" value="89" />
+          <entry key="txt" value="100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSX Harmony" value="721" />
-          <entry key="PLAIN_TEXT" value="89" />
+          <entry key="PLAIN_TEXT" value="100" />
         </counts>
       </usages-collector>
     </session>
@@ -69,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-172">
-              <caret line="316" column="88" lean-forward="true" selection-start-line="316" selection-start-column="88" selection-end-line="316" selection-end-column="88" />
+            <state relative-caret-position="397">
+              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -82,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/src/api/home.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="89" column="61" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="61" />
+              <caret line="89" column="63" lean-forward="true" selection-start-line="89" selection-start-column="63" selection-end-line="89" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -90,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="267" lean-forward="true" selection-start-line="267" selection-end-line="267" />
+            <state relative-caret-position="4148">
+              <caret line="283" column="133" selection-start-line="283" selection-start-column="125" selection-end-line="283" selection-end-column="133" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#330#377#0" expanded="true" />
@@ -103,8 +99,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="303" lean-forward="true" selection-start-line="303" selection-end-line="303" />
+            <state relative-caret-position="170">
+              <caret line="220" column="43" lean-forward="true" selection-start-line="220" selection-start-column="43" selection-end-line="220" selection-end-column="43" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -203,8 +199,8 @@
         <option value="$PROJECT_DIR$/src/page/app.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/index.jsx" />
         <option value="$PROJECT_DIR$/src/api/home.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" />
       </list>
     </option>
   </component>
@@ -225,10 +221,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="249" />
-    <option name="y" value="73" />
-    <option name="width" value="946" />
-    <option name="height" value="558" />
+    <option name="x" value="35" />
+    <option name="y" value="60" />
+    <option name="width" value="760" />
+    <option name="height" value="450" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -288,7 +284,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../supermallDemo" />
     <property name="settings.editor.selected.configurable" value="file.status.colors" />
   </component>
   <component name="RecentsManager">
@@ -502,21 +498,7 @@
       <workItem from="1533366315272" duration="5860000" />
       <workItem from="1534227511676" duration="81000" />
       <workItem from="1534228588646" duration="572000" />
-      <workItem from="1534405071535" duration="2749000" />
-    </task>
-    <task id="LOCAL-00036" summary="update payment page api">
-      <created>1527070480287</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1527070480287</updated>
-    </task>
-    <task id="LOCAL-00037" summary="update payment page api">
-      <created>1527076234069</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1527076234069</updated>
+      <workItem from="1534405071535" duration="3923000" />
     </task>
     <task id="LOCAL-00038" summary="fix a cart bug">
       <created>1527078636108</created>
@@ -847,11 +829,25 @@
       <option name="project" value="LOCAL" />
       <updated>1534228985853</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="标签管理">
+      <created>1534407963860</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1534407963860</updated>
+    </task>
+    <task id="LOCAL-00086" summary="修改标签管理bug">
+      <created>1534408764025</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1534408764025</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1066338000" />
+    <option name="totallyTimeSpent" value="1067512000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -866,7 +862,7 @@
     <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17559944" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17559944" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -880,7 +876,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506605" side_tool="true" weight="0.19498608" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32849163" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.08643617" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.15691489" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.15691489" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -943,8 +939,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update payment and badge" />
-    <MESSAGE value="update" />
     <MESSAGE value="fix a lot of bugs" />
     <MESSAGE value="解决待评价订单总数问题" />
     <MESSAGE value="解决刷新不及时的问题" />
@@ -968,7 +962,9 @@
     <MESSAGE value="不显示该微信已被注册成微商的信息" />
     <MESSAGE value="fix bug" />
     <MESSAGE value="去掉产品页面写死的视频" />
-    <option name="LAST_COMMIT_MESSAGE" value="去掉产品页面写死的视频" />
+    <MESSAGE value="标签管理" />
+    <MESSAGE value="修改标签管理bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改标签管理bug" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx">
@@ -1295,10 +1291,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/home.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="89" column="63" lean-forward="true" selection-start-line="89" selection-start-column="63" selection-end-line="89" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-172">
-          <caret line="316" column="88" lean-forward="true" selection-start-line="316" selection-start-column="88" selection-end-line="316" selection-end-column="88" />
+        <state relative-caret-position="397">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -1307,8 +1310,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="267" lean-forward="true" selection-start-line="267" selection-end-line="267" />
+        <state relative-caret-position="4148">
+          <caret line="283" column="133" selection-start-line="283" selection-start-column="125" selection-end-line="283" selection-end-column="133" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#330#377#0" expanded="true" />
@@ -1316,17 +1319,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/home.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="89" column="61" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="303" lean-forward="true" selection-start-line="303" selection-end-line="303" />
+        <state relative-caret-position="170">
+          <caret line="220" column="43" lean-forward="true" selection-start-line="220" selection-start-column="43" selection-end-line="220" selection-end-column="43" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

@@ -218,7 +218,7 @@ export default class GridCategory extends React.Component {
                 icon: "http:" + getServerIp() + item.iconUrl,
                 text: item.productName,
                 urlTo: '/home/tag',
-                category: item.name,
+                category: item.productName,
                 categoryId: item.id
             }
         });
