@@ -1,4 +1,4 @@
 # SpecialtyShoppingMall
 
 react
-ant-design
+ant-mobile
